@@ -1,12 +1,13 @@
 // Service Worker for DataMaster & Spiritual Life PWA
-// Automatic Cache-Buster & Offline Engine
-const BUILD_TIME = '20261105214055';
+// 100% Offline-First Engine & Automatic Cache Invalidation
+const BUILD_TIME = '20261105214753';
 const CACHE_NAME = `datamaster-spirit-${BUILD_TIME}`;
 
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
   './manifest.json',
+  './tailwind.min.js',
   './translations.js',
   './agpeya_full.js',
   './book_prayer_full.js',
@@ -24,21 +25,20 @@ const ASSETS_TO_CACHE = [
 ];
 
 self.addEventListener('install', (event) => {
-  console.log('[SW] Installing new build:', BUILD_TIME);
+  console.log('[SW] Installing offline build:', BUILD_TIME);
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      console.log('[SW] Pre-caching all assets for offline use');
+      console.log('[SW] Pre-caching 100% of app assets for offline use');
       return cache.addAll(ASSETS_TO_CACHE).catch(err => {
         console.warn('[SW] Pre-caching warning:', err);
       });
     })
   );
-  // Force active immediately without waiting for old SW to finish
   self.skipWaiting();
 });
 
 self.addEventListener('activate', (event) => {
-  console.log('[SW] Activating new build:', BUILD_TIME);
+  console.log('[SW] Activating offline build:', BUILD_TIME);
   event.waitUntil(
     caches.keys().then((keys) => {
       return Promise.all(
@@ -51,32 +51,34 @@ self.addEventListener('activate', (event) => {
       );
     })
   );
-  // Claim all clients immediately
   self.clients.claim();
 });
 
 self.addEventListener('fetch', (event) => {
-  // Navigation requests: Network-first with cache fallback
+  // Navigation requests: Instant offline launch from cache with background revalidation
   if (event.request.mode === 'navigate') {
     event.respondWith(
-      fetch(event.request)
-        .then((response) => {
-          if (response && response.status === 200) {
-            const clone = response.clone();
-            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
-          }
-          return response;
-        })
-        .catch(() => caches.match('./index.html') || caches.match('./'))
+      caches.match('./index.html').then((cached) => {
+        const fetchPromise = fetch(event.request)
+          .then((networkResponse) => {
+            if (networkResponse && networkResponse.status === 200) {
+              const clone = networkResponse.clone();
+              caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
+            }
+            return networkResponse;
+          })
+          .catch(() => cached);
+
+        return cached || fetchPromise;
+      })
     );
     return;
   }
 
-  // Non-navigation: Cache-first with network background revalidation
+  // Assets & scripts: Cache-first with background refresh
   event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
+    caches.match(event.request, { ignoreSearch: true }).then((cachedResponse) => {
       if (cachedResponse) {
-        // Fetch fresh copy in background
         fetch(event.request)
           .then((networkResponse) => {
             if (networkResponse && networkResponse.status === 200) {
