@@ -1,0 +1,662 @@
+[
+  {
+    "id": 1,
+    "name": "التكوين",
+    "testament": "OT",
+    "category": "شريعة",
+    "chapters": 50,
+    "start_page": 2,
+    "name_en": "Genesis",
+    "name_ar": "التكوين"
+  },
+  {
+    "id": 2,
+    "name": "الخروج",
+    "testament": "OT",
+    "category": "شريعة",
+    "chapters": 40,
+    "start_page": 66,
+    "name_en": "Exodus",
+    "name_ar": "الخروج"
+  },
+  {
+    "id": 3,
+    "name": "اللاويين",
+    "testament": "OT",
+    "category": "شريعة",
+    "chapters": 27,
+    "start_page": 121,
+    "name_en": "Leviticus",
+    "name_ar": "اللاويين"
+  },
+  {
+    "id": 4,
+    "name": "العدد",
+    "testament": "OT",
+    "category": "شريعة",
+    "chapters": 36,
+    "start_page": 158,
+    "name_en": "Numbers",
+    "name_ar": "العدد"
+  },
+  {
+    "id": 5,
+    "name": "التثنية",
+    "testament": "OT",
+    "category": "شريعة",
+    "chapters": 34,
+    "start_page": 211,
+    "name_en": "Deuteronomy",
+    "name_ar": "التثنية"
+  },
+  {
+    "id": 6,
+    "name": "يشوع",
+    "testament": "OT",
+    "category": "تاريخية",
+    "chapters": 24,
+    "start_page": 257,
+    "name_en": "Joshua",
+    "name_ar": "يشوع"
+  },
+  {
+    "id": 7,
+    "name": "قضاة",
+    "testament": "OT",
+    "category": "تاريخية",
+    "chapters": 21,
+    "start_page": 288,
+    "name_en": "Judges",
+    "name_ar": "قضاة"
+  },
+  {
+    "id": 8,
+    "name": "راعوث",
+    "testament": "OT",
+    "category": "تاريخية",
+    "chapters": 4,
+    "start_page": 318,
+    "name_en": "Ruth",
+    "name_ar": "راعوث"
+  },
+  {
+    "id": 9,
+    "name": "صموئيل الأول",
+    "testament": "OT",
+    "category": "تاريخية",
+    "chapters": 31,
+    "start_page": 323,
+    "name_en": "1 Samuel",
+    "name_ar": "صموئيل الأول"
+  },
+  {
+    "id": 10,
+    "name": "صموئيل الثاني",
+    "testament": "OT",
+    "category": "تاريخية",
+    "chapters": 24,
+    "start_page": 363,
+    "name_en": "2 Samuel",
+    "name_ar": "صموئيل الثاني"
+  },
+  {
+    "id": 11,
+    "name": "الملوك الأول",
+    "testament": "OT",
+    "category": "تاريخية",
+    "chapters": 22,
+    "start_page": 397,
+    "name_en": "1 Kings",
+    "name_ar": "الملوك الأول"
+  },
+  {
+    "id": 12,
+    "name": "الملوك الثاني",
+    "testament": "OT",
+    "category": "تاريخية",
+    "chapters": 25,
+    "start_page": 436,
+    "name_en": "2 Kings",
+    "name_ar": "الملوك الثاني"
+  },
+  {
+    "id": 13,
+    "name": "أخبار الأيام الأول",
+    "testament": "OT",
+    "category": "تاريخية",
+    "chapters": 29,
+    "start_page": 474,
+    "name_en": "1 Chronicles",
+    "name_ar": "أخبار الأيام الأول"
+  },
+  {
+    "id": 14,
+    "name": "أخبار الأيام الثاني",
+    "testament": "OT",
+    "category": "تاريخية",
+    "chapters": 36,
+    "start_page": 510,
+    "name_en": "2 Chronicles",
+    "name_ar": "أخبار الأيام الثاني"
+  },
+  {
+    "id": 15,
+    "name": "عزرا",
+    "testament": "OT",
+    "category": "تاريخية",
+    "chapters": 10,
+    "start_page": 553,
+    "name_en": "Ezra",
+    "name_ar": "عزرا"
+  },
+  {
+    "id": 16,
+    "name": "نحميا",
+    "testament": "OT",
+    "category": "تاريخية",
+    "chapters": 13,
+    "start_page": 566,
+    "name_en": "Nehemiah",
+    "name_ar": "نحميا"
+  },
+  {
+    "id": 17,
+    "name": "أستير",
+    "testament": "OT",
+    "category": "تاريخية",
+    "chapters": 10,
+    "start_page": 583,
+    "name_en": "Esther",
+    "name_ar": "أستير"
+  },
+  {
+    "id": 18,
+    "name": "أيوب",
+    "testament": "OT",
+    "category": "شعرية وحكمة",
+    "chapters": 42,
+    "start_page": 593,
+    "name_en": "Job",
+    "name_ar": "أيوب"
+  },
+  {
+    "id": 19,
+    "name": "المزامير",
+    "testament": "OT",
+    "category": "شعرية وحكمة",
+    "chapters": 150,
+    "start_page": 621,
+    "name_en": "Psalms",
+    "name_ar": "المزامير"
+  },
+  {
+    "id": 20,
+    "name": "الأمثال",
+    "testament": "OT",
+    "category": "شعرية وحكمة",
+    "chapters": 31,
+    "start_page": 707,
+    "name_en": "Proverbs",
+    "name_ar": "الأمثال"
+  },
+  {
+    "id": 21,
+    "name": "الجامعة",
+    "testament": "OT",
+    "category": "شعرية وحكمة",
+    "chapters": 12,
+    "start_page": 732,
+    "name_en": "Ecclesiastes",
+    "name_ar": "الجامعة"
+  },
+  {
+    "id": 22,
+    "name": "نشيد الأنشاد",
+    "testament": "OT",
+    "category": "شعرية وحكمة",
+    "chapters": 8,
+    "start_page": 742,
+    "name_en": "Song of Solomon",
+    "name_ar": "نشيد الأنشاد"
+  },
+  {
+    "id": 23,
+    "name": "إشعياء",
+    "testament": "OT",
+    "category": "أنبياء كبار",
+    "chapters": 66,
+    "start_page": 750,
+    "name_en": "Isaiah",
+    "name_ar": "إشعياء"
+  },
+  {
+    "id": 24,
+    "name": "إرميا",
+    "testament": "OT",
+    "category": "أنبياء كبار",
+    "chapters": 52,
+    "start_page": 810,
+    "name_en": "Jeremiah",
+    "name_ar": "إرميا"
+  },
+  {
+    "id": 25,
+    "name": "مراثي إرميا",
+    "testament": "OT",
+    "category": "أنبياء كبار",
+    "chapters": 5,
+    "start_page": 877,
+    "name_en": "Lamentations",
+    "name_ar": "مراثي إرميا"
+  },
+  {
+    "id": 26,
+    "name": "حزقيال",
+    "testament": "OT",
+    "category": "أنبياء كبار",
+    "chapters": 48,
+    "start_page": 883,
+    "name_en": "Ezekiel",
+    "name_ar": "حزقيال"
+  },
+  {
+    "id": 27,
+    "name": "دانيال",
+    "testament": "OT",
+    "category": "أنبياء كبار",
+    "chapters": 12,
+    "start_page": 942,
+    "name_en": "Daniel",
+    "name_ar": "دانيال"
+  },
+  {
+    "id": 28,
+    "name": "هوشع",
+    "testament": "OT",
+    "category": "أنبياء صغار",
+    "chapters": 14,
+    "start_page": 961,
+    "name_en": "Hosea",
+    "name_ar": "هوشع"
+  },
+  {
+    "id": 29,
+    "name": "يوئيل",
+    "testament": "OT",
+    "category": "أنبياء صغار",
+    "chapters": 3,
+    "start_page": 970,
+    "name_en": "Joel",
+    "name_ar": "يوئيل"
+  },
+  {
+    "id": 30,
+    "name": "عاموس",
+    "testament": "OT",
+    "category": "أنبياء صغار",
+    "chapters": 9,
+    "start_page": 974,
+    "name_en": "Amos",
+    "name_ar": "عاموس"
+  },
+  {
+    "id": 31,
+    "name": "عوبديا",
+    "testament": "OT",
+    "category": "أنبياء صغار",
+    "chapters": 1,
+    "start_page": 982,
+    "name_en": "Obadiah",
+    "name_ar": "عوبديا"
+  },
+  {
+    "id": 32,
+    "name": "يونان",
+    "testament": "OT",
+    "category": "أنبياء صغار",
+    "chapters": 4,
+    "start_page": 984,
+    "name_en": "Jonah",
+    "name_ar": "يونان"
+  },
+  {
+    "id": 33,
+    "name": "ميخا",
+    "testament": "OT",
+    "category": "أنبياء صغار",
+    "chapters": 7,
+    "start_page": 987,
+    "name_en": "Micah",
+    "name_ar": "ميخا"
+  },
+  {
+    "id": 34,
+    "name": "ناحوم",
+    "testament": "OT",
+    "category": "أنبياء صغار",
+    "chapters": 3,
+    "start_page": 993,
+    "name_en": "Nahum",
+    "name_ar": "ناحوم"
+  },
+  {
+    "id": 35,
+    "name": "حبقوق",
+    "testament": "OT",
+    "category": "أنبياء صغار",
+    "chapters": 3,
+    "start_page": 996,
+    "name_en": "Habakkuk",
+    "name_ar": "حبقوق"
+  },
+  {
+    "id": 36,
+    "name": "صفنيا",
+    "testament": "OT",
+    "category": "أنبياء صغار",
+    "chapters": 3,
+    "start_page": 999,
+    "name_en": "Zephaniah",
+    "name_ar": "صفنيا"
+  },
+  {
+    "id": 37,
+    "name": "حجي",
+    "testament": "OT",
+    "category": "أنبياء صغار",
+    "chapters": 2,
+    "start_page": 1002,
+    "name_en": "Haggai",
+    "name_ar": "حجي"
+  },
+  {
+    "id": 38,
+    "name": "زكريا",
+    "testament": "OT",
+    "category": "أنبياء صغار",
+    "chapters": 14,
+    "start_page": 1005,
+    "name_en": "Zechariah",
+    "name_ar": "زكريا"
+  },
+  {
+    "id": 39,
+    "name": "ملاخي",
+    "testament": "OT",
+    "category": "أنبياء صغار",
+    "chapters": 4,
+    "start_page": 1017,
+    "name_en": "Malachi",
+    "name_ar": "ملاخي"
+  },
+  {
+    "id": 40,
+    "name": "إنجيل متى",
+    "testament": "NT",
+    "category": "الأناجيل",
+    "chapters": 28,
+    "start_page": 1021,
+    "name_en": "Matthew",
+    "name_ar": "إنجيل متى"
+  },
+  {
+    "id": 41,
+    "name": "إنجيل مرقس",
+    "testament": "NT",
+    "category": "الأناجيل",
+    "chapters": 16,
+    "start_page": 1068,
+    "name_en": "Mark",
+    "name_ar": "إنجيل مرقس"
+  },
+  {
+    "id": 42,
+    "name": "إنجيل لوقا",
+    "testament": "NT",
+    "category": "الأناجيل",
+    "chapters": 24,
+    "start_page": 1098,
+    "name_en": "Luke",
+    "name_ar": "إنجيل لوقا"
+  },
+  {
+    "id": 43,
+    "name": "إنجيل يوحنا",
+    "testament": "NT",
+    "category": "الأناجيل",
+    "chapters": 21,
+    "start_page": 1148,
+    "name_en": "John",
+    "name_ar": "إنجيل يوحنا"
+  },
+  {
+    "id": 44,
+    "name": "أعمال الرسل",
+    "testament": "NT",
+    "category": "تاريخي",
+    "chapters": 28,
+    "start_page": 1185,
+    "name_en": "Acts",
+    "name_ar": "أعمال الرسل"
+  },
+  {
+    "id": 45,
+    "name": "رسالة رومية",
+    "testament": "NT",
+    "category": "رسائل بولس",
+    "chapters": 16,
+    "start_page": 1231,
+    "name_en": "Romans",
+    "name_ar": "رسالة رومية"
+  },
+  {
+    "id": 46,
+    "name": "رسالة كورنثوس الأولى",
+    "testament": "NT",
+    "category": "رسائل بولس",
+    "chapters": 16,
+    "start_page": 1250,
+    "name_en": "1 Corinthians",
+    "name_ar": "رسالة كورنثوس الأولى"
+  },
+  {
+    "id": 47,
+    "name": "رسالة كورنثوس الثانية",
+    "testament": "NT",
+    "category": "رسائل بولس",
+    "chapters": 13,
+    "start_page": 1268,
+    "name_en": "2 Corinthians",
+    "name_ar": "رسالة كورنثوس الثانية"
+  },
+  {
+    "id": 48,
+    "name": "رسالة غلاطية",
+    "testament": "NT",
+    "category": "رسائل بولس",
+    "chapters": 6,
+    "start_page": 1280,
+    "name_en": "Galatians",
+    "name_ar": "رسالة غلاطية"
+  },
+  {
+    "id": 49,
+    "name": "رسالة أفسس",
+    "testament": "NT",
+    "category": "رسائل بولس",
+    "chapters": 6,
+    "start_page": 1286,
+    "name_en": "Ephesians",
+    "name_ar": "رسالة أفسس"
+  },
+  {
+    "id": 50,
+    "name": "رسالة فيلبي",
+    "testament": "NT",
+    "category": "رسائل بولس",
+    "chapters": 4,
+    "start_page": 1293,
+    "name_en": "Philippians",
+    "name_ar": "رسالة فيلبي"
+  },
+  {
+    "id": 51,
+    "name": "رسالة كولوسي",
+    "testament": "NT",
+    "category": "رسائل بولس",
+    "chapters": 4,
+    "start_page": 1298,
+    "name_en": "Colossians",
+    "name_ar": "رسالة كولوسي"
+  },
+  {
+    "id": 52,
+    "name": "رسالة تسالونيكي الأولى",
+    "testament": "NT",
+    "category": "رسائل بولس",
+    "chapters": 5,
+    "start_page": 1303,
+    "name_en": "1 Thessalonians",
+    "name_ar": "رسالة تسالونيكي الأولى"
+  },
+  {
+    "id": 53,
+    "name": "رسالة تسالونيكي الثانية",
+    "testament": "NT",
+    "category": "رسائل بولس",
+    "chapters": 3,
+    "start_page": 1307,
+    "name_en": "2 Thessalonians",
+    "name_ar": "رسالة تسالونيكي الثانية"
+  },
+  {
+    "id": 54,
+    "name": "رسالة تيموثاوس الأولى",
+    "testament": "NT",
+    "category": "رسائل بولس",
+    "chapters": 6,
+    "start_page": 1310,
+    "name_en": "1 Timothy",
+    "name_ar": "رسالة تيموثاوس الأولى"
+  },
+  {
+    "id": 55,
+    "name": "رسالة تيموثاوس الثانية",
+    "testament": "NT",
+    "category": "رسائل بولس",
+    "chapters": 4,
+    "start_page": 1316,
+    "name_en": "2 Timothy",
+    "name_ar": "رسالة تيموثاوس الثانية"
+  },
+  {
+    "id": 56,
+    "name": "رسالة تيطس",
+    "testament": "NT",
+    "category": "رسائل بولس",
+    "chapters": 3,
+    "start_page": 1320,
+    "name_en": "Titus",
+    "name_ar": "رسالة تيطس"
+  },
+  {
+    "id": 57,
+    "name": "رسالة فليمون",
+    "testament": "NT",
+    "category": "رسائل بولس",
+    "chapters": 1,
+    "start_page": 1323,
+    "name_en": "Philemon",
+    "name_ar": "رسالة فليمون"
+  },
+  {
+    "id": 58,
+    "name": "رسالة العبرانيين",
+    "testament": "NT",
+    "category": "رسائل عامة",
+    "chapters": 13,
+    "start_page": 1325,
+    "name_en": "Hebrews",
+    "name_ar": "رسالة العبرانيين"
+  },
+  {
+    "id": 59,
+    "name": "رسالة يعقوب",
+    "testament": "NT",
+    "category": "الرسائل الجامعة",
+    "chapters": 5,
+    "start_page": 1338,
+    "name_en": "James",
+    "name_ar": "رسالة يعقوب"
+  },
+  {
+    "id": 60,
+    "name": "رسالة بطرس الأولى",
+    "testament": "NT",
+    "category": "الرسائل الجامعة",
+    "chapters": 5,
+    "start_page": 1343,
+    "name_en": "1 Peter",
+    "name_ar": "رسالة بطرس الأولى"
+  },
+  {
+    "id": 61,
+    "name": "رسالة بطرس الثانية",
+    "testament": "NT",
+    "category": "الرسائل الجامعة",
+    "chapters": 3,
+    "start_page": 1349,
+    "name_en": "2 Peter",
+    "name_ar": "رسالة بطرس الثانية"
+  },
+  {
+    "id": 62,
+    "name": "رسالة يوحنا الأولى",
+    "testament": "NT",
+    "category": "الرسائل الجامعة",
+    "chapters": 5,
+    "start_page": 1352,
+    "name_en": "1 John",
+    "name_ar": "رسالة يوحنا الأولى"
+  },
+  {
+    "id": 63,
+    "name": "رسالة يوحنا الثانية",
+    "testament": "NT",
+    "category": "الرسائل الجامعة",
+    "chapters": 1,
+    "start_page": 1357,
+    "name_en": "2 John",
+    "name_ar": "رسالة يوحنا الثانية"
+  },
+  {
+    "id": 64,
+    "name": "رسالة يوحنا الثالثة",
+    "testament": "NT",
+    "category": "الرسائل الجامعة",
+    "chapters": 1,
+    "start_page": 1358,
+    "name_en": "3 John",
+    "name_ar": "رسالة يوحنا الثالثة"
+  },
+  {
+    "id": 65,
+    "name": "رسالة يهوذا",
+    "testament": "NT",
+    "category": "الرسائل الجامعة",
+    "chapters": 1,
+    "start_page": 1359,
+    "name_en": "Jude",
+    "name_ar": "رسالة يهوذا"
+  },
+  {
+    "id": 66,
+    "name": "سفر الرؤيا",
+    "testament": "NT",
+    "category": "نبوي",
+    "chapters": 22,
+    "start_page": 1361,
+    "name_en": "Revelation",
+    "name_ar": "سفر الرؤيا"
+  }
+]

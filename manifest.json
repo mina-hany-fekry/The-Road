@@ -1,0 +1,33 @@
+{
+  "name": "DataMaster - خطة SQL وبايثون الذكية",
+  "short_name": "DataMaster",
+  "description": "تطبيق إدارة خطة المذاكرة اليومية لمساري SQL وبايثون لعلوم البيانات وتعلم الآلة مع خاصية إعادة التوزيع الذكي",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "dir": "rtl",
+  "lang": "ar",
+  "categories": ["education", "productivity"],
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
