@@ -2778,7 +2778,7 @@ window.forceAppUpdateAndClearCache = async function() {
 // Register PWA Service Worker for Mobile & Offline support
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js?v=15')
+    navigator.serviceWorker.register('./sw.js?v=16')
       .then(reg => {
         console.log('[PWA] Service Worker registered successfully:', reg.scope);
       })
