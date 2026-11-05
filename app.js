@@ -2775,16 +2775,51 @@ window.forceAppUpdateAndClearCache = async function() {
   }
 };
 
-// Register PWA Service Worker for Mobile & Offline support
+// Register PWA Service Worker for Mobile & Offline support with instant auto-update
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js?v=16')
+    navigator.serviceWorker.register('./sw.js')
       .then(reg => {
-        console.log('[PWA] Service Worker registered successfully:', reg.scope);
+        console.log('[PWA] Service Worker registered:', reg.scope);
+
+        // Immediate check for newer version
+        reg.update().catch(() => {});
+
+        // Auto-check whenever user returns to the app / unlocks phone
+        document.addEventListener('visibilitychange', () => {
+          if (document.visibilityState === 'visible') {
+            reg.update().catch(() => {});
+          }
+        });
+
+        // Periodic check every 15 minutes
+        setInterval(() => {
+          reg.update().catch(() => {});
+        }, 15 * 60 * 1000);
+
+        reg.addEventListener('updatefound', () => {
+          const newWorker = reg.installing;
+          if (newWorker) {
+            newWorker.addEventListener('statechange', () => {
+              if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                console.log('[PWA] New update ready; applying automatically...');
+              }
+            });
+          }
+        });
       })
       .catch(err => {
         console.warn('[PWA] Service Worker registration failed:', err);
       });
+
+    // When the new Service Worker activates and takes control, reload seamlessly once
+    let refreshing = false;
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (!refreshing) {
+        refreshing = true;
+        window.location.reload();
+      }
+    });
   });
 }
 

@@ -1,19 +1,22 @@
-// Service Worker for DataMaster & Spiritual Life PWA (3D Glass & Tabbed Edition v13)
-const CACHE_NAME = 'datamaster-spirit-v16-ready';
+// Service Worker for DataMaster & Spiritual Life PWA
+// Automatic Cache-Buster & Offline Engine
+const BUILD_TIME = '20261105213942';
+const CACHE_NAME = `datamaster-spirit-${BUILD_TIME}`;
+
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
   './manifest.json',
-  './translations.js?v=16',
-  './agpeya_full.js?v=16',
-  './book_prayer_full.js?v=16',
-  './bustan_full.js?v=16',
-  './bible_books.js?v=16',
-  './bible_full.js?v=16',
-  './bible_nt.js?v=16',
-  './bible_ot.js?v=16',
-  './curriculum.js?v=16',
-  './app.js?v=16',
+  './translations.js',
+  './agpeya_full.js',
+  './book_prayer_full.js',
+  './bustan_full.js',
+  './bible_books.js',
+  './bible_full.js',
+  './bible_nt.js',
+  './bible_ot.js',
+  './curriculum.js',
+  './app.js',
   './favicon.png',
   './icons/icon-192.png',
   './icons/icon-512.png',
@@ -21,77 +24,76 @@ const ASSETS_TO_CACHE = [
 ];
 
 self.addEventListener('install', (event) => {
-  console.log('[SW] Installing v15-clean-texts...');
+  console.log('[SW] Installing new build:', BUILD_TIME);
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      console.log('[SW] Pre-caching complete offline library');
+      console.log('[SW] Pre-caching all assets for offline use');
       return cache.addAll(ASSETS_TO_CACHE).catch(err => {
-        console.warn('[SW] Caching warning:', err);
+        console.warn('[SW] Pre-caching warning:', err);
       });
     })
   );
+  // Force active immediately without waiting for old SW to finish
   self.skipWaiting();
 });
 
 self.addEventListener('activate', (event) => {
-  console.log('[SW] Activating v15-clean-texts, wiping all old caches...');
+  console.log('[SW] Activating new build:', BUILD_TIME);
   event.waitUntil(
     caches.keys().then((keys) => {
       return Promise.all(
         keys.map((k) => {
           if (k !== CACHE_NAME) {
-            console.log('[SW] Deleting old cache:', k);
+            console.log('[SW] Purging old cache version:', k);
             return caches.delete(k);
           }
         })
       );
     })
   );
+  // Claim all clients immediately
   self.clients.claim();
 });
 
-// Network-First for JS/JSON (always load fresh data if connected, fallback to cache offline)
 self.addEventListener('fetch', (event) => {
-  if (event.request.method !== 'GET') return;
-  
-  const url = event.request.url;
-  const isScriptOrData = url.includes('.js') || url.includes('.json') || url.includes('.html');
-
-  if (isScriptOrData) {
+  // Navigation requests: Network-first with cache fallback
+  if (event.request.mode === 'navigate') {
     event.respondWith(
       fetch(event.request)
-        .then((netResponse) => {
-          if (netResponse && netResponse.status === 200) {
-            const clone = netResponse.clone();
+        .then((response) => {
+          if (response && response.status === 200) {
+            const clone = response.clone();
             caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
           }
-          return netResponse;
+          return response;
         })
-        .catch(() => caches.match(event.request))
+        .catch(() => caches.match('./index.html') || caches.match('./'))
     );
-  } else {
-    // Cache-First for static images/icons
-    event.respondWith(
-      caches.match(event.request).then((cached) => {
-        return cached || fetch(event.request).then((netResponse) => {
-          if (netResponse && netResponse.status === 200) {
-            const clone = netResponse.clone();
+    return;
+  }
+
+  // Non-navigation: Cache-first with network background revalidation
+  event.respondWith(
+    caches.match(event.request).then((cachedResponse) => {
+      if (cachedResponse) {
+        // Fetch fresh copy in background
+        fetch(event.request)
+          .then((networkResponse) => {
+            if (networkResponse && networkResponse.status === 200) {
+              caches.open(CACHE_NAME).then((cache) => cache.put(event.request, networkResponse));
+            }
+          })
+          .catch(() => {});
+        return cachedResponse;
+      }
+      return fetch(event.request)
+        .then((networkResponse) => {
+          if (networkResponse && networkResponse.status === 200) {
+            const clone = networkResponse.clone();
             caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
           }
-          return netResponse;
+          return networkResponse;
         });
-      })
-    );
-  }
-});
-
-self.addEventListener('message', (event) => {
-  if (event.data === 'skipWaiting') {
-    self.skipWaiting();
-  }
-  if (event.data === 'clearCache') {
-    caches.delete(CACHE_NAME).then(() => {
-      console.log('[SW] Cache explicitly wiped by user request');
-    });
-  }
+    })
+  );
 });
