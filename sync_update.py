@@ -1,7 +1,14 @@
 import os
 import re
+import sys
 import datetime
 import subprocess
+
+if sys.stdout.encoding != 'utf-8':
+    try:
+        sys.stdout.reconfigure(encoding='utf-8')
+    except Exception:
+        pass
 
 DIR = os.path.dirname(os.path.abspath(__file__))
 sw_path = os.path.join(DIR, 'sw.js')
