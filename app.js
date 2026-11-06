@@ -107,10 +107,73 @@ function t(key) {
 }
 
 // ==========================================
-// NAVIGATION & SECTION SWITCHING
+// NAVIGATION & SECTION SWITCHING (WITH BACK BUTTON & HISTORY)
 // ==========================================
 
-function switchMainSection(section) {
+let isHistoryNavigating = false;
+
+function pushNavigationState(state) {
+  if (isHistoryNavigating) return;
+  const current = history.state || {};
+  if (current.section === state.section && current.tab === state.tab) {
+    return;
+  }
+  const hash = `#${state.section || 'spiritual'}/${state.tab || 'agpeya'}`;
+  history.pushState(state, '', hash);
+}
+
+function initHistoryNavigation() {
+  const initial = {
+    section: appState.currentSection || 'spiritual',
+    tab: (appState.currentSection === 'study') ? (appState.study.activeTab || 'today') : (appState.spiritual.activeSubTab || 'agpeya')
+  };
+  history.replaceState(initial, '', `#${initial.section}/${initial.tab}`);
+
+  window.addEventListener('popstate', (e) => {
+    // 1. If sidebar drawer is open, close it first and keep current view
+    const sidebar = document.getElementById('app-sidebar');
+    if (sidebar && !sidebar.classList.contains('hidden')) {
+      toggleSidebar(false);
+      if (e.state) {
+        history.pushState(e.state, '', window.location.hash);
+      }
+      return;
+    }
+
+    // 2. Navigate backwards to previous view
+    if (!e.state) {
+      goHome(false);
+      return;
+    }
+
+    isHistoryNavigating = true;
+    try {
+      const state = e.state;
+      if (state.section === 'study') {
+        switchMainSection('study', false);
+        if (state.tab) switchStudyTab(state.tab, false);
+      } else {
+        switchMainSection('spiritual', false);
+        if (state.tab) switchSpiritualTab(state.tab, false);
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } finally {
+      isHistoryNavigating = false;
+    }
+  });
+}
+
+function goHome(pushHistory = true) {
+  toggleSidebar(false);
+  switchMainSection('spiritual', false);
+  switchSpiritualTab('agpeya', false);
+  if (pushHistory) {
+    pushNavigationState({ section: 'spiritual', tab: 'agpeya' });
+  }
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function switchMainSection(section, pushHistory = true) {
   appState.currentSection = section;
   const secSpiritual = document.getElementById('main-section-spiritual');
   const secStudy = document.getElementById('main-section-study');
@@ -121,43 +184,45 @@ function switchMainSection(section) {
     if (secSpiritual) secSpiritual.classList.remove('hidden');
     if (secStudy) secStudy.classList.add('hidden');
     if (btnSpiritual) {
-      btnSpiritual.classList.add('bg-amber-600', 'text-white', 'shadow-md');
-      btnSpiritual.classList.remove('bg-white', 'text-slate-700', 'hover:bg-slate-100');
+      btnSpiritual.className = "flex-1 py-3 px-4 rounded-xl font-black text-xs sm:text-sm transition-all flex items-center justify-center gap-2 bg-gradient-to-r from-amber-700 to-amber-600 text-white shadow-md btn-3d";
     }
     if (btnStudy) {
-      btnStudy.classList.remove('bg-blue-600', 'text-white', 'shadow-md');
-      btnStudy.classList.add('bg-white', 'text-slate-700', 'hover:bg-slate-100');
+      btnStudy.className = "flex-1 py-3 px-4 rounded-xl font-black text-xs sm:text-sm transition-all flex items-center justify-center gap-2 bg-white/80 text-slate-700 hover:bg-blue-50/80 border border-slate-200 btn-3d";
     }
     renderSpiritualSection();
+    if (pushHistory) {
+      pushNavigationState({ section: 'spiritual', tab: appState.spiritual.activeSubTab || 'agpeya' });
+    }
   } else {
     if (secSpiritual) secSpiritual.classList.add('hidden');
     if (secStudy) secStudy.classList.remove('hidden');
     if (btnStudy) {
-      btnStudy.classList.add('bg-blue-600', 'text-white', 'shadow-md');
-      btnStudy.classList.remove('bg-white', 'text-slate-700', 'hover:bg-slate-100');
+      btnStudy.className = "flex-1 py-3 px-4 rounded-xl font-black text-xs sm:text-sm transition-all flex items-center justify-center gap-2 bg-gradient-to-r from-blue-700 to-indigo-600 text-white shadow-md btn-3d";
     }
     if (btnSpiritual) {
-      btnSpiritual.classList.remove('bg-amber-600', 'text-white', 'shadow-md');
-      btnSpiritual.classList.add('bg-white', 'text-slate-700', 'hover:bg-slate-100');
+      btnSpiritual.className = "flex-1 py-3 px-4 rounded-xl font-black text-xs sm:text-sm transition-all flex items-center justify-center gap-2 bg-white/80 text-slate-700 hover:bg-amber-50/80 border border-slate-200 btn-3d";
     }
     renderStudySection();
+    if (pushHistory) {
+      pushNavigationState({ section: 'study', tab: appState.study.activeTab || 'today' });
+    }
   }
   updateDockActiveState();
   saveState();
 }
 
-function switchSpiritualTab(subTab) {
+function switchSpiritualTab(subTab, pushHistory = true) {
   appState.spiritual.activeSubTab = subTab;
   
   // Update nav buttons
   document.querySelectorAll('[data-spiritual-tab]').forEach(btn => {
     const tabName = btn.getAttribute('data-spiritual-tab');
     if (tabName === subTab) {
-      btn.classList.add('bg-amber-700', 'text-white', 'shadow-sm');
-      btn.classList.remove('text-slate-600', 'hover:bg-amber-50');
+      btn.classList.add('bg-gradient-to-r', 'from-amber-700', 'to-amber-600', 'text-white', 'shadow-md');
+      btn.classList.remove('text-slate-700', 'hover:bg-amber-50/80');
     } else {
-      btn.classList.remove('bg-amber-700', 'text-white', 'shadow-sm');
-      btn.classList.add('text-slate-600', 'hover:bg-amber-50');
+      btn.classList.remove('bg-gradient-to-r', 'from-amber-700', 'to-amber-600', 'text-white', 'shadow-md');
+      btn.classList.add('text-slate-700', 'hover:bg-amber-50/80');
     }
   });
 
@@ -168,6 +233,9 @@ function switchSpiritualTab(subTab) {
 
   renderSpiritualSection();
   updateDockActiveState();
+  if (pushHistory) {
+    pushNavigationState({ section: 'spiritual', tab: subTab });
+  }
   saveState();
 }
 
@@ -2468,9 +2536,12 @@ function renderStudySection() {
   updateGlobalStats();
 }
 
-function switchStudyTab(tab) {
+function switchStudyTab(tab, pushHistory = true) {
   appState.study.activeTab = tab;
   renderStudySection();
+  if (pushHistory) {
+    pushNavigationState({ section: 'study', tab });
+  }
   saveState();
 }
 
@@ -2839,6 +2910,19 @@ function renderAll() {
 
 // Global initialization on DOM ready
 document.addEventListener('DOMContentLoaded', () => {
+  // Initialize Back Button & History management
+  initHistoryNavigation();
+
+  // Bind top main section buttons
+  const btnSpiritual = document.getElementById('btn-nav-spiritual');
+  if (btnSpiritual) {
+    btnSpiritual.addEventListener('click', () => switchMainSection('spiritual'));
+  }
+  const btnStudy = document.getElementById('btn-nav-study');
+  if (btnStudy) {
+    btnStudy.addEventListener('click', () => switchMainSection('study'));
+  }
+
   // Bind top spiritual tab buttons
   document.querySelectorAll('[data-spiritual-tab]').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -2937,6 +3021,9 @@ if ('serviceWorker' in navigator) {
 Object.assign(window, {
   toggleSidebar,
   sidebarNavigateAgpeya,
+  goHome,
+  pushNavigationState,
+  initHistoryNavigation,
   sidebarNavigateBible,
   sidebarNavigate,
   sidebarNavigateStudy,

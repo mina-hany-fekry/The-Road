@@ -1,6 +1,6 @@
 // Service Worker for DataMaster & Spiritual Life PWA
 // 100% Offline-First Engine & Automatic Cache Invalidation
-const BUILD_TIME = '20261106155455';
+const BUILD_TIME = '20261106194514';
 const CACHE_NAME = `datamaster-spirit-${BUILD_TIME}`;
 
 const ASSETS_TO_CACHE = [
