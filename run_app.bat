@@ -1,24 +1,16 @@
 @echo off
 chcp 65001 > nul
-title DataMaster Study App Launcher
+title The Road - Study and Soul PWA
 cd /d "%~dp0"
 echo =======================================================
-echo    تشغيل تطبيق DataMaster & حياة الروح PWA
+echo    The Road - Study & Soul (علوم البيانات والروح)
 echo =======================================================
 echo.
-echo جاري فتح التطبيق في المتصفح...
+echo Opening http://localhost:8080 in your browser...
 start http://localhost:8080
-
 echo.
-echo لفتح التطبيق وتثبيته على الموبايل:
-echo 1. تأكد أن الموبايل متصل بنفس شبكة الواي فاي (WiFi).
-echo 2. افتح المتصفح في الموبايل واكتب عنوان IP هذا الجهاز متبوعاً بـ :8080
-echo    مثال: http://10.2.64.219:8080
-echo.
-echo -------------------------------------------------------
-echo اضغط Ctrl + C لإيقاف السيرفر عند الانتهاء.
+echo Press Ctrl + C to stop the server when done.
 echo -------------------------------------------------------
 echo.
-
 python -m http.server 8080
 pause
