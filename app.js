@@ -130,7 +130,17 @@ function initHistoryNavigation() {
   history.replaceState(initial, '', `#${initial.section}/${initial.tab}`);
 
   window.addEventListener('popstate', (e) => {
-    // 1. If sidebar drawer is open, close it first and keep current view
+    // 1. If PWA install modal is open, close it first
+    const pwaModal = document.getElementById('pwa-install-modal');
+    if (pwaModal && !pwaModal.classList.contains('hidden')) {
+      closePwaModal();
+      if (e.state) {
+        history.pushState(e.state, '', window.location.hash);
+      }
+      return;
+    }
+
+    // 2. If sidebar drawer is open, close it first and keep current view
     const sidebar = document.getElementById('app-sidebar');
     if (sidebar && !sidebar.classList.contains('hidden')) {
       toggleSidebar(false);
@@ -2937,6 +2947,23 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Check if running as standalone app
+  if (isPwaStandalone()) {
+    const btn = document.getElementById('pwa-install-btn');
+    if (btn) {
+      btn.innerHTML = '<span>✅</span><span class="hidden sm:inline">التطبيق مُثبّت</span><span class="sm:hidden">مُثبّت</span>';
+      btn.className = "px-3 py-1.5 rounded-xl bg-emerald-600/90 text-white text-xs font-bold shadow-sm flex items-center gap-1.5 btn-3d";
+    }
+  }
+
+  // Close modal on click outside backdrop
+  const modal = document.getElementById('pwa-install-modal');
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closePwaModal();
+    });
+  }
+
   // Initialize UI
   document.documentElement.lang = appState.currentLang || 'ar';
   document.documentElement.dir = (appState.currentLang || 'ar') === 'ar' ? 'rtl' : 'ltr';
@@ -2964,6 +2991,105 @@ window.forceAppUpdateAndClearCache = async function() {
     window.location.reload(true);
   }
 };
+
+// ==========================================
+// PWA INSTALLATION MANAGER
+// ==========================================
+let deferredInstallPrompt = null;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredInstallPrompt = e;
+  console.log('[PWA] beforeinstallprompt event captured');
+
+  // Highlight the install button in header and sidebar
+  const btn = document.getElementById('pwa-install-btn');
+  if (btn) {
+    btn.classList.remove('hidden');
+    btn.classList.add('ring-2', 'ring-blue-400');
+  }
+  const directBox = document.getElementById('pwa-direct-install-box');
+  if (directBox) directBox.classList.remove('hidden');
+});
+
+window.addEventListener('appinstalled', () => {
+  console.log('[PWA] App successfully installed!');
+  deferredInstallPrompt = null;
+  const btn = document.getElementById('pwa-install-btn');
+  if (btn) {
+    btn.innerHTML = '<span>✅</span><span class="hidden sm:inline">التطبيق مُثبّت</span><span class="sm:hidden">مُثبّت</span>';
+    btn.className = "px-3 py-1.5 rounded-xl bg-emerald-600 text-white text-xs font-bold shadow-sm flex items-center gap-1.5 btn-3d";
+  }
+  closePwaModal();
+});
+
+function isPwaStandalone() {
+  return window.matchMedia('(display-mode: standalone)').matches || 
+         window.navigator.standalone === true ||
+         document.referrer.includes('android-app://');
+}
+
+async function handlePwaInstallClick() {
+  if (isPwaStandalone()) {
+    alert('تطبيق The Road يعمل بالفعل كتطبيق مُثبّت على جهازك! 🕊️');
+    return;
+  }
+
+  // If deferred prompt is available (Chrome / Edge / Android)
+  if (deferredInstallPrompt) {
+    try {
+      deferredInstallPrompt.prompt();
+      const choice = await deferredInstallPrompt.userChoice;
+      console.log('[PWA] User choice outcome:', choice.outcome);
+      if (choice.outcome === 'accepted') {
+        deferredInstallPrompt = null;
+        closePwaModal();
+      }
+      return;
+    } catch (err) {
+      console.error('[PWA] Prompt error:', err);
+    }
+  }
+
+  // If direct prompt is not supported (iOS Safari) or not yet fired, show guidance modal
+  openPwaModal();
+}
+
+async function triggerDirectPwaInstall() {
+  if (deferredInstallPrompt) {
+    try {
+      deferredInstallPrompt.prompt();
+      const choice = await deferredInstallPrompt.userChoice;
+      if (choice.outcome === 'accepted') {
+        deferredInstallPrompt = null;
+        closePwaModal();
+      }
+    } catch (err) {
+      console.error('[PWA] Prompt error:', err);
+    }
+  } else {
+    alert('التثبيت المباشر متاح عبر قائمة المتصفح (الثلاث نقاط ⋮) في أندرويد، أو زر المشاركة (Share ⎋) في آيفون كما هو موضح بالخطوات.');
+  }
+}
+
+function openPwaModal() {
+  const modal = document.getElementById('pwa-install-modal');
+  if (!modal) return;
+  const directBox = document.getElementById('pwa-direct-install-box');
+  if (directBox) {
+    if (deferredInstallPrompt) {
+      directBox.classList.remove('hidden');
+    } else {
+      directBox.classList.add('hidden');
+    }
+  }
+  modal.classList.remove('hidden');
+}
+
+function closePwaModal() {
+  const modal = document.getElementById('pwa-install-modal');
+  if (modal) modal.classList.add('hidden');
+}
 
 // Register PWA Service Worker for Mobile & Offline support with instant auto-update
 if ('serviceWorker' in navigator) {
@@ -3024,6 +3150,11 @@ Object.assign(window, {
   goHome,
   pushNavigationState,
   initHistoryNavigation,
+  handlePwaInstallClick,
+  triggerDirectPwaInstall,
+  openPwaModal,
+  closePwaModal,
+  isPwaStandalone,
   sidebarNavigateBible,
   sidebarNavigate,
   sidebarNavigateStudy,

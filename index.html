@@ -288,6 +288,10 @@
 
     <!-- Sidebar Footer Actions -->
     <div class="p-4 border-t border-white/50 space-y-2 bg-slate-50/80 backdrop-blur-md">
+      <button onclick="handlePwaInstallClick()" class="w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold text-xs flex items-center justify-center gap-2 btn-3d shadow-sm cursor-pointer">
+        <span>📲</span>
+        <span>تثبيت التطبيق على الهاتف (PWA)</span>
+      </button>
       <button onclick="forceAppUpdateAndClearCache()" class="w-full py-2.5 px-3 rounded-xl bg-amber-100/90 hover:bg-amber-200 text-amber-900 font-bold text-xs flex items-center justify-center gap-2 btn-3d">
         <span>🔄</span>
         <span>تحديث التطبيق ومسح التخزين</span>
@@ -346,7 +350,9 @@
 
         <button 
           id="pwa-install-btn" 
-          class="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white text-xs font-bold shadow-md transition-all flex items-center gap-1.5 btn-3d"
+          onclick="handlePwaInstallClick()"
+          class="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white text-xs font-bold shadow-md transition-all flex items-center gap-1.5 btn-3d cursor-pointer active:scale-95"
+          title="تثبيت التطبيق على الهاتف أو الكمبيوتر"
         >
           <span>📲</span>
           <span class="hidden sm:inline" data-i18n="install_prompt">تثبيت التطبيق على الموبايل</span>
@@ -598,6 +604,85 @@
       <span data-i18n="dock_menu">القائمة</span>
     </button>
   </nav>
+
+  <!-- PWA Install Guide Modal -->
+  <div id="pwa-install-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm hidden transition-opacity">
+    <div class="relative w-full max-w-md bg-white/95 backdrop-blur-xl border border-amber-300/80 rounded-3xl shadow-2xl p-6 space-y-5 text-right animate-fade-in">
+      
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center gap-2.5">
+          <div class="w-10 h-10 rounded-2xl bg-amber-100 flex items-center justify-center text-xl shadow-inner">
+            📲
+          </div>
+          <div>
+            <h3 class="text-base font-black text-slate-900">تثبيت The Road على جهازك</h3>
+            <p class="text-[11px] text-slate-500 font-medium">يعمل بدون إنترنت وتجربة تطبيق حقيقي</p>
+          </div>
+        </div>
+        <button onclick="closePwaModal()" class="w-8 h-8 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold flex items-center justify-center text-sm transition-colors cursor-pointer">
+          ✕
+        </button>
+      </div>
+
+      <!-- If prompt is ready, Direct One-Click Button -->
+      <div id="pwa-direct-install-box" class="hidden">
+        <button onclick="triggerDirectPwaInstall()" class="w-full py-3.5 px-4 rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 hover:from-blue-700 hover:to-indigo-800 text-white font-black text-sm shadow-lg shadow-blue-500/30 flex items-center justify-center gap-2 btn-3d cursor-pointer">
+          <span>📲</span>
+          <span>اضغط هنا للتثبيت المباشر الفوري</span>
+        </button>
+        <p class="text-[10px] text-slate-400 text-center mt-1.5">سيفتح المتصفح نافذة تأكيد التثبيت على شاشتك الرئيسية</p>
+      </div>
+
+      <!-- Step-by-step device guides -->
+      <div class="space-y-3 text-xs leading-relaxed text-slate-700">
+        
+        <!-- Android Guide -->
+        <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-2">
+          <div class="flex items-center gap-2 font-bold text-slate-900 text-xs">
+            <span>🤖</span>
+            <span>لمستخدمي أندرويد (Google Chrome / Samsung):</span>
+          </div>
+          <ol class="list-decimal list-inside space-y-1 text-slate-600 pr-1">
+            <li>اضغط على قائمة المتصفح <b>(الثلاث نقاط ⋮)</b> أعلى أو أسفل الشاشة.</li>
+            <li>اختر <b>"تثبيت التطبيق" (Install app)</b> أو <b>"إضافة إلى الشاشة الرئيسية" (Add to Home screen)</b>.</li>
+            <li>اضغط <b>تثبيت</b> وسيظهر التطبيق في شاشة تطبيقاتك كأيقونة رسمية!</li>
+          </ol>
+        </div>
+
+        <!-- iPhone / iPad Guide -->
+        <div class="p-3.5 rounded-2xl bg-amber-50/70 border border-amber-200/80 space-y-2">
+          <div class="flex items-center gap-2 font-bold text-amber-950 text-xs">
+            <span>🍏</span>
+            <span>لمستخدمي آيفون / آيباد (Safari):</span>
+          </div>
+          <ol class="list-decimal list-inside space-y-1 text-amber-900 pr-1">
+            <li>اضغط على زر المشاركة <b>(Share ⎋)</b> في أسفل شاشة Safari.</li>
+            <li>اسحب القائمة لأسفل واختر <b>"إضافة إلى الصفحة الرئيسية" (Add to Home Screen ➕)</b>.</li>
+            <li>اضغط <b>"إضافة" (Add)</b> في أعلى اليمين.</li>
+          </ol>
+        </div>
+
+        <!-- PC / Mac Guide -->
+        <div class="p-3 rounded-2xl bg-blue-50/50 border border-blue-200/60 space-y-1 text-blue-950">
+          <div class="flex items-center gap-1.5 font-bold">
+            <span>💻</span>
+            <span>للكمبيوتر (Chrome / Edge):</span>
+          </div>
+          <p class="text-blue-900/80">ستجد أيقونة تثبيت صغيرة <b>(⬇️)</b> في شريط العنوان بالأعلى بجانب زر النجمة (Bookmark).</p>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="pt-2">
+        <button onclick="closePwaModal()" class="w-full py-2.5 px-4 rounded-xl bg-slate-200/80 hover:bg-slate-300 text-slate-800 font-bold text-xs transition-colors cursor-pointer">
+          حسناً، فهمت
+        </button>
+      </div>
+
+    </div>
+  </div>
 
   <!-- Script Libraries in Dependency Order -->
   <script src="translations.js"></script>
