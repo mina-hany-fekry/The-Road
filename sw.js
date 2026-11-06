@@ -1,6 +1,6 @@
 // Service Worker for DataMaster & Spiritual Life PWA
 // 100% Offline-First Engine & Automatic Cache Invalidation
-const BUILD_TIME = '20261105214753';
+const BUILD_TIME = '20261106155455';
 const CACHE_NAME = `datamaster-spirit-${BUILD_TIME}`;
 
 const ASSETS_TO_CACHE = [
@@ -19,9 +19,16 @@ const ASSETS_TO_CACHE = [
   './curriculum.js',
   './app.js',
   './favicon.png',
+  './icons/emblem.png',
+  './icons/logo_full.png',
   './icons/icon-192.png',
   './icons/icon-512.png',
-  './icons/apple-touch-icon.png'
+  './icons/apple-touch-icon.png',
+  './images/the_road_hero.jpg',
+  './images/coptic_cross.jpg',
+  './images/cross_watermark.png',
+  './images/christ_touch.jpg',
+  './images/christ_stream.jpg'
 ];
 
 self.addEventListener('install', (event) => {

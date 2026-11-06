@@ -1,16 +1,16 @@
 {
-  "name": "DataMaster - خطة SQL وبايثون الذكية",
-  "short_name": "DataMaster",
-  "description": "تطبيق إدارة خطة المذاكرة اليومية لمساري SQL وبايثون لعلوم البيانات وتعلم الآلة مع خاصية إعادة التوزيع الذكي",
+  "name": "The Road - طريق المذاكرة والحياة الروحية",
+  "short_name": "The Road",
+  "description": "تطبيق التوازن اليومي: مسار علوم البيانات وبايثون مع الأجبية والكتاب المقدس والكتب الروحية",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait-primary",
   "background_color": "#0f172a",
-  "theme_color": "#0f172a",
+  "theme_color": "#1e293b",
   "dir": "rtl",
   "lang": "ar",
-  "categories": ["education", "productivity"],
+  "categories": ["education", "productivity", "lifestyle"],
   "icons": [
     {
       "src": "icons/icon-192.png",

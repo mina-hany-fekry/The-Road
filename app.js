@@ -515,6 +515,17 @@ function renderActiveAgpeyaTabContent(activeTab, prayer, isAr, fSize) {
   if (activeTab === 'intro') {
     return `
       <div class="space-y-6">
+        
+        <!-- Devotional Card with Christ Image (Image 4) -->
+        <div class="relative overflow-hidden rounded-2xl border-2 border-amber-300 shadow-md bg-gradient-to-r from-amber-950 via-slate-900 to-amber-950 text-white p-4 sm:p-5 flex items-center gap-4">
+          <img src="images/christ_touch.jpg" alt="المسيح مخلص النفوس" class="w-16 h-16 sm:w-20 sm:h-20 rounded-xl object-cover shadow-lg border-2 border-amber-400 flex-shrink-0">
+          <div>
+            <span class="text-[10px] uppercase tracking-wider font-bold text-amber-300">خلوة الصلاة والحضور الإلهي 🕊️</span>
+            <h5 class="text-xs sm:text-sm font-black text-white mt-0.5">«تَعَالَوْا إِلَيَّ يَا جَمِيعَ الْمُتْعَبِينَ وَالثَّقِيلِي الأَحْمَالِ، وَأَنَا أُرِيحُكُمْ»</h5>
+            <p class="text-[11px] text-amber-100/90 font-serif leading-relaxed mt-1">قف بخشوع مستحضراً حضور الرب يسوع المسيح، وافتح قلبك لسلامه الفائق كل عقل.</p>
+          </div>
+        </div>
+
         <div class="flex items-center justify-between border-b border-amber-100 pb-4">
           <div class="flex items-center gap-3">
             <span class="text-2xl">🕊️</span>
@@ -1758,9 +1769,7 @@ function renderBookOfPrayer() {
       <!-- Top Book Banner with 3D Glass Styling -->
       <div class="glass-panel-amber rounded-3xl p-5 sm:p-7 shadow-md flex flex-col md:flex-row items-center justify-between gap-4">
         <div class="flex items-center gap-4 text-center md:text-right">
-          <div class="w-16 h-16 rounded-2xl bg-amber-500/20 border border-amber-300 text-amber-900 flex items-center justify-center text-3xl shadow-inner flex-shrink-0 icon-3d">
-            📖
-          </div>
+          <img src="images/christ_stream.jpg" alt="حياة الصلاة" class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover shadow-lg border-2 border-amber-400 flex-shrink-0">
           <div>
             <div class="flex items-center gap-2 justify-center md:justify-start">
               <span class="px-2.5 py-0.5 rounded-full bg-amber-200/60 text-amber-900 text-[10px] font-black uppercase border border-amber-300">
@@ -2105,9 +2114,7 @@ function renderBustan() {
       <!-- Top Bustan Banner with 3D Glass Styling -->
       <div class="glass-panel-amber rounded-3xl p-5 sm:p-7 shadow-md flex flex-col md:flex-row items-center justify-between gap-4">
         <div class="flex items-center gap-4 text-center md:text-right">
-          <div class="w-16 h-16 rounded-2xl bg-emerald-500/20 border border-emerald-300 text-emerald-900 flex items-center justify-center text-3xl shadow-inner flex-shrink-0 icon-3d">
-            🌿
-          </div>
+          <img src="images/christ_touch.jpg" alt="بستان الرهبان" class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover shadow-lg border-2 border-emerald-400 flex-shrink-0">
           <div>
             <div class="flex items-center gap-2 justify-center md:justify-start">
               <span class="px-2.5 py-0.5 rounded-full bg-emerald-200/60 text-emerald-900 text-[10px] font-black uppercase border border-emerald-300">
@@ -2421,9 +2428,16 @@ function adjustBustanFontSize(delta) {
 // ==========================================
 
 function renderStudySection() {
-  // Ensure curriculum lessons loaded
-  if ((!appState.study.lessons || appState.study.lessons.length === 0) && typeof CURRICULUM_DATA !== 'undefined') {
-    appState.study.lessons = JSON.parse(JSON.stringify(CURRICULUM_DATA.days));
+  // Ensure curriculum lessons loaded cleanly from INITIAL_CURRICULUM or CURRICULUM_DATA
+  if (!appState.study.lessons || appState.study.lessons.length === 0) {
+    const src = (typeof INITIAL_CURRICULUM !== 'undefined') ? INITIAL_CURRICULUM : ((typeof CURRICULUM_DATA !== 'undefined' && CURRICULUM_DATA.days) ? CURRICULUM_DATA.days : []);
+    appState.study.lessons = JSON.parse(JSON.stringify(src));
+    appState.study.lessons.forEach(l => {
+      if (!l.scheduledDate) l.scheduledDate = l.defaultDate;
+      if (l.sqlCompleted === undefined) l.sqlCompleted = false;
+      if (l.pythonCompleted === undefined) l.pythonCompleted = false;
+      if (l.fullyCompleted === undefined) l.fullyCompleted = false;
+    });
     saveState();
   }
 
@@ -2482,63 +2496,109 @@ function renderTodayView() {
 
   if (!d) {
     container.innerHTML = `
-      <div class="bg-white border border-slate-200 rounded-3xl p-10 text-center space-y-3 shadow-sm">
+      <div class="bg-white border-2 border-emerald-300 rounded-3xl p-10 text-center space-y-3 shadow-md">
         <span class="text-5xl">🏆</span>
-        <h3 class="text-xl font-black text-emerald-600">ألف مبروك! أتممت منهج علوم البيانات والذكاء الاصطناعي بالكامل</h3>
+        <h3 class="text-xl font-black text-emerald-800">ألف مبروك! أتممت منهج علوم البيانات والذكاء الاصطناعي بالكامل</h3>
+        <p class="text-sm text-slate-700">يمكنك مراجعة الدروس من خلال تبويب الجدول الكامل.</p>
       </div>
     `;
     return;
   }
 
+  const dayLabel = d.dayAr || d.dayNameAr || 'اليوم';
+  const sqlObj = d.sql || { topic: 'استعلامات قواعد البيانات', details: '', exercise: '' };
+  const pyObj = d.python || { topic: 'برمجة بايثون لعلوم البيانات', details: '', exercise: '' };
+
   container.innerHTML = `
-    <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-3xl p-6 shadow-sm space-y-4">
-      <div class="flex flex-wrap items-center justify-between gap-3">
-        <div class="flex items-center gap-2">
-          <span class="px-3 py-1 rounded-full bg-blue-600 text-white text-xs font-bold shadow-sm">
-            ${isAr ? `يوم ${d.id} من 43` : `Day ${d.id} of 43`}
+    <div class="bg-gradient-to-br from-blue-50/90 via-white to-indigo-50/80 border-2 border-blue-200 rounded-3xl p-6 sm:p-8 shadow-sm space-y-5">
+      
+      <!-- Top Target Badge & Completion Toggle -->
+      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-blue-100 pb-4">
+        <div class="flex items-center gap-2.5">
+          <span class="px-3.5 py-1.5 rounded-full bg-blue-700 text-white text-xs font-black shadow-sm tracking-wide">
+            ${isAr ? `🎯 هدف اليوم: يوم ${d.id} من 43` : `Target: Day ${d.id} of 43`}
           </span>
-          <span class="text-xs font-semibold text-slate-700">
-            ${d.dayNameAr} (${d.scheduledDate})
+          <span class="text-xs sm:text-sm font-bold text-slate-800 bg-white/80 px-3 py-1 rounded-xl border border-slate-200">
+            ${dayLabel} (${d.scheduledDate || d.defaultDate})
           </span>
         </div>
 
         <button 
           onclick="toggleTask(${d.id}, 'both')"
-          class="px-4 py-2 rounded-xl text-xs font-bold transition-all ${
-            d.fullyCompleted ? 'bg-emerald-600 text-white shadow-sm' : 'bg-white border border-slate-300 text-slate-800 hover:border-emerald-500'
+          class="px-5 py-2.5 rounded-xl text-xs font-black transition-all flex items-center gap-1.5 ${
+            d.fullyCompleted 
+              ? 'bg-emerald-600 hover:bg-emerald-700 text-white shadow-md' 
+              : 'bg-white hover:bg-emerald-50 border-2 border-slate-300 text-slate-800 hover:border-emerald-500'
           }"
         >
-          ${d.fullyCompleted ? t('day_completed') : t('mark_day_done')}
+          <span>${d.fullyCompleted ? '✓' : '○'}</span>
+          <span>${d.fullyCompleted ? t('day_completed') : t('mark_day_done')}</span>
         </button>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <!-- SQL Hour -->
-        <div class="bg-white border ${d.sqlCompleted ? 'border-emerald-400 bg-emerald-50/20' : 'border-slate-200'} rounded-2xl p-5 shadow-sm space-y-3">
-          <div class="flex items-center justify-between">
-            <span class="text-sm font-bold text-blue-600">🗄️ ${t('sql_hour')}</span>
-            <input type="checkbox" ${d.sqlCompleted ? 'checked' : ''} onchange="toggleTask(${d.id}, 'sql')" class="w-5 h-5 rounded text-blue-600 cursor-pointer">
+      <!-- Phase Label -->
+      <div class="px-4 py-2 rounded-xl bg-blue-100/70 border border-blue-200 text-xs sm:text-sm font-black text-blue-950 flex items-center gap-2">
+        <span>📍</span>
+        <span>${d.phase || 'مسار التدريب المكثف'}</span>
+      </div>
+
+      <!-- Dual Cards: SQL & Python with Ultra-Crisp Contrast -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        
+        <!-- SQL Hour Card -->
+        <div class="bg-white border-2 ${d.sqlCompleted ? 'border-emerald-400 bg-emerald-50/30' : 'border-blue-200'} rounded-2xl p-5 sm:p-6 shadow-sm space-y-3.5 transition-all">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="text-xl">🗄️</span>
+              <span class="text-sm font-black text-blue-950">${t('sql_hour')}</span>
+              <span class="text-[10px] px-2 py-0.5 rounded-md bg-blue-100 text-blue-900 font-bold">${sqlObj.tag || 'SQL'}</span>
+            </div>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <span class="text-[11px] font-bold text-slate-700">${d.sqlCompleted ? 'مكتمل' : 'غير مكتمل'}</span>
+              <input type="checkbox" ${d.sqlCompleted ? 'checked' : ''} onchange="toggleTask(${d.id}, 'sql')" class="w-5 h-5 rounded text-blue-600 cursor-pointer accent-blue-600">
+            </label>
           </div>
-          <h5 class="text-xs font-bold text-slate-900">${d.sql.topic}</h5>
-          <p class="text-xs text-slate-600 leading-relaxed">${d.sql.details}</p>
-          <div class="p-3 rounded-xl bg-blue-50 text-xs text-blue-900">
-            <strong>${t('sql_exercise')}</strong> ${d.sql.exercise}
+
+          <h5 class="text-sm font-black text-slate-950 leading-snug">${sqlObj.topic}</h5>
+          <p class="text-xs text-slate-800 leading-relaxed font-sans font-medium">${sqlObj.details}</p>
+          
+          <div class="p-3.5 rounded-xl bg-blue-50/90 border border-blue-200 text-xs text-blue-950 font-medium space-y-1">
+            <div class="font-black text-blue-900 flex items-center gap-1.5">
+              <span>🎯</span>
+              <span>${t('sql_exercise')}</span>
+            </div>
+            <p class="text-slate-800 leading-relaxed">${sqlObj.exercise}</p>
           </div>
         </div>
 
-        <!-- Python Hour -->
-        <div class="bg-white border ${d.pythonCompleted ? 'border-emerald-400 bg-emerald-50/20' : 'border-slate-200'} rounded-2xl p-5 shadow-sm space-y-3">
-          <div class="flex items-center justify-between">
-            <span class="text-sm font-bold text-amber-600">🐍 ${t('python_hour')}</span>
-            <input type="checkbox" ${d.pythonCompleted ? 'checked' : ''} onchange="toggleTask(${d.id}, 'py')" class="w-5 h-5 rounded text-amber-600 cursor-pointer">
+        <!-- Python Hour Card -->
+        <div class="bg-white border-2 ${d.pythonCompleted ? 'border-emerald-400 bg-emerald-50/30' : 'border-amber-200'} rounded-2xl p-5 sm:p-6 shadow-sm space-y-3.5 transition-all">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="text-xl">🐍</span>
+              <span class="text-sm font-black text-amber-950">${t('python_hour')}</span>
+              <span class="text-[10px] px-2 py-0.5 rounded-md bg-amber-100 text-amber-900 font-bold">${pyObj.lib || 'Python'}</span>
+            </div>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <span class="text-[11px] font-bold text-slate-700">${d.pythonCompleted ? 'مكتمل' : 'غير مكتمل'}</span>
+              <input type="checkbox" ${d.pythonCompleted ? 'checked' : ''} onchange="toggleTask(${d.id}, 'py')" class="w-5 h-5 rounded text-amber-600 cursor-pointer accent-amber-600">
+            </label>
           </div>
-          <h5 class="text-xs font-bold text-slate-900">${d.python.topic}</h5>
-          <p class="text-xs text-slate-600 leading-relaxed">${d.python.details}</p>
-          <div class="p-3 rounded-xl bg-amber-50 text-xs text-amber-900">
-            <strong>${t('python_exercise')}</strong> ${d.python.exercise}
+
+          <h5 class="text-sm font-black text-slate-950 leading-snug">${pyObj.topic}</h5>
+          <p class="text-xs text-slate-800 leading-relaxed font-sans font-medium">${pyObj.details}</p>
+          
+          <div class="p-3.5 rounded-xl bg-amber-50/90 border border-amber-200 text-xs text-amber-950 font-medium space-y-1">
+            <div class="font-black text-amber-900 flex items-center gap-1.5">
+              <span>💻</span>
+              <span>${t('python_exercise')}</span>
+            </div>
+            <p class="text-slate-800 leading-relaxed">${pyObj.exercise}</p>
           </div>
         </div>
+
       </div>
+
     </div>
   `;
 }
@@ -2549,32 +2609,78 @@ function renderScheduleView() {
 
   const todayStr = getTodayDateStr();
 
-  container.innerHTML = appState.study.lessons.map(d => {
-    const isDone = d.fullyCompleted;
-    const isOverdue = !isDone && d.scheduledDate < todayStr;
-    const isToday = d.scheduledDate === todayStr;
-
-    return `
-      <div class="bg-white border ${
-        isDone ? 'border-emerald-300' : isOverdue ? 'border-rose-300 bg-rose-50/10' : 'border-slate-200'
-      } rounded-2xl p-4 sm:p-5 shadow-sm space-y-3">
-        <div class="flex items-center justify-between">
-          <div class="flex items-center gap-3">
-            <input type="checkbox" ${isDone ? 'checked' : ''} onchange="toggleTask(${d.id}, 'both')" class="w-5 h-5 rounded text-blue-600 cursor-pointer">
-            <div>
-              <span class="font-bold text-sm text-slate-900">يوم ${d.id}: ${d.phase}</span>
-              <div class="text-xs text-slate-500">${d.dayNameAr} (${d.scheduledDate})</div>
-            </div>
-          </div>
-          <span class="text-xs px-2.5 py-0.5 rounded-full font-bold ${
-            isDone ? 'bg-emerald-100 text-emerald-800' : isToday ? 'bg-blue-100 text-blue-800' : isOverdue ? 'bg-rose-100 text-rose-800' : 'bg-slate-100 text-slate-600'
-          }">
-            ${isDone ? '✓ مكتمل' : isToday ? 'اليوم' : isOverdue ? 'متأخر' : 'قيد الانتظار'}
-          </span>
+  container.innerHTML = `
+    <div class="space-y-4">
+      <div class="p-4 rounded-2xl bg-blue-50 border border-blue-200 text-xs sm:text-sm font-bold text-blue-950 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span>📅</span>
+          <span>جدول الـ 43 يوماً بالكامل — مسار علوم البيانات وبايثون</span>
         </div>
+        <span class="text-xs bg-white px-3 py-1 rounded-full text-slate-700 border border-blue-200 font-bold">
+          ${appState.study.lessons.filter(l => l.fullyCompleted).length} من 43 مكتمل
+        </span>
       </div>
-    `;
-  }).join('');
+
+      ${appState.study.lessons.map(d => {
+        const isDone = d.fullyCompleted;
+        const isOverdue = !isDone && (d.scheduledDate || d.defaultDate) < todayStr;
+        const isToday = (d.scheduledDate || d.defaultDate) === todayStr;
+        const dayLabel = d.dayAr || d.dayNameAr || 'يوم';
+        const dateLabel = d.scheduledDate || d.defaultDate;
+        const sqlObj = d.sql || {};
+        const pyObj = d.python || {};
+
+        return `
+          <div class="bg-white border-2 ${
+            isDone ? 'border-emerald-300 bg-emerald-50/10' : isToday ? 'border-blue-400 shadow-md ring-2 ring-blue-100' : isOverdue ? 'border-rose-300 bg-rose-50/10' : 'border-slate-200'
+          } rounded-2xl p-4 sm:p-5 shadow-sm space-y-3 transition-all hover:shadow-md">
+            
+            <!-- Header Row -->
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+              <div class="flex items-center gap-3">
+                <input 
+                  type="checkbox" 
+                  ${isDone ? 'checked' : ''} 
+                  onchange="toggleTask(${d.id}, 'both')" 
+                  class="w-5 h-5 rounded text-blue-600 cursor-pointer accent-blue-600"
+                >
+                <div>
+                  <span class="font-black text-sm text-slate-950">يوم ${d.id}: ${d.phase}</span>
+                  <div class="text-xs font-bold text-slate-600">${dayLabel} (${dateLabel})</div>
+                </div>
+              </div>
+
+              <span class="text-xs px-3 py-1 rounded-full font-black ${
+                isDone ? 'bg-emerald-100 text-emerald-900 border border-emerald-300' : isToday ? 'bg-blue-600 text-white shadow-sm' : isOverdue ? 'bg-rose-100 text-rose-900 border border-rose-300' : 'bg-slate-100 text-slate-700'
+              }">
+                ${isDone ? '✓ مكتمل' : isToday ? '⭐ هدف اليوم' : isOverdue ? '⚠️ متأخر' : 'قيد الانتظار'}
+              </span>
+            </div>
+
+            <!-- Dual Content Badges: SQL & Python Topics -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
+              <div class="p-2.5 rounded-xl bg-blue-50/80 border border-blue-200 flex items-start gap-2">
+                <span class="text-base flex-shrink-0">🗄️</span>
+                <div>
+                  <div class="font-black text-blue-950">${sqlObj.topic || 'استعلامات SQL'}</div>
+                  <div class="text-[11px] text-slate-700 mt-0.5">${sqlObj.exercise || ''}</div>
+                </div>
+              </div>
+
+              <div class="p-2.5 rounded-xl bg-amber-50/80 border border-amber-200 flex items-start gap-2">
+                <span class="text-base flex-shrink-0">🐍</span>
+                <div>
+                  <div class="font-black text-amber-950">${pyObj.topic || 'برمجة بايثون'}</div>
+                  <div class="text-[11px] text-slate-700 mt-0.5">${pyObj.exercise || ''}</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        `;
+      }).join('')}
+    </div>
+  `;
 }
 
 function renderRescheduleAnalysis() {

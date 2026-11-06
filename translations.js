@@ -1,7 +1,7 @@
 // Translations Dictionary for Bilingual (Arabic / English) Mode
 const TRANSLATIONS = {
   ar: {
-    app_title: "DataMaster & حياة الروح",
+    app_title: "The Road - طريق الدراسة والروح",
     app_subtitle: "تطبيق التوازن اليومي: علوم البيانات & القراءات والصلوات الأرثوذكسية",
     install_btn: "تثبيت التطبيق 📲",
     install_prompt: "تثبيت التطبيق على الموبايل",
@@ -112,7 +112,7 @@ const TRANSLATIONS = {
   },
 
   en: {
-    app_title: "DataMaster & Spiritual Life",
+    app_title: "The Road - Study & Soul",
     app_subtitle: "Daily Balance: Data Science & Orthodox Spiritual Readings",
     install_btn: "Install App 📲",
     install_prompt: "Install on Mobile",

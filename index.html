@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>DataMaster & حياة الروح - تطبيق التوازن اليومي الشامل</title>
+  <title>The Road | طريق المذاكرة والحياة الروحية</title>
   
   <!-- PWA Meta Tags -->
   <link rel="manifest" href="manifest.json">
@@ -11,7 +11,7 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="DataMaster & Spirit">
+  <meta name="apple-mobile-web-app-title" content="The Road">
   
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
@@ -30,7 +30,12 @@
 
     body {
       -webkit-tap-highlight-color: transparent;
-      background: radial-gradient(circle at 50% 0%, rgba(254, 243, 199, 0.4) 0%, rgba(250, 250, 248, 1) 40%, rgba(246, 247, 249, 1) 100%);
+      background-color: #fafaf8;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(254, 243, 199, 0.45) 0%, rgba(250, 250, 248, 0.94) 45%, rgba(246, 247, 249, 0.98) 100%),
+        url('images/cross_watermark.png');
+      background-repeat: no-repeat, repeat;
+      background-size: 100% 600px, 140px 140px;
       color: #1e293b;
       font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
       min-height: 100%;
@@ -160,18 +165,19 @@
 
   <!-- 3D Glass Navigation Sidebar Drawer -->
   <aside id="app-sidebar" class="hidden fixed top-0 bottom-0 right-0 z-50 w-80 max-w-[85vw] glass-panel shadow-2xl flex flex-col justify-between transition-all duration-300 overflow-y-auto translate-x-full">
-    <!-- Sidebar Header -->
-    <div class="p-5 border-b border-white/50 flex items-center justify-between bg-gradient-to-r from-amber-500/10 via-white/80 to-transparent">
-      <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-2xl icon-3d flex items-center justify-center text-xl text-amber-700 shadow-md">
-          ✝️
-        </div>
-        <div>
-          <h3 class="font-black text-sm text-slate-900">DataMaster & روح</h3>
-          <p class="text-[10px] text-slate-500">القائمة الشاملة والتنقل السريع</p>
+    <!-- Sidebar Header Banner with Image 2 -->
+    <div class="relative overflow-hidden rounded-b-3xl border-b border-amber-300 shadow-md bg-slate-950">
+      <img src="images/the_road_hero.jpg" alt="The Road" class="w-full h-36 object-cover opacity-85">
+      <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent flex flex-col justify-end p-4">
+        <div class="flex items-center gap-3">
+          <img src="icons/emblem.png" alt="Logo" class="w-11 h-11 rounded-xl shadow-lg border-2 border-amber-400 object-cover">
+          <div>
+            <h3 class="font-black text-base text-white drop-shadow">The Road</h3>
+            <p class="text-[11px] text-amber-300 font-bold">طريق المذاكرة والحياة الروحية</p>
+          </div>
         </div>
       </div>
-      <button onclick="toggleSidebar(false)" class="w-8 h-8 rounded-xl bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 font-bold text-sm btn-3d">
+      <button onclick="toggleSidebar(false)" class="absolute top-3 left-3 w-8 h-8 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center text-xs font-bold backdrop-blur-md transition-all">
         ✕
       </button>
     </div>
@@ -307,16 +313,14 @@
           ☰
         </button>
 
-        <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-amber-600 via-amber-500 to-blue-600 flex items-center justify-center text-white text-xl shadow-md border border-amber-300">
-          ✝️
-        </div>
+        <img src="icons/emblem.png" alt="The Road" class="w-11 h-11 rounded-2xl shadow-md border-2 border-amber-400 object-cover flex-shrink-0">
 
         <div>
           <h1 class="text-base sm:text-lg font-black tracking-tight text-slate-900 flex items-center gap-2">
-            <span data-i18n="app_title">DataMaster & حياة الروح</span>
-            <span class="text-[10px] px-2 py-0.5 rounded-full bg-amber-100 text-amber-900 font-bold border border-amber-200">نهاري ☀️</span>
+            <span data-i18n="app_title">The Road</span>
+            <span class="text-[10px] px-2 py-0.5 rounded-full bg-amber-100 text-amber-900 font-bold border border-amber-300">طريق الدراسة والروح 🕊️</span>
           </h1>
-          <p class="text-[11px] text-slate-500 hidden sm:block" data-i18n="app_subtitle">تطبيق التوازن اليومي: علوم البيانات & القراءات والصلوات الأرثوذكسية</p>
+          <p class="text-[11px] text-slate-600 hidden sm:block font-medium" data-i18n="app_subtitle">تطبيق التوازن اليومي: علوم البيانات & القراءات والصلوات الأرثوذكسية</p>
         </div>
       </div>
 
@@ -469,33 +473,25 @@
     <!-- ============================================================== -->
     <div id="main-section-study" class="space-y-6 hidden">
       
-      <!-- Expressive Study Header (3D Glass) -->
-      <div class="glass-panel-blue rounded-3xl p-6 sm:p-8 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
-        <div class="space-y-2 max-w-2xl text-center md:text-right">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-200/80 text-blue-950 text-xs font-bold shadow-inner">
-            <span>💻 مسار علوم البيانات والذكاء الاصطناعي</span>
+      <!-- Expressive Study Header with Image 2 (the_road_hero.jpg) -->
+      <div class="relative overflow-hidden rounded-3xl border border-blue-200/90 shadow-md bg-gradient-to-r from-slate-900 via-indigo-950 to-blue-950 text-white p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="relative z-10 space-y-3 max-w-2xl text-center md:text-right">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/25 text-blue-200 text-xs font-bold border border-blue-400/30 backdrop-blur-sm">
+            <span>💻 The Road: مسار علوم البيانات والذكاء الاصطناعي</span>
             <span>•</span>
             <span>ساعة SQL + ساعة Python</span>
           </div>
-          <h2 class="text-2xl sm:text-3xl font-black text-blue-950 tracking-tight">
-            جدول المذاكرة المكثف لعام 2026
+          <h2 class="text-2xl sm:text-3xl font-black text-white tracking-tight drop-shadow">
+            طريق التميز والمذاكرة المكثفة
           </h2>
-          <p class="text-xs sm:text-sm text-blue-800 leading-relaxed font-sans">
-            43 يوماً من التطبيقات العملية على مكتبات NumPy, Pandas, Scikit-Learn مع خوارزمية ذكية تعيد توزيع الدروس المتأخرة بالتساوي حتى 31 ديسمبر.
+          <p class="text-xs sm:text-sm text-blue-100 leading-relaxed font-sans font-medium">
+            43 يوماً من التطبيقات العملية المكثفة على مكتبات بايثون (NumPy, Pandas, Scikit-Learn) واستعلامات SQL مع خوارزمية ذكية لإعادة الجدولة التلقائية.
           </p>
         </div>
 
-        <!-- Data Science Bar Chart SVG in 3D frame -->
-        <div class="w-24 h-24 sm:w-32 sm:h-32 rounded-3xl icon-3d p-4 flex items-center justify-center flex-shrink-0 shadow-lg">
-          <svg viewBox="0 0 100 100" class="w-full h-full text-blue-600 fill-current">
-            <rect x="15" y="55" width="16" height="35" rx="3" fill="#3b82f6" />
-            <rect x="42" y="35" width="16" height="55" rx="3" fill="#6366f1" />
-            <rect x="70" y="15" width="16" height="75" rx="3" fill="#2563eb" />
-            <circle cx="23" cy="45" r="4" fill="#f59e0b" />
-            <circle cx="50" cy="25" r="4" fill="#f59e0b" />
-            <circle cx="78" cy="8" r="4" fill="#f59e0b" />
-            <polyline points="23,45 50,25 78,8" fill="none" stroke="#f59e0b" stroke-width="3" />
-          </svg>
+        <!-- 3D Hero Image (Image 2) -->
+        <div class="relative z-10 w-28 h-28 sm:w-36 sm:h-36 rounded-3xl overflow-hidden shadow-2xl border-2 border-amber-300/80 flex-shrink-0 group hover:scale-105 transition-all">
+          <img src="images/the_road_hero.jpg" alt="The Road" class="w-full h-full object-cover">
         </div>
       </div>
 
