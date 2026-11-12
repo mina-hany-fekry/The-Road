@@ -1,6 +1,6 @@
 // Service Worker for DataMaster & Spiritual Life PWA
 // 100% Offline-First Engine & Automatic Cache Invalidation
-const BUILD_TIME = '20261108104317';
+const BUILD_TIME = '20261112194939';
 const CACHE_NAME = `datamaster-spirit-${BUILD_TIME}`;
 
 const ASSETS_TO_CACHE = [
@@ -28,7 +28,27 @@ const ASSETS_TO_CACHE = [
   './images/coptic_cross.jpg',
   './images/cross_watermark.png',
   './images/christ_touch.jpg',
-  './images/christ_stream.jpg'
+  './images/christ_stream.jpg',
+  './images/icons/spiritual_section.jpg',
+  './images/icons/spiritual_section_thumb.jpg',
+  './images/icons/study_section.jpg',
+  './images/icons/study_section_thumb.jpg',
+  './images/icons/agpeya.jpg',
+  './images/icons/agpeya_thumb.jpg',
+  './images/icons/bible.jpg',
+  './images/icons/bible_thumb.jpg',
+  './images/icons/life_of_prayer.jpg',
+  './images/icons/life_of_prayer_thumb.jpg',
+  './images/icons/bustan_monks.jpg',
+  './images/icons/bustan_monks_thumb.jpg',
+  './images/icons/today_plan.jpg',
+  './images/icons/today_plan_thumb.jpg',
+  './images/icons/full_roadmap.jpg',
+  './images/icons/full_roadmap_thumb.jpg',
+  './images/icons/reschedule.jpg',
+  './images/icons/reschedule_thumb.jpg',
+  './images/icons/focus_timer.jpg',
+  './images/icons/focus_timer_thumb.jpg'
 ];
 
 self.addEventListener('install', (event) => {

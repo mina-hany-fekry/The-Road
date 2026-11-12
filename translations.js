@@ -1,12 +1,13 @@
 // Translations Dictionary for Bilingual (Arabic / English) Mode
 const TRANSLATIONS = {
   ar: {
-    app_title: "The Road - طريق الدراسة والروح",
+    app_title: "The Road",
     app_subtitle: "تطبيق التوازن اليومي: علوم البيانات & القراءات والصلوات الأرثوذكسية",
     install_btn: "تثبيت التطبيق 📲",
     install_prompt: "تثبيت التطبيق على الموبايل",
-    section_spiritual: "🕊️ القسم الروحي والديني",
-    section_study: "📊 القسم الدراسي (Data Science & ML)",
+    enter_section: "دخول القسم",
+    section_spiritual: "القسم الروحي الأرثوذكسي",
+    section_study: "علوم البيانات والبرمجة",
     
     // Spiritual Tabs
     tab_agpeya: "⛪ الأجبية بمزاميرها",
@@ -112,12 +113,13 @@ const TRANSLATIONS = {
   },
 
   en: {
-    app_title: "The Road - Study & Soul",
+    app_title: "The Road",
     app_subtitle: "Daily Balance: Data Science & Orthodox Spiritual Readings",
     install_btn: "Install App 📲",
     install_prompt: "Install on Mobile",
-    section_spiritual: "🕊️ Spiritual & Faith",
-    section_study: "📊 Study (Data Science & ML)",
+    enter_section: "Enter Section ❯",
+    section_spiritual: "Orthodox Spiritual Section",
+    section_study: "Data Science & Programming",
     
     // Spiritual Tabs
     tab_agpeya: "⛪ Complete Agpeya",
@@ -221,4 +223,12 @@ const TRANSLATIONS = {
     book_tab_quick: "🔖 Quick Jump & Search",
     
   }
+};
+
+
+// Expose globally
+window.TRANSLATIONS = TRANSLATIONS;
+window.t = function(key) {
+  const lang = (window.appState && window.appState.currentLang) || document.documentElement.lang || 'ar';
+  return (TRANSLATIONS && TRANSLATIONS[lang] && TRANSLATIONS[lang][key]) || key;
 };

@@ -7,6 +7,7 @@ const STORAGE_KEY = 'datamaster_spirit_state_v12';
 
 const defaultAppState = {
   currentLang: 'ar',
+  currentScreen: 'home',
   currentSection: 'spiritual', // 'spiritual' or 'study'
   
   // Spiritual sub-state
@@ -115,19 +116,22 @@ let isHistoryNavigating = false;
 function pushNavigationState(state) {
   if (isHistoryNavigating) return;
   const current = history.state || {};
-  if (current.section === state.section && current.tab === state.tab) {
+  if (current.screen === state.screen && current.section === state.section && current.tab === state.tab) {
     return;
   }
-  const hash = `#${state.section || 'spiritual'}/${state.tab || 'agpeya'}`;
+  const hash = state.screen === 'home' ? '#home' : `#${state.screen || state.section || 'section'}/${state.tab || ''}`;
   history.pushState(state, '', hash);
 }
 
 function initHistoryNavigation() {
+  const scr = appState.currentScreen || 'home';
   const initial = {
+    screen: scr,
     section: appState.currentSection || 'spiritual',
     tab: (appState.currentSection === 'study') ? (appState.study.activeTab || 'today') : (appState.spiritual.activeSubTab || 'agpeya')
   };
-  history.replaceState(initial, '', `#${initial.section}/${initial.tab}`);
+  const hash = initial.screen === 'home' ? '#home' : `#${initial.screen}/${initial.tab}`;
+  history.replaceState(initial, '', hash);
 
   window.addEventListener('popstate', (e) => {
     // 1. If PWA install modal is open, close it first
@@ -151,20 +155,22 @@ function initHistoryNavigation() {
     }
 
     // 2. Navigate backwards to previous view
-    if (!e.state) {
-      goHome(false);
+    if (!e.state || e.state.screen === 'home') {
+      navigateToScreen('home', false);
       return;
     }
 
     isHistoryNavigating = true;
     try {
       const state = e.state;
-      if (state.section === 'study') {
-        switchMainSection('study', false);
+      if (state.screen === 'study' || state.section === 'study') {
+        navigateToScreen('study', false);
         if (state.tab) switchStudyTab(state.tab, false);
-      } else {
-        switchMainSection('spiritual', false);
+      } else if (state.screen === 'religion' || state.section === 'spiritual') {
+        navigateToScreen('religion', false);
         if (state.tab) switchSpiritualTab(state.tab, false);
+      } else {
+        navigateToScreen('home', false);
       }
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } finally {
@@ -173,66 +179,85 @@ function initHistoryNavigation() {
   });
 }
 
-function goHome(pushHistory = true) {
-  toggleSidebar(false);
-  switchMainSection('spiritual', false);
-  switchSpiritualTab('agpeya', false);
-  if (pushHistory) {
-    pushNavigationState({ section: 'spiritual', tab: 'agpeya' });
+// goHome is defined in SCREEN ARCHITECTURE above
+
+// ==========================================
+// SCREEN ARCHITECTURE (شاشات التطبيق)
+// 'home' -> Two Big 3D Icons Only (Religion & Study)
+// 'religion' -> 4 3D Framed Icons + Liturgical Content
+// 'study' -> 4 3D Framed Icons + Study Modules
+// ==========================================
+function navigateToScreen(screen, pushHistory = true) {
+  appState.currentScreen = screen;
+  
+  const screenHome = document.getElementById('screen-home');
+  const screenReligion = document.getElementById('screen-religion');
+  const screenStudy = document.getElementById('screen-study');
+
+  // Hide all screens first
+  if (screenHome) screenHome.classList.add('hidden');
+  if (screenReligion) screenReligion.classList.add('hidden');
+  if (screenStudy) screenStudy.classList.add('hidden');
+
+  if (screen === 'religion') {
+    appState.currentSection = 'spiritual';
+    if (screenReligion) screenReligion.classList.remove('hidden');
+    closeAllSpiritualViews();
+    if (pushHistory) {
+      pushNavigationState({ screen: 'religion', section: 'spiritual' });
+    }
+  } else if (screen === 'study') {
+    appState.currentSection = 'study';
+    if (screenStudy) screenStudy.classList.remove('hidden');
+    closeAllStudyViews();
+    if (pushHistory) {
+      pushNavigationState({ screen: 'study', section: 'study' });
+    }
+  } else {
+    // 'home'
+    appState.currentScreen = 'home';
+    if (screenHome) screenHome.classList.remove('hidden');
+    if (pushHistory) {
+      pushNavigationState({ screen: 'home' });
+    }
   }
+
+  updateDockActiveState();
+  saveState();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function switchMainSection(section, pushHistory = true) {
-  appState.currentSection = section;
-  const secSpiritual = document.getElementById('main-section-spiritual');
-  const secStudy = document.getElementById('main-section-study');
-  const btnSpiritual = document.getElementById('btn-nav-spiritual');
-  const btnStudy = document.getElementById('btn-nav-study');
-
-  if (section === 'spiritual') {
-    if (secSpiritual) secSpiritual.classList.remove('hidden');
-    if (secStudy) secStudy.classList.add('hidden');
-    if (btnSpiritual) {
-      btnSpiritual.className = "flex-1 py-3 px-4 rounded-xl font-black text-xs sm:text-sm transition-all flex items-center justify-center gap-2 bg-gradient-to-r from-amber-700 to-amber-600 text-white shadow-md btn-3d";
-    }
-    if (btnStudy) {
-      btnStudy.className = "flex-1 py-3 px-4 rounded-xl font-black text-xs sm:text-sm transition-all flex items-center justify-center gap-2 bg-white/80 text-slate-700 hover:bg-blue-50/80 border border-slate-200 btn-3d";
-    }
-    renderSpiritualSection();
-    if (pushHistory) {
-      pushNavigationState({ section: 'spiritual', tab: appState.spiritual.activeSubTab || 'agpeya' });
-    }
+  if (section === 'study') {
+    navigateToScreen('study', pushHistory);
   } else {
-    if (secSpiritual) secSpiritual.classList.add('hidden');
-    if (secStudy) secStudy.classList.remove('hidden');
-    if (btnStudy) {
-      btnStudy.className = "flex-1 py-3 px-4 rounded-xl font-black text-xs sm:text-sm transition-all flex items-center justify-center gap-2 bg-gradient-to-r from-blue-700 to-indigo-600 text-white shadow-md btn-3d";
-    }
-    if (btnSpiritual) {
-      btnSpiritual.className = "flex-1 py-3 px-4 rounded-xl font-black text-xs sm:text-sm transition-all flex items-center justify-center gap-2 bg-white/80 text-slate-700 hover:bg-amber-50/80 border border-slate-200 btn-3d";
-    }
-    renderStudySection();
-    if (pushHistory) {
-      pushNavigationState({ section: 'study', tab: appState.study.activeTab || 'today' });
-    }
+    navigateToScreen('religion', pushHistory);
   }
-  updateDockActiveState();
-  saveState();
+}
+
+function goHome(pushHistory = true) {
+  toggleSidebar(false);
+  navigateToScreen('home', pushHistory);
 }
 
 function switchSpiritualTab(subTab, pushHistory = true) {
+  // Toggle: If clicking already active subTab, close/collapse it
+  if (appState.spiritual.activeSubTab === subTab) {
+    closeAllSpiritualViews();
+    return;
+  }
+
   appState.spiritual.activeSubTab = subTab;
-  
-  // Update nav buttons
-  document.querySelectorAll('[data-spiritual-tab]').forEach(btn => {
-    const tabName = btn.getAttribute('data-spiritual-tab');
+
+  // Update 3D Framed Cards active state
+  document.querySelectorAll('[data-framed-tab]').forEach(card => {
+    const tabName = card.getAttribute('data-framed-tab');
     if (tabName === subTab) {
-      btn.classList.add('bg-gradient-to-r', 'from-amber-700', 'to-amber-600', 'text-white', 'shadow-md');
-      btn.classList.remove('text-slate-700', 'hover:bg-amber-50/80');
+      card.classList.add('ring-4', 'ring-amber-400', 'border-amber-600', 'bg-amber-50/95', 'scale-[1.03]');
+      card.classList.remove('bg-white/70');
     } else {
-      btn.classList.remove('bg-gradient-to-r', 'from-amber-700', 'to-amber-600', 'text-white', 'shadow-md');
-      btn.classList.add('text-slate-700', 'hover:bg-amber-50/80');
+      card.classList.remove('ring-4', 'ring-amber-400', 'border-amber-600', 'bg-amber-50/95', 'scale-[1.03]');
+      card.classList.add('bg-white/70');
     }
   });
 
@@ -244,13 +269,33 @@ function switchSpiritualTab(subTab, pushHistory = true) {
   renderSpiritualSection();
   updateDockActiveState();
   if (pushHistory) {
-    pushNavigationState({ section: 'spiritual', tab: subTab });
+    pushNavigationState({ screen: 'religion', section: 'spiritual', tab: subTab });
   }
+  saveState();
+
+  setTimeout(() => {
+    if (targetView) {
+      targetView.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, 100);
+}
+
+function closeAllSpiritualViews() {
+  appState.spiritual.activeSubTab = null;
+  document.querySelectorAll('.spiritual-view').forEach(view => view.classList.add('hidden'));
+  document.querySelectorAll('[data-framed-tab]').forEach(card => {
+    card.classList.remove('ring-4', 'ring-amber-400', 'border-amber-600', 'bg-amber-50/95', 'scale-[1.03]');
+    card.classList.add('bg-white/70');
+  });
   saveState();
 }
 
 function renderSpiritualSection() {
   const tab = appState.spiritual.activeSubTab;
+  if (!tab) {
+    document.querySelectorAll('.spiritual-view').forEach(view => view.classList.add('hidden'));
+    return;
+  }
   if (tab === 'agpeya') {
     renderAgpeya();
   } else if (tab === 'bible') {
@@ -356,25 +401,28 @@ function bottomNavSwitch(item) {
 }
 
 function updateDockActiveState() {
-  const isSpiritual = appState.currentSection === 'spiritual';
-  const sub = appState.spiritual.activeSubTab;
-
+  const currentScreen = appState.currentScreen || 'home';
   const states = {
-    agpeya: isSpiritual && sub === 'agpeya',
-    bible: isSpiritual && sub === 'bible',
-    books: isSpiritual && (sub === 'book' || sub === 'bustan'),
-    study: appState.currentSection === 'study'
+    home: currentScreen === 'home',
+    religion: currentScreen === 'religion',
+    study: currentScreen === 'study',
+    menu: false
   };
 
   for (const [key, active] of Object.entries(states)) {
     const btn = document.getElementById(`dock-btn-${key}`);
     if (!btn) continue;
     if (active) {
-      btn.classList.add('text-amber-800', 'bg-amber-100/90', 'shadow-sm', 'scale-105');
-      btn.classList.remove('text-slate-600', 'hover:text-amber-800');
+      if (key === 'study') {
+        btn.classList.add('text-blue-800', 'bg-blue-100/90', 'shadow-sm', 'scale-105');
+        btn.classList.remove('text-slate-600', 'hover:text-blue-800');
+      } else {
+        btn.classList.add('text-amber-800', 'bg-amber-100/90', 'shadow-sm', 'scale-105');
+        btn.classList.remove('text-slate-600', 'hover:text-amber-800');
+      }
     } else {
-      btn.classList.remove('text-amber-800', 'bg-amber-100/90', 'shadow-sm', 'scale-105');
-      btn.classList.add('text-slate-600', 'hover:text-amber-800');
+      btn.classList.remove('text-amber-800', 'bg-amber-100/90', 'text-blue-800', 'bg-blue-100/90', 'shadow-sm', 'scale-105');
+      btn.classList.add('text-slate-600');
     }
   }
 }
@@ -2519,19 +2567,11 @@ function renderStudySection() {
     saveState();
   }
 
-  const subTab = appState.study.activeTab || 'today';
-
-  // Update tab buttons
-  document.querySelectorAll('[data-study-tab]').forEach(btn => {
-    const tabName = btn.getAttribute('data-study-tab');
-    if (tabName === subTab) {
-      btn.classList.add('bg-blue-600', 'text-white', 'shadow-sm');
-      btn.classList.remove('text-slate-600', 'hover:bg-slate-100');
-    } else {
-      btn.classList.remove('bg-blue-600', 'text-white', 'shadow-sm');
-      btn.classList.add('text-slate-600', 'hover:bg-slate-100');
-    }
-  });
+  const subTab = appState.study.activeTab;
+  if (!subTab) {
+    document.querySelectorAll('.study-view, .study-subview').forEach(v => v.classList.add('hidden'));
+    return;
+  }
 
   // Toggle study views
   document.querySelectorAll('.study-view, .study-subview').forEach(v => v.classList.add('hidden'));
@@ -2547,11 +2587,51 @@ function renderStudySection() {
 }
 
 function switchStudyTab(tab, pushHistory = true) {
+  // Toggle: If clicking already active tab, close/collapse it
+  if (appState.study.activeTab === tab) {
+    closeAllStudyViews();
+    return;
+  }
+
   appState.study.activeTab = tab;
+
+  // Update 3D Framed Study Cards active state
+  document.querySelectorAll('[data-framed-study-tab]').forEach(card => {
+    const tabName = card.getAttribute('data-framed-study-tab');
+    if (tabName === tab) {
+      card.classList.add('ring-4', 'ring-cyan-400', 'border-blue-600', 'bg-blue-50/95', 'scale-[1.03]');
+      card.classList.remove('bg-white/70');
+    } else {
+      card.classList.remove('ring-4', 'ring-cyan-400', 'border-blue-600', 'bg-blue-50/95', 'scale-[1.03]');
+      card.classList.add('bg-white/70');
+    }
+  });
+
+  // Toggle study subviews
+  document.querySelectorAll('.study-view, .study-subview').forEach(v => v.classList.add('hidden'));
+  const targetView = document.getElementById(`study-view-${tab}`);
+  if (targetView) targetView.classList.remove('hidden');
+
   renderStudySection();
   if (pushHistory) {
-    pushNavigationState({ section: 'study', tab });
+    pushNavigationState({ screen: 'study', section: 'study', tab });
   }
+  saveState();
+
+  setTimeout(() => {
+    if (targetView) {
+      targetView.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, 100);
+}
+
+function closeAllStudyViews() {
+  appState.study.activeTab = null;
+  document.querySelectorAll('.study-view, .study-subview').forEach(view => view.classList.add('hidden'));
+  document.querySelectorAll('[data-framed-study-tab]').forEach(card => {
+    card.classList.remove('ring-4', 'ring-cyan-400', 'border-blue-600', 'bg-blue-50/95', 'scale-[1.03]');
+    card.classList.add('bg-white/70');
+  });
   saveState();
 }
 
@@ -2903,19 +2983,32 @@ function triggerCelebration() {
 }
 
 function toggleLanguage() {
-  appState.currentLang = appState.currentLang === 'ar' ? 'en' : 'ar';
+  appState.currentLang = (appState.currentLang === 'ar') ? 'en' : 'ar';
   document.documentElement.lang = appState.currentLang;
-  document.documentElement.dir = appState.currentLang === 'ar' ? 'rtl' : 'ltr';
+  document.documentElement.dir = (appState.currentLang === 'ar') ? 'rtl' : 'ltr';
+  
+  // Update language button text
+  const langText = document.getElementById('lang-btn-text');
+  if (langText) {
+    langText.textContent = (appState.currentLang === 'ar') ? 'English' : 'عربي';
+  }
+
+  // Update translatable data-i18n elements
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (key && typeof t === 'function') {
+      const translated = t(key);
+      if (translated) el.textContent = translated;
+    }
+  });
+
   renderAll();
   saveState();
 }
 
 function renderAll() {
-  if (appState.currentSection === 'spiritual') {
-    switchMainSection('spiritual');
-  } else {
-    switchMainSection('study');
-  }
+  const scr = appState.currentScreen || 'home';
+  navigateToScreen(scr, false);
 }
 
 // Global initialization on DOM ready
@@ -2964,9 +3057,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Initialize UI
-  document.documentElement.lang = appState.currentLang || 'ar';
-  document.documentElement.dir = (appState.currentLang || 'ar') === 'ar' ? 'rtl' : 'ltr';
+  // Initialize UI language & labels
+  const initialLang = appState.currentLang || 'ar';
+  document.documentElement.lang = initialLang;
+  document.documentElement.dir = (initialLang === 'ar') ? 'rtl' : 'ltr';
+  const langText = document.getElementById('lang-btn-text');
+  if (langText) {
+    langText.textContent = (initialLang === 'ar') ? 'English' : 'عربي';
+  }
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (key && typeof t === 'function') {
+      const translated = t(key);
+      if (translated) el.textContent = translated;
+    }
+  });
   renderAll();
 });
 
@@ -3145,6 +3250,9 @@ if ('serviceWorker' in navigator) {
 // EXPLICIT WINDOW BINDINGS
 // ==========================================
 Object.assign(window, {
+  navigateToScreen,
+  closeAllSpiritualViews,
+  closeAllStudyViews,
   toggleSidebar,
   sidebarNavigateAgpeya,
   goHome,
