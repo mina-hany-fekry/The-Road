@@ -16,8 +16,28 @@
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 
+  <!-- Instant Cache-Buster & Self-Healing Migration Script -->
+  <script>
+    const THE_ROAD_VERSION = '20261112210000';
+    try {
+      if (localStorage.getItem('the_road_cache_ver') !== THE_ROAD_VERSION) {
+        localStorage.setItem('the_road_cache_ver', THE_ROAD_VERSION);
+        if ('caches' in window) {
+          caches.keys().then(keys => Promise.all(keys.map(k => caches.delete(k))));
+        }
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.getRegistrations().then(regs => {
+            regs.forEach(r => r.update());
+          });
+        }
+      }
+    } catch (e) {
+      console.warn('Auto cache-buster note:', e);
+    }
+  </script>
+
   <!-- Tailwind Script -->
-  <script src="tailwind.min.js"></script>
+  <script src="tailwind.min.js?v=20261112210000"></script>
 
   <style>
     /* Always enable full document scrolling & touch panning */
@@ -887,16 +907,31 @@
     </div>
   </div>
 
-  <!-- Script Libraries in Dependency Order -->
-  <script src="translations.js"></script>
-  <script src="agpeya_full.js"></script>
-  <script src="book_prayer_full.js"></script>
-  <script src="bustan_full.js"></script>
-  <script src="bible_books.js"></script>
-  <script src="bible_full.js"></script>
-  <script src="bible_nt.js"></script>
-  <script src="bible_ot.js"></script>
-  <script src="curriculum.js"></script>
-  <script src="app.js"></script>
+  <!-- Failsafe Navigation Function (attached before scripts load) -->
+  <script>
+    window.navigateToScreen = window.navigateToScreen || function(screen) {
+      const sh = document.getElementById('screen-home');
+      const sr = document.getElementById('screen-religion');
+      const ss = document.getElementById('screen-study');
+      if (sh) sh.classList.add('hidden');
+      if (sr) sr.classList.add('hidden');
+      if (ss) ss.classList.add('hidden');
+      if (screen === 'religion' && sr) sr.classList.remove('hidden');
+      else if (screen === 'study' && ss) ss.classList.remove('hidden');
+      else if (sh) sh.classList.remove('hidden');
+    };
+  </script>
+
+  <!-- Script Libraries in Dependency Order (Cache-Busted) -->
+  <script src="translations.js?v=20261112210000"></script>
+  <script src="agpeya_full.js?v=20261112210000"></script>
+  <script src="book_prayer_full.js?v=20261112210000"></script>
+  <script src="bustan_full.js?v=20261112210000"></script>
+  <script src="bible_books.js?v=20261112210000"></script>
+  <script src="bible_full.js?v=20261112210000"></script>
+  <script src="bible_nt.js?v=20261112210000"></script>
+  <script src="bible_ot.js?v=20261112210000"></script>
+  <script src="curriculum.js?v=20261112210000"></script>
+  <script src="app.js?v=20261112210000"></script>
 </body>
 </html>

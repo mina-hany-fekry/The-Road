@@ -1,7 +1,7 @@
-// Service Worker for DataMaster & Spiritual Life PWA
-// 100% Offline-First Engine & Automatic Cache Invalidation
-const BUILD_TIME = '20261112194939';
-const CACHE_NAME = `datamaster-spirit-${BUILD_TIME}`;
+// Service Worker for The Road PWA
+// 100% Offline-First Engine with Smart Network-First Navigation & Instant Auto-Invalidation
+const BUILD_TIME = '20261112210000';
+const CACHE_NAME = `the-road-v${BUILD_TIME}`;
 
 const ASSETS_TO_CACHE = [
   './',
@@ -76,40 +76,47 @@ self.addEventListener('activate', (event) => {
           }
         })
       );
+    }).then(() => {
+      return self.clients.matchAll().then((clients) => {
+        clients.forEach((client) => {
+          client.postMessage({ type: 'SW_UPDATED', version: BUILD_TIME });
+        });
+      });
     })
   );
   self.clients.claim();
 });
 
 self.addEventListener('fetch', (event) => {
-  // Navigation requests: Instant offline launch from cache with background revalidation
+  // Navigation requests: Network-First when online, fallback to Cache for 100% offline support
   if (event.request.mode === 'navigate') {
     event.respondWith(
-      caches.match('./index.html').then((cached) => {
-        const fetchPromise = fetch(event.request)
-          .then((networkResponse) => {
-            if (networkResponse && networkResponse.status === 200) {
-              const clone = networkResponse.clone();
-              caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
-            }
-            return networkResponse;
-          })
-          .catch(() => cached);
-
-        return cached || fetchPromise;
-      })
+      fetch(event.request)
+        .then((networkResponse) => {
+          if (networkResponse && networkResponse.status === 200) {
+            const clone = networkResponse.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
+          }
+          return networkResponse;
+        })
+        .catch(() => {
+          return caches.match('./index.html').then((cached) => {
+            return cached || caches.match('./');
+          });
+        })
     );
     return;
   }
 
-  // Assets & scripts: Cache-first with background refresh
+  // Assets & scripts: Cache-First with background revalidation
   event.respondWith(
-    caches.match(event.request, { ignoreSearch: true }).then((cachedResponse) => {
+    caches.match(event.request).then((cachedResponse) => {
       if (cachedResponse) {
         fetch(event.request)
           .then((networkResponse) => {
             if (networkResponse && networkResponse.status === 200) {
-              caches.open(CACHE_NAME).then((cache) => cache.put(event.request, networkResponse));
+              const clone = networkResponse.clone();
+              caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
             }
           })
           .catch(() => {});

@@ -3241,6 +3241,16 @@ if ('serviceWorker' in navigator) {
         window.location.reload();
       }
     });
+
+    navigator.serviceWorker.addEventListener('message', (event) => {
+      if (event.data && event.data.type === 'SW_UPDATED') {
+        console.log('[PWA] SW update detected from message:', event.data.version);
+        if (!refreshing) {
+          refreshing = true;
+          window.location.reload();
+        }
+      }
+    });
   });
 }
 
