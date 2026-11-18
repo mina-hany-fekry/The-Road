@@ -9,7 +9,8 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "SQL (Structured Query Language) is a standard language used to store, retrieve, manipulate and manage data in relational databases.",
     "answer_ar": "لغة الاستعلام البنائية (SQL) هي اللغة القياسية المعتمدة لتخزين واسترجاع وتعديل وإدارة البيانات داخل قواعد البيانات العلائقية (Relational Databases).",
     "example": "SELECT * FROM Employees;",
-    "note": "SQL is all about storing, managing and retrieving data efficiently."
+    "note": "SQL is all about storing, managing and retrieving data efficiently.",
+    "tech": "SQL"
   },
   {
     "id": 2,
@@ -21,7 +22,8 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "A database is an organized collection of related data that can be easily accessed, managed and updated.",
     "answer_ar": "قاعدة البيانات هي مجموعة منظمة ومترابطة من البيانات المهيكلة التي يمكن الوصول إليها وإدارتها وتحديثها بسرعة وأمان وسهولة.",
     "example": "CREATE DATABASE CompanyDB;",
-    "note": "Databases power virtually every modern application and dashboard."
+    "note": "Databases power virtually every modern application and dashboard.",
+    "tech": "SQL"
   },
   {
     "id": 3,
@@ -33,7 +35,8 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "A table is a collection of data organized in rows (records/tuples) and columns (fields/attributes). It is the basic storage structure in a relational database.",
     "answer_ar": "الجدول هو هيكل لتخزين البيانات منظم في صفوف (Rows تمثل السجلات) وأعمدة (Columns تمثل الخصائص)، وهو وحدة التخزين الأساسية في قواعد البيانات.",
     "example": "CREATE TABLE Department (id INT, name VARCHAR(50));",
-    "note": "Each row represents a single entity, and each column represents an attribute."
+    "note": "Each row represents a single entity, and each column represents an attribute.",
+    "tech": "SQL"
   },
   {
     "id": 4,
@@ -45,7 +48,8 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "SQL commands are categorized into 5 types: DDL (CREATE, ALTER, DROP, TRUNCATE), DML (INSERT, UPDATE, DELETE), DQL (SELECT), DCL (GRANT, REVOKE), and TCL (COMMIT, ROLLBACK, SAVEPOINT).",
     "answer_ar": "تُصنف أوامر SQL إلى 5 أنواع رئيسية: DDL (للهيكل والمخطط)، DML (لتعديل السجلات)، DQL (للاستعلام)، DCL (للأمان والصلاحيات)، و TCL (لإدارة المعاملات المالية والعمليات).",
     "example": "-- DDL: CREATE TABLE, DML: INSERT, DQL: SELECT, DCL: GRANT, TCL: COMMIT",
-    "note": "Remember the acronyms: DDL, DML, DQL, DCL, TCL."
+    "note": "Remember the acronyms: DDL, DML, DQL, DCL, TCL.",
+    "tech": "SQL"
   },
   {
     "id": 5,
@@ -57,7 +61,8 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "SQL is a standard query language for working with relational databases. MySQL is a specific Relational Database Management System (RDBMS) software that uses SQL as its language.",
     "answer_ar": "SQL هي لغة برمجة واستعلام معيارية. أما MySQL فهو نظام إدارة قواعد بيانات علائقية متكامل (برنامج RDBMS شهير مفتوح المصدر) يستخدم لغة SQL للتخاطب.",
     "example": "-- SQL is the language; MySQL / PostgreSQL / SQL Server are the database engines.",
-    "note": "Do not confuse the language (SQL) with the product engine (MySQL)."
+    "note": "Do not confuse the language (SQL) with the product engine (MySQL).",
+    "tech": "SQL"
   },
   {
     "id": 6,
@@ -69,7 +74,8 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "A Primary Key is a column (or combination of columns) that uniquely identifies each row in a table. It cannot contain NULL values and must contain unique values.",
     "answer_ar": "المفتاح الأساسي هو عمود (أو دمج عدة أعمدة) يحدد كل صف في الجدول حصرياً وبشكل فريد. لا يمكن أبداً أن يحتوي على قيم فارغة (NULL) ويجب أن تكون قيمه فريدة 100%.",
     "example": "CREATE TABLE Users (id INT PRIMARY KEY, email VARCHAR(100));",
-    "note": "A table can only have ONE Primary Key."
+    "note": "A table can only have ONE Primary Key.",
+    "tech": "SQL"
   },
   {
     "id": 7,
@@ -81,7 +87,8 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "A Foreign Key is a column in one table that refers to the Primary Key in another table. It helps maintain referential integrity between tables.",
     "answer_ar": "المفتاح الأجنبي هو عمود في جدول يشير إلى المفتاح الأساسي في جدول آخر، ويهدف لربط البيانات ومنع وجود سجلات يتيمة وضمان سلامة العلاقات (Referential Integrity).",
     "example": "CREATE TABLE Orders (order_id INT, user_id INT, FOREIGN KEY (user_id) REFERENCES Users(id));",
-    "note": "Foreign keys can contain duplicate values and NULL values."
+    "note": "Foreign keys can contain duplicate values and NULL values.",
+    "tech": "SQL"
   },
   {
     "id": 8,
@@ -93,7 +100,8 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "A Unique Key is a column (or set of columns) that must have unique values for each row. Unlike Primary Key, it can accept one NULL value (in most DBMSs).",
     "answer_ar": "المفتاح الفريد يضمن عدم تكرار القيم في العمود. ويختلف عن الـ Primary Key في أنه يقبل وجود قيمة NULL واحدة (في أغلب أنظمة قواعد البيانات).",
     "example": "CREATE TABLE Employees (emp_id INT PRIMARY KEY, national_id VARCHAR(14) UNIQUE);",
-    "note": "A single table can have MULTIPLE Unique Keys, but only ONE Primary Key."
+    "note": "A single table can have MULTIPLE Unique Keys, but only ONE Primary Key.",
+    "tech": "SQL"
   },
   {
     "id": 9,
@@ -105,7 +113,8 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "The NOT NULL constraint ensures that a column cannot have NULL values, meaning you cannot insert or update a record without providing a valid value for this field.",
     "answer_ar": "قيد NOT NULL يُلزم بإدخال قيمة في هذا العمود عند إضافة أي سجل جديد، ويمنع تركه فارغاً (NULL) تماماً.",
     "example": "CREATE TABLE Customers (id INT, full_name VARCHAR(100) NOT NULL);",
-    "note": "Essential for mandatory fields like names, dates, and order amounts."
+    "note": "Essential for mandatory fields like names, dates, and order amounts.",
+    "tech": "SQL"
   },
   {
     "id": 10,
@@ -117,7 +126,8 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "1. Uniqueness: Both require unique values.\n2. NULL values: Primary Key CANNOT have NULL; Unique Key can accept one NULL.\n3. Count per table: Only ONE Primary Key per table; MULTIPLE Unique Keys allowed.\n4. Purpose: Primary Key uniquely identifies rows; Unique Key prevents duplicates in specific fields.",
     "answer_ar": "١. الفرادة: كلاهما يمنع التكرار.\n٢. قيم NULL: المفتاح الأساسي يرفض NULL تماماً؛ المفتاح الفريد يسمح بقيمة NULL واحدة.\n٣. العدد في الجدول: مفتاح أساسي واحد فقط لكل جدول؛ بينما يسمح بعدة مفاتيح فريدة.\n٤. الهدف: الأساسي يحدد هوية الصف؛ والفريد يمنع تكرار بيانات حقل معين.",
     "example": "-- Primary Key: EmployeeID | Unique Keys: Email, PassportNumber, Phone",
-    "note": "A classic interview question: Know this table by heart!"
+    "note": "A classic interview question: Know this table by heart!",
+    "tech": "SQL"
   },
   {
     "id": 11,
@@ -129,7 +139,8 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "SELECT statement is used to retrieve and read data from one or more tables in a database.",
     "answer_ar": "أمر SELECT هو الأمر الأساسي في DQL لاسترجاع وقراءة البيانات وعرضها من جدول أو عدة جداول.",
     "example": "SELECT EmpID, Name, Salary FROM Employees;",
-    "note": "The most widely used SQL command in data analysis."
+    "note": "The most widely used SQL command in data analysis.",
+    "tech": "SQL"
   },
   {
     "id": 12,
@@ -141,7 +152,8 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "INSERT statement is used to add new records/rows into an existing table.",
     "answer_ar": "أمر INSERT يُستخدم لإضافة صفوف وسجلات جديدة إلى جدول موجود في قاعدة البيانات.",
     "example": "INSERT INTO Employees (EmpID, Name, Salary) VALUES (101, 'John', 55000);",
-    "note": "Can insert single rows or multiple rows in one batch."
+    "note": "Can insert single rows or multiple rows in one batch.",
+    "tech": "SQL"
   },
   {
     "id": 13,
@@ -153,7 +165,8 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "UPDATE statement is used to modify existing records in a table based on an optional condition.",
     "answer_ar": "أمر UPDATE يُستخدم لتعديل بيانات السجلات الموجودة مسبقاً داخل الجدول.",
     "example": "UPDATE Employees SET Salary = Salary + 5000 WHERE EmpID = 101;",
-    "note": "CRITICAL WARNING: Always specify a WHERE clause; omitting WHERE updates ALL rows in the table!"
+    "note": "CRITICAL WARNING: Always specify a WHERE clause; omitting WHERE updates ALL rows in the table!",
+    "tech": "SQL"
   },
   {
     "id": 14,
@@ -165,7 +178,8 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "DELETE statement is used to remove existing records from a table based on a condition.",
     "answer_ar": "أمر DELETE يُستخدم لحذف سجلات معينة تحقق شرطاً من الجدول.",
     "example": "DELETE FROM Employees WHERE EmpID = 101;",
-    "note": "Without a WHERE clause, all rows are deleted, but table structure remains."
+    "note": "Without a WHERE clause, all rows are deleted, but table structure remains.",
+    "tech": "SQL"
   },
   {
     "id": 15,
@@ -177,7 +191,8 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "• DELETE (DML): Deletes specific rows; supports WHERE clause; can be rolled back; slower.\n• TRUNCATE (DDL): Removes all rows; no WHERE clause; resets auto-increment; faster.\n• DROP (DDL): Completely removes the table structure and data from the database; cannot rollback; very fast.",
     "answer_ar": "• DELETE (DML): يحذف صفوفاً محددة؛ يقبل شرط WHERE؛ يمكن التراجع عنه؛ أبطأ.\n• TRUNCATE (DDL): يفرغ كل الصفوف دفعة واحدة؛ لا يقبل WHERE؛ يصفر عداد الـ Auto-Increment؛ أسرع بكثير.\n• DROP (DDL): يحذف الجدول بالكامل بهيكله وبياناته من الوجود؛ لا يمكن التراجع عنه؛ فوري.",
     "example": "DELETE FROM t WHERE id=1; -- removes row\nTRUNCATE TABLE t;       -- clears data\nDROP TABLE t;           -- deletes table",
-    "note": "Always asked in SQL technical interviews!"
+    "note": "Always asked in SQL technical interviews!",
+    "tech": "SQL"
   },
   {
     "id": 16,
@@ -189,7 +204,8 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "WHERE clause is used to filter records and return only those rows that fulfill a specified condition. Works with SELECT, UPDATE, and DELETE.",
     "answer_ar": "جملة WHERE تُستخدم لتصفية السجلات بناءً على شروط محددة، بحيث لا تعيد سوى الصفوف التي ينطبق عليها الشرط.",
     "example": "SELECT * FROM Employees WHERE Salary > 50000;",
-    "note": "Executed row by row before any grouping takes place."
+    "note": "Executed row by row before any grouping takes place.",
+    "tech": "SQL"
   },
   {
     "id": 17,
@@ -201,7 +217,8 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "ORDER BY clause is used to sort the result set in ascending order (ASC, default) or descending order (DESC).",
     "answer_ar": "جملة ORDER BY تُستخدم لترتيب مخرجات الاستعلام تصاعدياً (ASC - وهو الافتراضي) أو تنازلياً (DESC) بناءً على عمود أو أكثر.",
     "example": "SELECT * FROM Employees ORDER BY Salary DESC, Name ASC;",
-    "note": "Sorting is always performed as one of the final steps in query execution."
+    "note": "Sorting is always performed as one of the final steps in query execution.",
+    "tech": "SQL"
   },
   {
     "id": 18,
@@ -213,7 +230,8 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "DISTINCT keyword is used in a SELECT statement to return only unique (distinct) values and remove duplicate rows from the output.",
     "answer_ar": "كلمة DISTINCT تُستخدم لإزالة القيم المكررة واستخراج القيم الفريدة الحصرية فقط من نتائج الاستعلام.",
     "example": "SELECT DISTINCT Department FROM Employees;",
-    "note": "Can be applied to single columns or combinations of columns."
+    "note": "Can be applied to single columns or combinations of columns.",
+    "tech": "SQL"
   },
   {
     "id": 19,
@@ -225,7 +243,8 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "LIMIT (in MySQL/PostgreSQL/SQLite) or TOP (in SQL Server) is used to restrict the number of records returned by a query.",
     "answer_ar": "أمر LIMIT (أو TOP) يُستخدم لتحديد سقف أقصى لعدد الصفوف المعادة من الاستعلام (مثال: استخراج أعلى 5 رواتب).",
     "example": "SELECT * FROM Employees ORDER BY Salary DESC LIMIT 5; -- Top 5 Salaries",
-    "note": "Combine with ORDER BY DESC to easily get top performers or highest metrics."
+    "note": "Combine with ORDER BY DESC to easily get top performers or highest metrics.",
+    "tech": "SQL"
   },
   {
     "id": 20,
@@ -237,7 +256,8 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "• WHERE: Filters individual rows BEFORE grouping. Cannot be used with aggregate functions.\n• HAVING: Filters groups AFTER grouping with GROUP BY. Can be used with aggregate functions (e.g. HAVING COUNT(*) > 5).",
     "answer_ar": "• WHERE: تفلتر الصفوف الفردية قبل التجميع، ولا تقبل دوال التجميع.\n• HAVING: تفلتر المجموعات بعد تطبيق GROUP BY، وتقبل دوال التجميع مثل COUNT و AVG و SUM.",
     "example": "SELECT Dept, COUNT(*) FROM Emp WHERE Status='Active' GROUP BY Dept HAVING COUNT(*) > 5;",
-    "note": "WHERE filters rows; HAVING filters aggregated groups."
+    "note": "WHERE filters rows; HAVING filters aggregated groups.",
+    "tech": "SQL"
   },
   {
     "id": 21,
@@ -249,7 +269,8 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "COUNT() function returns the number of rows that match a specified condition. COUNT(*) counts all rows including NULLs; COUNT(column) ignores NULL values.",
     "answer_ar": "دالة COUNT() تحسب عدد الصفوف. تحسب COUNT(*) كل الصفوف شاملة الـ NULL؛ بينما تحسب COUNT(col) القيم غير الفارغة فقط.",
     "example": "SELECT COUNT(*) FROM Employees WHERE Department = 'IT';",
-    "note": "Count is the most fundamental aggregation metric in data analysis."
+    "note": "Count is the most fundamental aggregation metric in data analysis.",
+    "tech": "SQL"
   },
   {
     "id": 22,
@@ -261,7 +282,8 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "SUM() function returns the total calculated sum of a numeric column, ignoring NULL values.",
     "answer_ar": "دالة SUM() تحسب المجموع التراكمي الإجمالي لعمود رقمي، وتتجاهل قيم NULL تلقائياً.",
     "example": "SELECT SUM(Salary) AS Total_Payroll FROM Employees;",
-    "note": "Only works on numeric data types."
+    "note": "Only works on numeric data types.",
+    "tech": "SQL"
   },
   {
     "id": 23,
@@ -273,7 +295,8 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "AVG() function returns the average (arithmetic mean) value of a numeric column, ignoring NULL values.",
     "answer_ar": "دالة AVG() تحسب المتوسط الحسابي للعمود الرقمي (مجموع القيم مقسوماً على عددها)، متجاهلة قيم NULL.",
     "example": "SELECT AVG(Salary) AS Average_Salary FROM Employees;",
-    "note": "Tip: If you need to include NULLs as 0, use AVG(COALESCE(Salary, 0))."
+    "note": "Tip: If you need to include NULLs as 0, use AVG(COALESCE(Salary, 0)).",
+    "tech": "SQL"
   },
   {
     "id": 24,
@@ -285,7 +308,8 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "MIN() returns the smallest value in a column. MAX() returns the largest value in a column. Both work on numbers, dates, and text strings.",
     "answer_ar": "دالة MIN() تُرجع أقل قيمة في العمود، ودالة MAX() تُرجع أعلى قيمة. تعملان على الأرقام، التواريخ، وحتى النصوص أبجدياً.",
     "example": "SELECT MIN(Salary) AS Min_Sal, MAX(Salary) AS Max_Sal FROM Employees;",
-    "note": "Great for calculating ranges and min/max dates."
+    "note": "Great for calculating ranges and min/max dates.",
+    "tech": "SQL"
   },
   {
     "id": 25,
@@ -297,7 +321,8 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "GROUP BY clause is used to arrange identical data into groups. It is often used with aggregate functions (COUNT, MAX, MIN, SUM, AVG) to group result-set by one or more columns.",
     "answer_ar": "جملة GROUP BY تُستخدم لتجميع الصفوف التي تتشارك نفس القيمة في عمود معين، وذلك لإجراء العمليات الإحصائية وحساب المجاميع لكل قسم أو فئة.",
     "example": "SELECT Department, COUNT(*), AVG(Salary) FROM Employees GROUP BY Department;",
-    "note": "Rule: Any non-aggregated column in SELECT MUST appear in the GROUP BY clause."
+    "note": "Rule: Any non-aggregated column in SELECT MUST appear in the GROUP BY clause.",
+    "tech": "SQL"
   },
   {
     "id": 26,
@@ -309,7 +334,8 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "A JOIN clause is used to combine rows from two or more tables, based on a related column between them (such as Primary Key and Foreign Key).",
     "answer_ar": "جملة الـ JOIN تُستخدم لدمج أعمدة وسجلات من جدولين أو أكثر في نتيجة استعلام واحدة بناءً على وجود عمود مشترك يربطهما.",
     "example": "SELECT * FROM TableA A JOIN TableB B ON A.id = B.a_id;",
-    "note": "Joins unlock the true power of relational databases."
+    "note": "Joins unlock the true power of relational databases.",
+    "tech": "SQL"
   },
   {
     "id": 27,
@@ -321,7 +347,8 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "INNER JOIN returns only the rows that have matching values in both the left and right tables.",
     "answer_ar": "الـ INNER JOIN يُرجع فقط الصفوف التي تحقق شرط التطابق في كلا الجدولين معاً، ويتجاهل أي سجل لا يوجد له نظير.",
     "example": "SELECT e.Name, d.DeptName FROM Employees e INNER JOIN Departments d ON e.dept_id = d.id;",
-    "note": "This is the default JOIN type in SQL."
+    "note": "This is the default JOIN type in SQL.",
+    "tech": "SQL"
   },
   {
     "id": 28,
@@ -333,7 +360,8 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "LEFT JOIN returns all records from the left table, and the matched records from the right table. The result is NULL from the right side if there is no match.",
     "answer_ar": "الـ LEFT JOIN يُرجع جميع صفوف الجدول الأيسر بالكامل، والصفوف المتطابقة فقط من الأيمن، مع وضع NULL إذا لم يكن هناك تطابق في الأيمن.",
     "example": "SELECT c.Name, o.OrderID FROM Customers c LEFT JOIN Orders o ON c.id = o.customer_id;",
-    "note": "Crucial for finding records that have NO relations (e.g., customers who made zero orders)."
+    "note": "Crucial for finding records that have NO relations (e.g., customers who made zero orders).",
+    "tech": "SQL"
   },
   {
     "id": 29,
@@ -345,7 +373,8 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "RIGHT JOIN returns all records from the right table, and the matched records from the left table. The result is NULL from the left side when there is no match.",
     "answer_ar": "الـ RIGHT JOIN هو العكس تماماً: يُرجع جميع صفوف الجدول الأيمن بالكامل، والصفوف المتطابقة فقط من الأيسر (مع NULL إذا لم يتطابق).",
     "example": "SELECT e.Name, d.DeptName FROM Employees e RIGHT JOIN Departments d ON e.dept_id = d.id;",
-    "note": "Less commonly used; most developers rewrite it as a LEFT JOIN for readability."
+    "note": "Less commonly used; most developers rewrite it as a LEFT JOIN for readability.",
+    "tech": "SQL"
   },
   {
     "id": 30,
@@ -357,7 +386,8 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "FULL OUTER JOIN returns all records when there is a match in either left or right table. It includes matched rows and unmatched rows from both sides with NULLs.",
     "answer_ar": "الـ FULL OUTER JOIN يُرجع جميع الصفوف من كلا الجدولين سواء وُجد تطابق بينهما أم لا، ويضع NULL في الأماكن التي لم تتطابق من كلا الطرفين.",
     "example": "SELECT * FROM TableA A FULL OUTER JOIN TableB B ON A.id = B.a_id;",
-    "note": "Note: MySQL does not natively support FULL OUTER JOIN; you emulate it using LEFT JOIN + UNION + RIGHT JOIN."
+    "note": "Note: MySQL does not natively support FULL OUTER JOIN; you emulate it using LEFT JOIN + UNION + RIGHT JOIN.",
+    "tech": "SQL"
   },
   {
     "id": 31,
@@ -369,7 +399,8 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "CROSS JOIN returns the Cartesian product of both tables: every row from the first table is paired with every row from the second table (Total rows = N × M).",
     "answer_ar": "الـ CROSS JOIN يُنتج حاصل الضرب الديكارتي (Cartesian Product) للجدولين، حيث يتم دمج كل صف من الجدول الأول مع جميع صفوف الجدول الثاني بالكامل.",
     "example": "SELECT * FROM Products CROSS JOIN Colors;",
-    "note": "Useful for generating all possible combinations (e.g. product variants, calendar matrices)."
+    "note": "Useful for generating all possible combinations (e.g. product variants, calendar matrices).",
+    "tech": "SQL"
   },
   {
     "id": 32,
@@ -381,7 +412,8 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "A SELF JOIN is a regular join in which a table is joined with itself. It requires using table aliases to differentiate between the two instances of the table.",
     "answer_ar": "الـ SELF JOIN هو دمج الجدول مع نفسه. يُستخدم عند وجود علاقة شجرية داخل نفس الجدول، مثل جدول الموظفين حيث يشير عمود المدير إلى موظف آخر في نفس الجدول.",
     "example": "SELECT e.name AS Employee, m.name AS Manager FROM Employees e LEFT JOIN Employees m ON e.manager_id = m.id;",
-    "note": "Classic interview puzzle: How to display employee and manager names from one table?"
+    "note": "Classic interview puzzle: How to display employee and manager names from one table?",
+    "tech": "SQL"
   },
   {
     "id": 33,
@@ -393,7 +425,8 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "NATURAL JOIN automatically joins two tables based on all columns having the exact same name and compatible data types in both tables, without needing an ON clause.",
     "answer_ar": "الـ NATURAL JOIN يقوم بربط جدولين تلقائياً بالاعتماد على الأعمدة التي تتطابق في الاسم ونوع البيانات بين الجدولين، دون كتابة جملة ON.",
     "example": "SELECT * FROM TableA NATURAL JOIN TableB;",
-    "note": "Caution: Risky in production because schema changes (adding a column) can silently alter query behavior."
+    "note": "Caution: Risky in production because schema changes (adding a column) can silently alter query behavior.",
+    "tech": "SQL"
   },
   {
     "id": 34,
@@ -405,7 +438,8 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "A NON-EQUI JOIN is a join that uses comparison operators other than the equals sign (=) in the join condition, such as <, >, <=, >=, <>, or BETWEEN.",
     "answer_ar": "هو ربط لا يستخدم علامة المساواة (=) في شرط الربط، بل يستخدم معاملات أخرى مثل النطاقات BETWEEN أو المقارنات < أو >.",
     "example": "SELECT e.name, g.grade FROM Employees e JOIN SalaryGrade g ON e.salary BETWEEN g.min_sal AND g.max_sal;",
-    "note": "Common in grading, tax brackets, and pricing tiers."
+    "note": "Common in grading, tax brackets, and pricing tiers.",
+    "tech": "SQL"
   },
   {
     "id": 35,
@@ -417,7 +451,8 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "A SEMI JOIN returns rows from the left table that have matching rows in the right table, but returns only columns from the left table and never duplicates rows. Implemented via EXISTS or IN.",
     "answer_ar": "الـ SEMI JOIN يعيد فقط صفوف الجدول الأيسر التي تمتلك سجلاً مطابقاً في الأيمن، دون تكرار الصفوف ودون جلب أي أعمدة من الجدول الأيمن (يُنفذ غالباً بـ EXISTS).",
     "example": "SELECT * FROM TableA A WHERE EXISTS (SELECT 1 FROM TableB B WHERE B.a_id = A.id);",
-    "note": "Optimizes performance compared to standard join when you just need existence check."
+    "note": "Optimizes performance compared to standard join when you just need existence check.",
+    "tech": "SQL"
   },
   {
     "id": 36,
@@ -429,7 +464,8 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "A subquery is a query nested inside another SQL statement. It can be placed inside SELECT, FROM, WHERE, or HAVING clauses to filter data dynamically.",
     "answer_ar": "الاستعلام الفرعي هو استعلام مكتوب داخل استعلام رئيسي آخر، ويُنفذ لتمرير قيمته إلى جملة SELECT أو FROM أو WHERE أو HAVING الخارجية.",
     "example": "SELECT name, salary FROM Employees WHERE department_id IN (SELECT id FROM Departments);",
-    "note": "Also known as an inner query or nested query."
+    "note": "Also known as an inner query or nested query.",
+    "tech": "SQL"
   },
   {
     "id": 37,
@@ -441,7 +477,8 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "A correlated subquery is a subquery that refers to a column from the outer query. It cannot run independently and executes once for each candidate row evaluated by the outer query.",
     "answer_ar": "الاستعلام الفرعي المرتبط هو استعلام فرعي يعتمد على عمود من الاستعلام الخارجي، ولذا لا يمكن تشغيله منفرداً بل يُعاد تنفيذه مرة لكل صف في الاستعلام الرئيسي.",
     "example": "SELECT name FROM Employees e1 WHERE salary > (SELECT AVG(salary) FROM Employees e2 WHERE e2.department_id = e1.department_id);",
-    "note": "High-frequency interview question! Compare performance with Window Functions."
+    "note": "High-frequency interview question! Compare performance with Window Functions.",
+    "tech": "SQL"
   },
   {
     "id": 38,
@@ -453,7 +490,8 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "The IN operator is used in a WHERE clause to check if a column's value matches any value returned in the result set of a subquery.",
     "answer_ar": "يُستخدم المعامل IN للتحقق مما إذا كانت قيمة العمود موجودة ضمن قائمة النتائج التي يعيدها الاستعلام الفرعي.",
     "example": "SELECT name FROM Employees WHERE department_id IN (SELECT id FROM Departments WHERE location = 'Bangalore');",
-    "note": "If the subquery returns NULL, NOT IN can produce unexpected results!"
+    "note": "If the subquery returns NULL, NOT IN can produce unexpected results!",
+    "tech": "SQL"
   },
   {
     "id": 39,
@@ -465,7 +503,8 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "EXISTS operator checks for the existence of rows in a subquery. It returns TRUE as soon as it finds the first matching row, making it very efficient.",
     "answer_ar": "معامل EXISTS يتحقق من وجود صفوف ناتجة عن الاستعلام الفرعي. ويعيد TRUE بمجرد العثور على أول صف مطابق، مما يجعله فائق السرعة.",
     "example": "SELECT name FROM Employees e WHERE EXISTS (SELECT 1 FROM Projects p WHERE p.emp_id = e.id);",
-    "note": "Usually faster than IN because it stops scanning as soon as a match is found."
+    "note": "Usually faster than IN because it stops scanning as soon as a match is found.",
+    "tech": "SQL"
   },
   {
     "id": 40,
@@ -477,7 +516,8 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "A scalar subquery is a subquery that returns exactly one single value (one row and one column). It can be used wherever a single expression or constant is allowed.",
     "answer_ar": "الاستعلام المفرد هو استعلام فرعي يُرجع قيمة وحيدة فقط (صف واحد وعمود واحد)، ويمكن وضعه في أي مكان يقبل قيمة ثابتة مثل أعمدة SELECT.",
     "example": "SELECT name, (SELECT MAX(salary) FROM Employees) AS max_company_salary FROM Employees;",
-    "note": "If a scalar subquery returns more than one row, SQL throws a runtime error."
+    "note": "If a scalar subquery returns more than one row, SQL throws a runtime error.",
+    "tech": "SQL"
   },
   {
     "id": 41,
@@ -489,7 +529,8 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "UNION combines the result sets of two or more SELECT queries into a single result set and removes duplicate rows.",
     "answer_ar": "معامل UNION يدمج نتائج استعلامين أو أكثر في جدول واحد مع إزالة الصفوف المكررة تلقائياً.",
     "example": "SELECT name FROM TableA UNION SELECT name FROM TableB;",
-    "note": "Both queries must have the same number of columns and compatible data types."
+    "note": "Both queries must have the same number of columns and compatible data types.",
+    "tech": "SQL"
   },
   {
     "id": 42,
@@ -501,7 +542,8 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "UNION ALL combines the result sets of two or more queries and includes all duplicate rows without filtering them out.",
     "answer_ar": "معامل UNION ALL يدمج نتائج الاستعلامين بالكامل محتفظاً بجميع التكرارات دون فلترة، وهو أسرع بكثير من UNION لأنه لا يقوم بعملية فرز.",
     "example": "SELECT name FROM TableA UNION ALL SELECT name FROM TableB;",
-    "note": "Always prefer UNION ALL over UNION unless duplicate removal is strictly required."
+    "note": "Always prefer UNION ALL over UNION unless duplicate removal is strictly required.",
+    "tech": "SQL"
   },
   {
     "id": 43,
@@ -513,7 +555,8 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "INTERSECT returns only the common rows that are present in both SELECT queries.",
     "answer_ar": "معامل INTERSECT يعيد فقط الصفوف المشتركة الموجودة في كلا الاستعلامين معاً.",
     "example": "SELECT name FROM TableA INTERSECT SELECT name FROM TableB;",
-    "note": "Acts like the mathematical intersection (A ∩ B)."
+    "note": "Acts like the mathematical intersection (A ∩ B).",
+    "tech": "SQL"
   },
   {
     "id": 44,
@@ -525,7 +568,8 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "EXCEPT (in SQL Server/PostgreSQL) or MINUS (in Oracle) returns distinct rows from the first query that are NOT present in the second query.",
     "answer_ar": "معامل EXCEPT (أو MINUS) يعيد الصفوف الموجودة في نتيجة الاستعلام الأول وغير موجودة في نتيجة الاستعلام الثاني (A - B).",
     "example": "SELECT name FROM TableA EXCEPT SELECT name FROM TableB;",
-    "note": "Acts like set difference (A minus B)."
+    "note": "Acts like set difference (A minus B).",
+    "tech": "SQL"
   },
   {
     "id": 45,
@@ -537,7 +581,8 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "NOT IN operator is used in WHERE clause to return rows where a column's value does not exist in a given list or subquery result.",
     "answer_ar": "معامل NOT IN يستخرج السجلات التي لا تنتمي قيم عمودها إلى قائمة النتائج أو الاستعلام الفرعي المحدد.",
     "example": "SELECT name FROM Employees WHERE department_id NOT IN (SELECT id FROM Departments);",
-    "note": "Warning: If the subquery result contains ANY NULL value, NOT IN returns an empty set!"
+    "note": "Warning: If the subquery result contains ANY NULL value, NOT IN returns an empty set!",
+    "tech": "SQL"
   },
   {
     "id": 46,
@@ -549,7 +594,8 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "ANY (or SOME) is used with a comparison operator (<, >, =, etc.) to return TRUE if the condition is satisfied for ANY single value in the subquery.",
     "answer_ar": "المعامل ANY (أو SOME) يُستخدم مع معاملات المقارنة ليعيد TRUE إذا تحقق الشرط مع أي قيمة واحدة على الأقل من نتائج الاستعلام الفرعي.",
     "example": "SELECT name FROM Employees WHERE salary > ANY (SELECT salary FROM Employees WHERE department_id = 2);",
-    "note": "> ANY means greater than the MINIMUM value of the subquery."
+    "note": "> ANY means greater than the MINIMUM value of the subquery.",
+    "tech": "SQL"
   },
   {
     "id": 47,
@@ -561,7 +607,8 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "CASE statement is used to perform conditional logic (if-then-else) inside SQL queries and return different values based on conditions.",
     "answer_ar": "جملة CASE هي طريقة كتابة الشروط المنطقية (If-Then-Else) داخل استعلامات SQL لتصنيف البيانات وإرجاع قيم مختلفة حسب الشروط.",
     "example": "SELECT name, salary,\n  CASE\n    WHEN salary >= 100000 THEN 'High'\n    WHEN salary BETWEEN 50000 AND 99999 THEN 'Medium'\n    ELSE 'Low'\n  END AS Salary_Level\nFROM Employees;",
-    "note": "Great for grouping, categorizing, and conditional aggregation (e.g. SUM(CASE WHEN ...))."
+    "note": "Great for grouping, categorizing, and conditional aggregation (e.g. SUM(CASE WHEN ...)).",
+    "tech": "SQL"
   },
   {
     "id": 48,
@@ -573,7 +620,8 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "COALESCE returns the first non-null value from a list of expressions.",
     "answer_ar": "دالة COALESCE تفحص قائمة من الحقول أو التعبيرات وتعيد أول قيمة غير فارغة (Not NULL) تصادفها في القائمة.",
     "example": "SELECT name, COALESCE(phone, mobile, 'Not Available') AS contact_no FROM Employees;",
-    "note": "Standard SQL function and invaluable for handling missing data."
+    "note": "Standard SQL function and invaluable for handling missing data.",
+    "tech": "SQL"
   },
   {
     "id": 49,
@@ -585,7 +633,8 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "NULLIF returns NULL if two given expressions are equal; otherwise, it returns the first expression.",
     "answer_ar": "دالة NULLIF تقارن بين قيمتين: إذا كانتا متساويتين تُرجع NULL؛ وإذا كانتا مختلفتين تُرجع القيمة الأولى.",
     "example": "SELECT name, NULLIF(salary, 0) AS valid_salary FROM Employees;\n-- Prevents division by zero: total / NULLIF(count, 0)",
-    "note": "Extremely useful to prevent 'Division by Zero' errors in calculations."
+    "note": "Extremely useful to prevent 'Division by Zero' errors in calculations.",
+    "tech": "SQL"
   },
   {
     "id": 50,
@@ -597,6 +646,397 @@ window.STUDY_INTERVIEW_DATA = [
     "answer": "IIF (in SQL Server) or IF() (in MySQL) is a compact shorthand for CASE that returns one of two values based on a boolean condition: IIF(condition, true_value, false_value).",
     "answer_ar": "دالة IIF (في SQL Server) أو IF() (في MySQL) هي اختصار سريع لجملة CASE لتقييم شرط ثنائي وإرجاع قيمة إذا كان صحيحاً وأخرى إذا كان خاطئاً.",
     "example": "SELECT name, salary, IIF(salary >= 60000, 'Eligible', 'Not Eligible') AS Bonus_Eligibility FROM Employees;",
-    "note": "Quick, concise and friendly for readable dashboard queries."
+    "note": "Quick, concise and friendly for readable dashboard queries.",
+    "tech": "SQL"
+  },
+  {
+    "id": 51,
+    "tech": "Power BI",
+    "slide": "Power BI Q1/30",
+    "category": "10. Power BI Fundamentals",
+    "category_ar": "أساسيات Power BI",
+    "question": "What is Power BI and its main components?",
+    "question_ar": "ما هو Power BI وما هي مكوناته الرئيسية؟",
+    "answer": "Power BI is Microsoft's business analytics service providing interactive visualizations and BI capabilities. Its core components include: Power BI Desktop (development authoring tool), Power BI Service (cloud-based SaaS platform for sharing and dashboards), Power BI Mobile (apps for iOS/Android), Power BI Report Server (on-premises reporting), and On-premises Data Gateway (secure bridge between on-prem data and cloud). Under the hood, it is powered by Power Query (ETL/M-engine), VertiPaq (in-memory columnar database for modeling), and Power View (visualization engine).",
+    "answer_ar": "باور بي آي (Power BI) هو نظام ذكاء أعمال سحابي تفاعلي من مايكروسوفت لتحويل البيانات الأولية إلى تقارير ولوحات تحكم بصرية تفاعلية. مكوناته الرئيسية هي: 1. Power BI Desktop (برنامج التطوير والتصميم على الكمبيوتر)، 2. Power BI Service (المنصة السحابية لنشر التقارير ومشاركتها والتعاون)، 3. Power BI Mobile (تطبيقات الهواتف للوصول السريع)، 4. Data Gateway (بوابة ربط مصادر البيانات المحلية بالسحابة بأمان)، و 5. Report Server (للشركات التي تتطلب بيئة داخلية دون سحابة). محركاته الأساسية هي Power Query للتنظيف، و VertiPaq للتخزين والنمذجة فائق السرعة، و Power View للعرض التفاعلي.",
+    "example": "-- Architecture Flow:\nSource Data (SQL / Excel / API) \n  -> Power Query (ETL & Clean) \n  -> VertiPaq Data Model (Star Schema + DAX) \n  -> Reports & Visuals \n  -> Publish to Power BI Service \n  -> Dashboards & Mobile consumption",
+    "note": "Interview Tip: Always mention the VertiPaq in-memory columnar database and distinguish clearly between Desktop (authoring) and Service (sharing & collaboration)."
+  },
+  {
+    "id": 52,
+    "tech": "Power BI",
+    "slide": "Power BI Q2/30",
+    "category": "10. Power BI Fundamentals",
+    "category_ar": "أساسيات Power BI",
+    "question": "What is the difference between Power BI Desktop, Service, and Mobile?",
+    "question_ar": "ما هو الفرق الجوهري بين Power BI Desktop و Power BI Service و Power BI Mobile؟",
+    "answer": "1. Desktop: A free Windows application used by developers to connect to data sources, perform data modeling, write DAX formulas, build multi-page reports, and clean data with Power Query. 2. Service: A cloud SaaS environment used to publish reports, create single-page Dashboards by pinning visuals from multiple reports, manage workspaces, schedule automatic data refreshes, configure Row-Level Security, and share apps across the enterprise. 3. Mobile: Native mobile apps (iOS/Android) designed for business users to consume reports, set automated push notifications/data alerts for KPI thresholds, and annotate visuals on mobile devices.",
+    "answer_ar": "1. Power BI Desktop: تطبيق مجاني للكمبيوتر يُستخدم بواسطة المطور لتجهيز ونمذجة البيانات، كتابة مقاييس DAX، وتصميم التقارير المتعددة الصفحات. 2. Power BI Service: بيئة سحابية (SaaS) تُستخدم لنشر التقارير، إنشاء لوحات التحكم (Dashboards) بتثبيت بطاقات من تقارير متعددة، جدولة التحديث التلقائي، إدارة الصلاحيات والأمان (RLS)، ومشاركة التقارير مع فرق العمل. 3. Power BI Mobile: تطبيق للموبايل (Android/iOS) يتيح للمدراء وصناع القرار قراءة التقارير أثناء التنقل واستقبال إشعارات وتنبيهات فورية عند وصول مؤشرات الأداء (KPIs) لحد معين.",
+    "example": "Key Distinction:\n- Dashboards can ONLY be created in Power BI Service (single page canvas pinning multiple reports).\n- Complex Data Modeling & Power Query transformations can ONLY be authored in Power BI Desktop.",
+    "note": "A classic interview trap is asking 'How do you create a Dashboard in Desktop?' The answer is: You cannot; Dashboards are exclusively a Power BI Service cloud feature!"
+  },
+  {
+    "id": 53,
+    "tech": "Power BI",
+    "slide": "Power BI Q3/30",
+    "category": "11. DAX & Calculations",
+    "category_ar": "لغة DAX والحسابات",
+    "question": "What is DAX?",
+    "question_ar": "ما هي لغة DAX (Data Analysis Expressions)؟",
+    "answer": "DAX (Data Analysis Expressions) is a functional formula expression language specifically developed by Microsoft for Power BI, Analysis Services (SSAS Tabular), and Excel Power Pivot. It is designed to manipulate relational tables and perform dynamic aggregations and statistical calculations. Unlike general-purpose programming languages, DAX operates over tabular data models and relies heavily on Context Evaluation (Row Context and Filter Context).",
+    "answer_ar": "لغة DAX (تعبيرات تحليل البيانات) هي لغة صيغ ومعادلات برمجية وظيفية صممتها مايكروسوفت خصيصاً للتعامل مع نماذج البيانات الجدولية في Power BI و SSAS و Power Pivot. تُستخدم لإجراء العمليات الحسابية والتحليلات الإحصائية المتقدمة والديناميكية، مثل حسابات الفترات الزمنية السابقة (Time Intelligence) وحساب نسب النمو وتطبيق مؤشرات الأداء. ميزتها الأساسية أنها تُقيَّم لحظياً وتعتمد كلياً على سياق التصفية (Filter Context) وسياق الصف (Row Context).",
+    "example": "// Example of dynamic business logic in DAX\nTotal Sales = SUM(Sales[Revenue])\n\nYTD Sales = \nTOTALYTD(\n    [Total Sales],\n    'Date'[Date]\n)",
+    "note": "DAX looks similar to Excel formulas at first glance, but operates with high-performance set-based and relational table operations."
+  },
+  {
+    "id": 54,
+    "tech": "Power BI",
+    "slide": "Power BI Q4/30",
+    "category": "11. DAX & Calculations",
+    "category_ar": "لغة DAX والحسابات",
+    "question": "What is the difference between a Calculated Column and a Measure?",
+    "question_ar": "ما هو الفرق بين Calculated Column و Measure؟ ومتى تستخدم كلاً منهما؟",
+    "answer": "1. Calculated Column: Evaluated row-by-row during data refresh. Its values are computed once and stored directly in the data model (consuming RAM and increasing file size). Evaluated under Row Context. 2. Measure: Evaluated on-the-fly dynamically when visuals render or filters/slicers change. Consumes zero storage space when idle; uses CPU during query interaction. Evaluated under Filter Context. Best Practice: Always prefer Measures unless you need the computed values as a Slicer, Filter, or Axis category in a visual.",
+    "answer_ar": "1. Calculated Column (العمود المحسوب): يُحسب صفاً بصف أثناء تحديث البيانات (Data Refresh)، وتُخزن قيمه في الذاكرة (RAM) والقرص الصلب، مما يزيد من حجم الملف. يُقيَّم تحت سياق الصف (Row Context). 2. Measure (المقياس): يُحسب ديناميكياً على الفور وقت استعراض التقرير وحسب الفلاتر المحددة؛ لا يستهلك أي مساحة تخزين في الملف، ويُقيَّم تحت سياق التصفية (Filter Context). القاعدة الذهبية: استخدم الـ Measures دائماً للمجاميع والنسب والـ KPIs، ولا تلجأ للـ Calculated Columns إلا إذا كنت بحاجة لوضع الناتج كـ Slicer أو Axis في رسم بياني.",
+    "example": "// Calculated Column (stored in table):\nLineTotal = Orders[Quantity] * Orders[UnitPrice]\n\n// Measure (computed on the fly):\nTotal Revenue = SUMX(Orders, Orders[Quantity] * Orders[UnitPrice])",
+    "note": "Overusing Calculated Columns bloats the VertiPaq engine and causes slow report loading. Interviewers love this optimization point."
+  },
+  {
+    "id": 55,
+    "tech": "Power BI",
+    "slide": "Power BI Q5/30",
+    "category": "12. Data Modeling & Schemas",
+    "category_ar": "نمذجة البيانات والمخططات",
+    "question": "What is a Data Model in Power BI?",
+    "question_ar": "ما هو نموذج البيانات (Data Model) في Power BI؟",
+    "answer": "A Data Model in Power BI is the architectural foundation that defines how multiple tables from diverse sources relate to one another. It encompasses tables, keys, relationships, column data types, hierarchies, data categorization, and DAX measures. A well-designed data model simplifies DAX calculations, enables accurate cross-filtering across visuals, and maximizes the compression and speed of the VertiPaq engine.",
+    "answer_ar": "نموذج البيانات هو العمود الفقري لأي مشروع Power BI؛ وهو الهيكل الذي يربط الجداول القادمة من مصادر مختلفة ببعضها عبر علاقات منطقية محددة (Primary Keys و Foreign Keys). يتضمن النموذج: الجداول، العلاقات، أنواع البيانات، التسلسلات الهرمية (Hierarchies)، ومقاييس DAX. النموذج السليم يضمن سرعة استجابة التقارير، بساطة كتابة معادلات DAX، ودقة الفلترة التبادلية بين الرسوم البيانية.",
+    "example": "// A clean model connects Fact tables to Dimension tables:\nFact_Sales[CustomerID]   * ---> 1  Dim_Customer[CustomerID]\nFact_Sales[ProductKey]   * ---> 1  Dim_Product[ProductKey]\nFact_Sales[OrderDateKey] * ---> 1  Dim_Date[DateKey]",
+    "note": "90% of DAX complexity and slow report problems stem from poor data modeling. Clean data models lead to simple DAX."
+  },
+  {
+    "id": 56,
+    "tech": "Power BI",
+    "slide": "Power BI Q6/30",
+    "category": "12. Data Modeling & Schemas",
+    "category_ar": "نمذجة البيانات والمخططات",
+    "question": "Explain Star Schema and Snowflake Schema.",
+    "question_ar": "اشرح الفرق بين نموذج النجمة (Star Schema) ونموذج ندفة الثلج (Snowflake Schema).",
+    "answer": "1. Star Schema: Contains one or more centralized Fact tables (containing transactional metrics like sales quantity, revenue) surrounded by de-normalized Dimension tables (descriptive attributes like Customer, Product, Date) with 1-to-many relationships. Recommended by Microsoft as the gold standard for Power BI due to fast performance and simple DAX. 2. Snowflake Schema: A variation where Dimension tables are normalized into sub-dimension tables (e.g., Product splits into Subcategory and Category). While it reduces storage redundancy in traditional relational DBs, in Power BI it adds unnecessary joins and complexity, reducing VertiPaq compression efficiency.",
+    "answer_ar": "1. Star Schema (مخطط النجمة): يتكون من جدول حقائق مركزي (Fact Table يحتوي على الأرقام والعمليات مثل المبيعات) محاط بجداول أبعاد غير مطبعة (Dimension Tables تحتوي على التفاصيل والوصف مثل العملاء، المنتجات، والتواريخ) بعلاقات One-to-Many. وهو المخطط الموصى به رسمياً من مايكروسوفت لأعلى أداء وأبسط DAX. 2. Snowflake Schema (ندفة الثلج): تتفرع فيه جداول الأبعاد إلى جداول فرعية مطبعة (Normalized) مثل تفريع المنتج إلى فئة فرعية ثم فئة رئيسية. هذا يقلل التكرار في قواعد البيانات التقليدية، لكنه في Power BI يزيد من تعقيد العلاقات ويقلل من سرعة وكفاءة محرك VertiPaq.",
+    "example": "// Star Schema (Preferred in Power BI):\n[Fact_Sales] ---> [Dim_Product] (Contains Category, Subcategory, Brand all in one table)\n\n// Snowflake Schema:\n[Fact_Sales] ---> [Dim_Product] ---> [Dim_SubCategory] ---> [Dim_Category]",
+    "note": "Always advocate for Star Schema in Power BI interviews; it is universally acknowledged as the best practice."
+  },
+  {
+    "id": 57,
+    "tech": "Power BI",
+    "slide": "Power BI Q7/30",
+    "category": "12. Data Modeling & Schemas",
+    "category_ar": "نمذجة البيانات والمخططات",
+    "question": "What are Relationships in Power BI?",
+    "question_ar": "ما هي العلاقات (Relationships) في Power BI وما هي خصائصها؟",
+    "answer": "Relationships in Power BI are logical connections established between two tables based on a common matching column (Primary Key / Foreign Key). They allow filter actions applied to one table to automatically propagate to connected tables. Key properties include: 1. Cardinality (1:*, *:1, 1:1, *:*), 2. Cross filter direction (Single vs. Both), and 3. Active vs. Inactive status (only one relationship between two tables can be active at a time; inactive relationships can be activated via USERELATIONSHIP in DAX).",
+    "answer_ar": "العلاقات في Power BI هي روابط منطقية بين جدولين تعتمد على حقل مشترك (مفتاح أساسي ومفتاح أجنبي)، وتسمح بتمرير الفلاتر تلقائياً من جدول لآخر. خصائص العلاقة: 1. درجة العلاقة (Cardinality: واحد لمتعدد، متعدد لواحد، واحد لواحد، متعدد لمتعدد). 2. اتجاه الفلترة (Cross filter direction: اتجاه واحد Single أو اتجاهين Both). 3. حالة النشاط (Active مقابل Inactive): يمكن لعلاقة واحدة فقط أن تكون نشطة بين جدولين في نفس الوقت، بينما العلاقات غير النشطة تُستدعى وقت الحاجة بدالة USERELATIONSHIP() في DAX.",
+    "example": "// Activating an inactive relationship for Ship Date calculation:\nSales by Ship Date = \nCALCULATE(\n    [Total Sales],\n    USERELATIONSHIP(Sales[ShipDateKey], 'Date'[DateKey])\n)",
+    "note": "Keeping relationships 'Single' direction by default prevents unintended filter loops and performance degradation."
+  },
+  {
+    "id": 58,
+    "tech": "Power BI",
+    "slide": "Power BI Q8/30",
+    "category": "12. Data Modeling & Schemas",
+    "category_ar": "نمذجة البيانات والمخططات",
+    "question": "What is the difference between One-to-Many and Many-to-Many Relationships?",
+    "question_ar": "ما هو الفرق بين علاقة (One-to-Many) وعلاقة (Many-to-Many)؟",
+    "answer": "1. One-to-Many (1:*): The standard and ideal relationship in Power BI. The key column is unique in the 'One' side (Dimension table) and has multiple matching entries in the 'Many' side (Fact table). Filters flow naturally from the Dimension to the Fact table. 2. Many-to-Many (*:*): Neither side has unique keys. Introduced in modern Power BI to handle bridge-less joins, but can produce non-intuitive results, ambiguity, and severe performance overhead. Best practice is to eliminate Many-to-Many relationships by introducing a Bridge Table (Junction Table) with unique keys.",
+    "answer_ar": "1. One-to-Many (1:*): العلاقة القياسية والمثالية في Power BI، حيث تكون القيمة فريدة وغير مكررة في جدول الأبعاد (الطرف 1) ومكررة في جدول الحقائق (الطرف *). تتدفق الفلاتر بسلاسة وسرعة من البُعد إلى الحقائق. 2. Many-to-Many (*:*): لا يمتلك أيٌ من الجدولين قيماً فريدة في حقل الربط. تم دعمها مباشرة في الإصدارات الحديثة، لكنها قد تؤدي لغموض في النتائج وبطء في الاستجابة. أفضل ممارسة برمجية هي حلها بإنشاء جدول وسيط (Bridge/Junction Table) يحتوي على قيم فريدة للربط بينهما كعلاقتين 1:*.",
+    "example": "// Bridge Table Solution for Students & Courses (Many-to-Many):\n[Dim_Students] (1) ---> (*) [Bridge_Enrollments] (*) <--- (1) [Dim_Courses]",
+    "note": "Highlighting how to resolve Many-to-Many using a Bridge table demonstrates senior-level modeling expertise."
+  },
+  {
+    "id": 59,
+    "tech": "Power BI",
+    "slide": "Power BI Q9/30",
+    "category": "11. DAX & Calculations",
+    "category_ar": "لغة DAX والحسابات",
+    "question": "What is Filter Context?",
+    "question_ar": "ما هو سياق التصفية (Filter Context)؟",
+    "answer": "Filter Context is the combination of all active filters applied to the data model at the exact moment a DAX measure is computed. Filters can originate from: 1. Row headers in matrices/tables, 2. Column headers, 3. Slicers on the page, 4. Page/Report/Visual filter pane, 5. Cross-filtering from clicking other visuals, and 6. Explicit filter modifications created using the CALCULATE() function in DAX.",
+    "answer_ar": "سياق التصفية (Filter Context) هو مجموع كل الفلاتر والشروط المؤثرة على نموذج البيانات في اللحظة الدقيقة التي يتم فيها حساب معادلة المقياس (Measure). تشمل هذه الفلاتر: عناوين الصفوف والأعمدة في الجداول والمصفوفات، أدوات التقطيع (Slicers)، فلاتر لوحة الفلترة (Filter Pane)، الفلترة التبادلية الناتجة عن الضغط على شارت آخر، أو الفلاتر التي يفرضها المطور برمجياً عبر دالة CALCULATE().",
+    "example": "// Matrix visual with rows='Egypt', columns='2024':\n// Filter Context for cell = (Country='Egypt' AND Year=2024)\nRevenue = SUM(Sales[Amount]) // Only aggregates rows satisfying both filters",
+    "note": "Filter Context dictates WHICH rows of the underlying tables are visible to the aggregation engine."
+  },
+  {
+    "id": 60,
+    "tech": "Power BI",
+    "slide": "Power BI Q10/30",
+    "category": "11. DAX & Calculations",
+    "category_ar": "لغة DAX والحسابات",
+    "question": "What is Row Context?",
+    "question_ar": "ما هو سياق الصف (Row Context)؟",
+    "answer": "Row Context represents the concept of the 'current row' during formula evaluation. It exists automatically in Calculated Columns and inside iterator functions (such as SUMX, FILTER, AVERAGEX, COUNTX). Row Context allows DAX to inspect values of different columns in the current single row. Crucially, Row Context does NOT filter other tables or evaluate relationships unless converted to a Filter Context through 'Context Transition' via CALCULATE().",
+    "answer_ar": "سياق الصف (Row Context) هو مفهوم 'الصف الحالي' أثناء تقييم المعادلة خطوة بخطوة. ينشأ تلقائياً داخل الأعمدة المحسوبة (Calculated Columns) وداخل الدوال التكرارية (Iterators مثل SUMX و FILTER). يمكن لـ Row Context رؤية قيم الأعمدة في نفس الصف فقط، ولكنه بطبيعته لا يقوم بفلترة الجداول الأخرى ولا يفهم العلاقات، إلا إذا تم تحويله إلى Filter Context عبر ما يسمى 'Context Transition' باستخدام دالة CALCULATE().",
+    "example": "// Inside SUMX, Row Context iterates row-by-row:\nTotal Margin = \nSUMX(\n    Sales,\n    Sales[Revenue] - Sales[Cost] // Row context sees Revenue and Cost of each row\n)",
+    "note": "Remember: Row Context iterates; Filter Context filters. Mixing the two is the foundation of mastering DAX."
+  },
+  {
+    "id": 61,
+    "tech": "Power BI",
+    "slide": "Power BI Q11/30",
+    "category": "11. DAX & Calculations",
+    "category_ar": "لغة DAX والحسابات",
+    "question": "What is CALCULATE() function and why is it important?",
+    "question_ar": "ما هي دالة CALCULATE() ولماذا تعد أهم دالة في DAX؟",
+    "answer": "CALCULATE() is the single most important and versatile function in DAX. It evaluates a given expression under a modified Filter Context. It can: 1. Add new filters to the existing context, 2. Overwrite existing filters, 3. Remove filters (using ALL or REMOVEFILTERS), and 4. Perform 'Context Transition' (automatically converting any active Row Context into an equivalent Filter Context). Without CALCULATE, advanced analytical calculations like Year-over-Year, Market Share, and Time Intelligence are impossible.",
+    "answer_ar": "دالة CALCULATE() هي أم الدوال وأهم دالة على الإطلاق في لغة DAX. وظيفتها الأساسية هي حساب تعبير رياضي مع تعديل سياق التصفية (Filter Context). وتتميز بقدرتها على: 1. إضافة شروط وفلاتر جديدة، 2. تعديل أو استبدال فلاتر قائمة، 3. حذف وإلغاء الفلاتر باستخدام ALL() لحساب النسب المئوية، 4. إحداث تحويل السياق (Context Transition) بتحويل سياق الصف إلى سياق تصفية. بدون CALCULATE لا يمكن بناء مؤشرات نمو، أو مقارنات سنوية، أو حساب الحصص السوقية.",
+    "example": "// 1. Overriding filter with specific condition:\nSales Tech = CALCULATE([Total Sales], Product[Category] = \"Technology\")\n\n// 2. Calculating Percentage of All Sales (Removing filters):\nMarket Share % = \nDIVIDE(\n    [Total Sales],\n    CALCULATE([Total Sales], ALL(Product))\n)",
+    "note": "Whenever an interviewer asks about DAX, CALCULATE() and Context Transition are always the cornerstone answers."
+  },
+  {
+    "id": 62,
+    "tech": "Power BI",
+    "slide": "Power BI Q12/30",
+    "category": "11. DAX & Calculations",
+    "category_ar": "لغة DAX والحسابات",
+    "question": "What is the difference between SUM() and SUMX()?",
+    "question_ar": "ما هو الفرق بين SUM() و SUMX()؟",
+    "answer": "1. SUM(): An aggregator function that takes a single column name as an argument and sums all visible numbers directly: SUM(Sales[Amount]). It cannot perform row-level calculations across multiple columns. 2. SUMX(): An iterator function that takes two arguments: a Table and an Expression: SUMX(Table, Expression). It steps through the table row-by-row, computes the expression for each row (under Row Context), and then sums the accumulated results. It is ideal for multiplying Quantity by Price before summing.",
+    "answer_ar": "1. SUM(): دالة تجميعية بسيطة تأخذ اسم عمود واحد فقط كمعامل وتقوم بجمع قيمه مباشرة: SUM(Sales[Amount]). لا يمكنها إجراء ضرب أو عمليات حسابية بين عدة أعمدة داخلها. 2. SUMX(): دالة تكرارية (Iterator) تأخذ معاملين: جدولاً وتعبيرًا حسابياً: SUMX(Table, Expression). تقوم بالمرور على الجدول صفاً بصف، وحساب التعبير لكل صف بشكل مستقل، ثم جمع النواتج في النهاية. مثالها النموذجي هو حساب إجمالي المبيعات بضرب الكمية في السعر لكل صف ثم جمع الإجمالي.",
+    "example": "// Invalid syntax: SUM(Sales[Quantity] * Sales[UnitPrice]) -- ERROR!\n\n// Correct syntax using SUMX:\nTotal Revenue = \nSUMX(\n    Sales,\n    Sales[Quantity] * Sales[UnitPrice]\n)",
+    "note": "SUM(Col) is actually internal syntactic sugar for SUMX(Table, Table[Col])."
+  },
+  {
+    "id": 63,
+    "tech": "Power BI",
+    "slide": "Power BI Q13/30",
+    "category": "13. Visuals & Reporting",
+    "category_ar": "الرسوم والتقارير",
+    "question": "What are KPIs in Power BI?",
+    "question_ar": "ما هي مؤشرات الأداء الرئيسية (KPIs) في Power BI؟",
+    "answer": "A KPI (Key Performance Indicator) visual in Power BI evaluates progress and performance toward a specific measurable goal over time. It requires three fundamental elements: 1. Base Value (the actual metric, e.g., Total Sales), 2. Target Goal (the expected threshold or quota, e.g., Budgeted Sales), and 3. Trend Axis (typically Date/Month to observe direction of travel). The visual displays color-coded indicators (Green/Red) and percentage variances to provide instant status awareness for management.",
+    "answer_ar": "مؤشر الأداء الرئيسي (KPI) هو عنصر مرئي في Power BI يُستخدم لتقييم مدى التقدم نحو تحقيق هدف رقمي استراتيجي محدد عبر الزمن. يتطلب ثلاثة عناصر أساسية: 1. القيمة الفعلية (Base Value مثل المبيعات المحققة)، 2. القيمة المستهدفة (Target Goal مثل الميزانية المستهدفة)، 3. محور الاتجاه الزمني (Trend Axis مثل الشهور لعرض مسار المؤشر). يعرض العنصر ألواناً دلالية (أخضر عند تحقيق الهدف، وأحمر عند التعثر) مع نسبة الانحراف لسرعة اتخاذ القرار الإداري.",
+    "example": "// Typical KPI Measure Setup:\nActual Sales = SUM(Sales[Amount])\nTarget Sales = SUM(Budget[TargetAmount])\nKPI Status = IF([Actual Sales] >= [Target Sales], 1, -1)",
+    "note": "KPIs allow executives to see company health in 3 seconds without deciphering huge tables of numbers."
+  },
+  {
+    "id": 64,
+    "tech": "Power BI",
+    "slide": "Power BI Q14/30",
+    "category": "13. Visuals & Reporting",
+    "category_ar": "الرسوم والتقارير",
+    "question": "What are Bookmarks in Power BI?",
+    "question_ar": "ما هي الإشارات المرجعية (Bookmarks) وكيف تستخدم؟",
+    "answer": "Bookmarks capture the exact state of a report page at a specific moment in time, including: active filters and slicers, visual visibility (hidden/visible via Selection Pane), drill state, sorting, and focus mode. When linked with interactive Buttons or Shapes, bookmarks enable powerful app-like interactions, such as: 1. Toggle between Table and Chart views, 2. Collapsible filter panels (pop-out drawers), 3. Reset All Filters buttons, and 4. Storytelling walkthroughs.",
+    "answer_ar": "الإشارات المرجعية (Bookmarks) هي خاصية تلتقط الحالة الكاملة لصفحة التقرير في لحظة معينة، بما في ذلك: الفلاتر المطبقة، حالة إظهار أو إخفاء الشارتات (عبر Selection Pane)، مستوى التفصيل والفرز. عند ربطها بأزرار أو أيقونات تفاعلية، تمنح التقرير طابع التطبيقات البرمجية الذكية (App-like feel)، مثل: إنشاء قائمة فلاتر منزلقة (Slide-out menu)، زر لإعادة ضبط كل الفلاتر بلمسة واحدة، أو التبديل بين رسم بياني وجدول أرقام في نفس المكان.",
+    "example": "-- Common Bookmarking Pattern:\nBookmark 1: 'BarChart_View' -> Show BarChart, Hide TableView\nBookmark 2: 'TableView_View' -> Hide BarChart, Show TableView\nLink buttons with Action = Bookmark",
+    "note": "Uncheck 'Data' on a bookmark if you want it to toggle visual visibility WITHOUT resetting the user's active slicer filters."
+  },
+  {
+    "id": 65,
+    "tech": "Power BI",
+    "slide": "Power BI Q15/30",
+    "category": "13. Visuals & Reporting",
+    "category_ar": "الرسوم والتقارير",
+    "question": "What is the difference between Drill Down and Drill Through?",
+    "question_ar": "ما هو الفرق بين Drill Down و Drill Through في Power BI؟",
+    "answer": "1. Drill Down: Navigates deeper into finer granularities within the SAME visual along an established hierarchy (e.g., Year -> Quarter -> Month -> Day, or Category -> Subcategory -> Product). 2. Drill Through: Navigates from a summary visual to a COMPLETELY SEPARATE dedicated target report page, carrying the filter context of the clicked data point (e.g., right-clicking a customer on a sales overview and drilling through to an individual 'Customer 360 Profile' page).",
+    "answer_ar": "1. Drill Down (التعمق الداخلي): الانتقال إلى مستويات أدق من التفاصيل داخل نفس الرسم البياني من خلال تسلسل هرمي (Hierarchy)، مثل الانتقال من السنة إلى الربع السنوي ثم الشهر، أو من فئة المنتجات إلى المنتج الفردي. 2. Drill Through (العبور لصفحة مخصصة): الانتقال من شارت ملخص إلى صفحة تقرير أخرى مستقلة ومفصلة بالكامل، مع تمرير سياق العنصر المضغوط (مثل النقر بزر الفأرة الأيمن على اسم عميل والانتقال إلى صفحة 'الملف الشامل للعميل' مع تصفيتها لبياناته فقط).",
+    "example": "-- Drill Down:\n[2024 (Whole Year)] -> click -> [Q1, Q2, Q3, Q4] in same visual.\n\n-- Drill Through:\nPage 1 [Top Customers Matrix] -> Right click 'John Doe' -> Drillthrough -> Page 2 [Customer Detail Page for John Doe]",
+    "note": "Drill Down happens inside one visual; Drill Through travels across pages."
+  },
+  {
+    "id": 66,
+    "tech": "Power BI",
+    "slide": "Power BI Q16/30",
+    "category": "13. Visuals & Reporting",
+    "category_ar": "الرسوم والتقارير",
+    "question": "What is Cross Filtering in Power BI?",
+    "question_ar": "ما هو التصفية التبادلية (Cross Filtering) بين العناصر المرئية؟",
+    "answer": "Cross Filtering is the native interactive behavior in Power BI where clicking on a data category, slice, or bar in one visual automatically filters or cross-highlights all other related visuals on the same page based on model relationships. Report authors can customize this behavior via the 'Edit Interactions' ribbon tab to choose whether a target visual should: 1. Filter (shrink data to match), 2. Highlight (dim unrelated values while emphasizing selected portion), or 3. None (ignore the click entirely).",
+    "answer_ar": "التصفية التبادلية (Cross Filtering) هي السلوك التفاعلي الافتراضي في Power BI حيث يؤدي النقر على أي فئة أو عمود في رسم بياني إلى تصفية أو تمييز كافة الشارتات الأخرى المرتبطة به في نفس الصفحة تلقائياً. يمكن لمصمم التقرير التحكم في هذا التفاعل عبر خيار (Edit Interactions) لتحديد سلوك كل شارت: 1. تصفية (Filter: عرض البيانات المطابقة فقط)، 2. تمييز (Highlight: إبقاء العمود ككل وتلوين الجزء المطابق فقط)، أو 3. تجاهل (None: عدم التأثر إطلاقاً).",
+    "example": "-- Customizing interactions:\nSelect Chart 1 -> Format Tab -> Edit Interactions -> Set Chart 2 to 'Filter' icon, Chart 3 to 'None' icon.",
+    "note": "For large datasets, setting cross-filtering to 'Filter' instead of 'Highlight' often improves responsiveness and visual clarity."
+  },
+  {
+    "id": 67,
+    "tech": "Power BI",
+    "slide": "Power BI Q17/30",
+    "category": "14. Storage Modes & Refresh",
+    "category_ar": "طرق التخزين والتحديث",
+    "question": "What is the difference between Import Mode and Direct Query?",
+    "question_ar": "ما هو الفرق بين Import Mode و Direct Query؟",
+    "answer": "1. Import Mode: Data is fully extracted from the source and compressed into the local in-memory VertiPaq engine. Pros: Blazing fast query performance, full DAX functionality, high compression. Cons: Data is not real-time (requires scheduled refresh), subject to dataset size limits (1 GB for Pro, up to 400 GB for Premium). 2. Direct Query: Data remains in the underlying source database; Power BI sends translated SQL queries to the source whenever a visual renders. Pros: Near real-time data, handles massive data beyond memory limits, maintains enterprise source security. Cons: Slower visual rendering, limited DAX functions, heavy load on source database. 3. Composite / Dual Mode: Blends both.",
+    "answer_ar": "1. Import Mode (وضع الاستيراد): يتم سحب البيانات بالكامل وتخزينها مضغوطة في ذاكرة VertiPaq الداخلية. المميزات: أداء فائق السرعة، دعم كامل لكافة دوال DAX، وضغط هائل للبيانات. العيوب: ليست لحظية (تحتاج جدولة تحديث Scheduled Refresh)، ومقيدة بحجم 1 جيجابايت للملف في حسابات Pro. 2. Direct Query (الاستعلام المباشر): تبقى البيانات في قاعدة البيانات الأصلية، ويقوم Power BI بإرسال استعلامات SQL لحظية للمصدر عند تفاعل المستخدم. المميزات: بيانات حية ومحدثة لحظياً (Real-Time)، واستيعاب بيانات ضخمة تفوق حدود الذاكرة. العيوب: أبطأ في عرض الشارتات، وقيود على بعض دوال DAX المتقدمة، وضغط مستمر على سيرفر المصدر.",
+    "example": "// Trade-off Summary:\nSpeed & Full DAX  ---> Import Mode (90% of BI projects)\nReal-time & Big Data ---> DirectQuery or Composite Models",
+    "note": "Composite Models allow you to import small dimension tables while keeping billion-row fact tables in DirectQuery."
+  },
+  {
+    "id": 68,
+    "tech": "Power BI",
+    "slide": "Power BI Q18/30",
+    "category": "15. Administration & Gateways",
+    "category_ar": "الإدارة وبوابات البيانات",
+    "question": "What are On-Premises Data Gateways in Power BI?",
+    "question_ar": "ما هي بوابات البيانات المحلية (Gateways) في Power BI؟",
+    "answer": "An On-Premises Data Gateway acts as a secure cryptographic bridge that transfers data between internal on-premises data sources (such as local SQL Server instances, local Oracle DBs, or network shared Excel files) and Microsoft Power BI cloud service. It enables scheduled data refreshes and DirectQuery live connections without requiring inbound firewall ports to be opened. Modes: 1. Standard Mode: Supports multiple users, scheduled refresh, DirectQuery, and can be shared across Power Apps and Logic Apps. 2. Personal Mode: Single user only, supports scheduled refresh only, runs under user login.",
+    "answer_ar": "بوابة البيانات المحلية (On-Premises Data Gateway) هي برنامج يتم تثبيته على سيرفر محلي ليكون بمثابة جسر أمان مشفر ينقل البيانات بين مصادر البيانات الموجودة داخل شبكة الشركة (مثل قواعد بيانات SQL Server المحلية أو ملفات Excel المشتركة) وبين خدمة Power BI Service السحابية. تتيح تحديث البيانات مجدولاً ودعم الـ DirectQuery دون الحاجة لفتح منافذ في جدار الحماية (Firewall). أنواعها: 1. Standard Mode (الوضع القياسي): يدعم عدة مستخدمين، الاستعلام المباشر، وتحديث كافة الخدمات السحابية. 2. Personal Mode (الوضع الشخصي): لمستخدم واحد وتحديث مجدول فقط.",
+    "example": "-- Gateway Connection Architecture:\nLocal SQL Server (On-Premises) \n  <---> Gateway Client Application (Encrypted Azure Service Bus) \n  <---> Power BI Service (Cloud)",
+    "note": "Gateways only require outbound ports (443 HTTPS), making them compliant with strict corporate IT network security."
+  },
+  {
+    "id": 69,
+    "tech": "Power BI",
+    "slide": "Power BI Q14/30",
+    "category": "14. Storage Modes & Refresh",
+    "category_ar": "طرق التخزين والتحديث",
+    "question": "What is Incremental Refresh in Power BI?",
+    "question_ar": "ما هو التحديث التدريجي (Incremental Refresh) وكيف يحل مشكلة البيانات الضخمة؟",
+    "answer": "Incremental Refresh automates partition creation for large dataset tables. Instead of querying and reloading an entire multi-year database (e.g., 50 million rows) during every refresh, Power BI splits the data into historical partitions (static, archived) and recent partitions (e.g., last 3 days). Only the recent partition is queried and refreshed, reducing refresh durations from hours to minutes, slashing memory and CPU consumption, and boosting overall reliability. Configured using RangeStart and RangeEnd DateTime parameters in Power Query.",
+    "answer_ar": "التحديث التدريجي (Incremental Refresh) هو ميزة للتعامل مع الجداول الضخمة، حيث يقوم بتقسيم الجدول إلى أجزاء (Partitions): جزء تاريخي أرشيفي ثابت (مثل بيانات السنوات الماضية) لا يتم سحبه مجدداً، وجزء حديث متغير (مثل آخر 3 أيام). عند جدولة التحديث، يطلب Power BI من قاعدة البيانات آخر 3 أيام فقط، مما يقلل وقت التحديث من ساعات إلى ثوانٍ، ويوفر موارد المعالج والشبكة بشكل هائل. يتم تفعيله بإنشاء متغيرين من نوع التاريخ والوقت في Power Query هما RangeStart و RangeEnd.",
+    "example": "// Power Query Filter Step for Incremental Refresh:\n= Table.SelectRows(Source, each [OrderDate] >= RangeStart and [OrderDate] < RangeEnd)",
+    "note": "Incremental Refresh requires Query Folding to push the date filter directly to the SQL database."
+  },
+  {
+    "id": 70,
+    "tech": "Power BI",
+    "slide": "Power BI Q20/30",
+    "category": "10. Power BI Fundamentals",
+    "category_ar": "أساسيات Power BI",
+    "question": "What are Parameters in Power BI?",
+    "question_ar": "ما هي المعاملات (Parameters) في Power BI وما هي استخداماتها؟",
+    "answer": "Parameters are reusable dynamic variables used to store and pass values throughout a Power BI project. Main types include: 1. Power Query Parameters: Used in M-code to dynamically switch environments (e.g., changing SQL Server from 'DevServer' to 'ProdServer'), filter file paths, or feed Incremental Refresh (RangeStart/RangeEnd). 2. What-If Parameters (DAX Modeling): Generates a calculated single-column table and a slider slicer to simulate business hypotheses (e.g., 'What happens to Net Profit if inflation increases by 5%?').",
+    "answer_ar": "المعاملات (Parameters) هي متغيرات ديناميكية لتخزين قيم يُعاد استخدامها في التقرير. أهم أنواعها: 1. Power Query Parameters: تُستخدم للتبديل بين بيئات العمل بسهولة (مثل تغيير اسم سيرفر التطوير Dev إلى سيرفر الإنتاج Prod دون تعديل الجداول يدوياً)، وتغيير مسارات الملفات، وضبط التحديث التدريجي. 2. What-If Parameters (معاملات سيناريوهات ماذا لو): تنشئ جدولاً ومقياساً وسلايدر لتجربة فرضيات الأعمال، مثل: 'ماذا سيحدث لصافي الأرباح إذا زادت نسبة الخصم بمقدار 10% أو ارتفعت التكاليف 5%؟'.",
+    "example": "// What-If Scenario Measure:\nSimulated Profit = \n[Total Revenue] * (1 - 'Discount Rate'[Discount Value]) - [Total Cost]",
+    "note": "Parameters promote CI/CD deployment pipelines by allowing smooth migration across Dev, Test, and Production."
+  },
+  {
+    "id": 71,
+    "tech": "Power BI",
+    "slide": "Power BI Q21/30",
+    "category": "16. Power Query & ETL",
+    "category_ar": "محرك Power Query ولغة M",
+    "question": "What is Power Query in Power BI?",
+    "question_ar": "ما هو محرك Power Query ولغة M؟",
+    "answer": "Power Query is the graphical data transformation and mashup ETL engine embedded in Power BI Desktop and Excel. It connects to hundreds of disparate data sources (relational DBs, cloud files, Web APIs, folders), extracts raw data, and enables visual data cleaning, shaping, and transforming without coding. Every step performed in the graphical UI generates underlying code in the 'M' functional language. Key capabilities include: pivoting/unpivoting, column splitting, merging (joins), appending (unions), and data type enforcement.",
+    "answer_ar": "محرك Power Query هو أداة استخراج وتحويل وتجهيز البيانات (ETL) المدمجة داخل Power BI Desktop و Excel. يتصل بمئات المصادر (قواعد بيانات، ملفات سحابية، APIs)، ويقوم بتنظيف وتعديل هياكل البيانات عبر واجهة مستخدم رسومية سهلة. كل خطوة تنظيف تنفذها بالماوس تُترجم برمجياً في الخلفية إلى لغة M (Mashup Language). من أشهر عملياته: إلغاء محاذاة الأعمدة (Unpivot Columns لتحويل البيانات العريضة لطولية)، دمج الجداول (Merge/Joins)، إلحاق الجداول (Append/Union)، وتصحيح أنواع البيانات.",
+    "example": "// Example Power Query M Script Snippet:\nlet\n    Source = Sql.Database(\"server01\", \"CompanyDB\"),\n    Cleaned = Table.SelectRows(Source, each [Status] = \"Active\"),\n    Unpivoted = Table.UnpivotOtherColumns(Cleaned, {\"ID\"}, \"Attribute\", \"Value\")\nin\n    Unpivoted",
+    "note": "Power Query is the front-door of Power BI. Clean data in Power Query means easy calculations in DAX."
+  },
+  {
+    "id": 72,
+    "tech": "Power BI",
+    "slide": "Power BI Q22/30",
+    "category": "16. Power Query & ETL",
+    "category_ar": "محرك Power Query ولغة M",
+    "question": "What is the difference between Power Query (M) and DAX?",
+    "question_ar": "ما هو الفرق الجوهري بين محرك Power Query (M) ولغة DAX؟",
+    "answer": "1. Power Query (M Language): Purpose is Data Preparation / ETL. Executed during data extraction and refresh time BEFORE data enters the model. Operates on tables, files, and queries to reshape, cleanse, unpivot, filter rows, and merge. 2. DAX (Data Analysis Expressions): Purpose is Analytical Modeling & Business Logic. Executed on the loaded data model dynamically at query time in response to visual interactions and slicers. Computes aggregations, KPIs, ratios, and time-intelligence. Golden Rule: Clean and shape data upstream in Power Query; write calculations and KPIs downstream in DAX.",
+    "answer_ar": "1. Power Query (لغة M): مخصصة لعمليات استخراج وتجهيز وتنظيف البيانات (ETL). تعمل أثناء سحب البيانات وتحديثها قبل دخول البيانات إلى النموذج. مثالية لـ: دمج الجداول، إزالة الشوائب، إعادة تشكيل الأعمدة، وتصفية الصفوف غير المرغوبة. 2. DAX (تعبيرات تحليل البيانات): مخصصة للتحليلات الإحصائية ومنطق الأعمال والمؤشرات (Analytics & Measures). تعمل بعد تحميل البيانات في النموذج وتُحسب لحظياً وقت تفاعل المستخدم مع التقرير. القاعدة الذهبية لمطوري الداتا: جهز وهيكل البيانات مبكراً في Power Query، واكتب الحسابات والمقاييس لاحقاً في DAX.",
+    "example": "-- Decision Checklist:\nNeed to remove NULLs / unpivot columns?  ---> Power Query\nNeed to calculate YoY Growth % or dynamic Profit? ---> DAX",
+    "note": "A common mistake by beginners is attempting complex calculations in Power Query that belong in DAX, or vice versa."
+  },
+  {
+    "id": 73,
+    "tech": "Power BI",
+    "slide": "Power BI Q23/30",
+    "category": "13. Visuals & Reporting",
+    "category_ar": "الرسوم والتقارير",
+    "question": "What are Custom Visuals in Power BI?",
+    "question_ar": "ما هي الرسوم البيانية المخصصة (Custom Visuals)؟",
+    "answer": "Custom Visuals are specialized charting components developed by Microsoft or community/commercial developers to extend Power BI beyond its out-of-the-box core visual palette. Available through Microsoft AppSource (or imported as .pbiviz files), they include advanced charts such as Sankey Diagrams, Radar Charts, Bullet Charts, Word Clouds, and Gantt charts. Developers can also author bespoke custom visuals from scratch using TypeScript and D3.js via the Power BI Developer Visuals SDK.",
+    "answer_ar": "الرسوم المخصصة (Custom Visuals) هي رسوم بيانية إضافية يطورها مجتمع المطورين أو مايكروسوفت لتوسيع خيارات العرض بما يتجاوز الشارتات الافتراضية المدمجة في Power BI. يتم استيرادها مجاناً أو بترخيص من متجر Microsoft AppSource بصيغة (.pbiviz)، مثل: مخططات سانكي (Sankey Diagrams لتدفق التكاليف)، المخطط الراداري (Radar Chart لتقييم المهارات)، ومخططات جانت المتقدمة (Gantt Charts للمشاريع). كما يمكن للشركات برمجتها داخلياً باستخدام TypeScript و D3.js.",
+    "example": "-- Example Use Cases:\nSankey Diagram  -> Energy or Marketing lead funnel flow\nBullet Chart    -> Compact Target vs Actual KPI tracking\nInfographic Designer -> Custom shapes for bar charts",
+    "note": "Look for 'Certified by Power BI' badge on AppSource visuals to ensure they pass Microsoft security and performance audits."
+  },
+  {
+    "id": 74,
+    "tech": "Power BI",
+    "slide": "Power BI Q24/30",
+    "category": "17. Performance & Optimization",
+    "category_ar": "الأداء والتحسين",
+    "question": "How do you handle and model large datasets in Power BI?",
+    "question_ar": "كيف تتعامل مع مجموعات البيانات الضخمة (Large Datasets) بكفاءة؟",
+    "answer": "Handling large datasets in Power BI requires optimization across all layers: 1. Model Architecture: Adopt a clean Star Schema; avoid snowflake normalization. 2. Remove Unused Data: Delete unnecessary columns and rows in Power Query (avoid SELECT *). 3. Reduce Column Cardinality: Split high-cardinality DateTime columns into separate Date and Time columns; remove GUIDs and unique transaction strings. 4. Storage Modes: Use Incremental Refresh for historical tables, and Composite Models with User-Defined Aggregations (storing aggregated summaries in memory while keeping granular transactions in DirectQuery). 5. System Settings: Disable 'Auto Date/Time'.",
+    "answer_ar": "التعامل مع ملايين السجلات في Power BI يتطلب تطبيق أفضل ممارسات التحسين: 1. معمارية Star Schema وتفادي العلاقات المعقدة. 2. حذف كافة الأعمدة والصفوف غير المستخدمة من محرك Power Query (كل عمود إضافي يستهلك RAM). 3. تقليل تشتت البيانات (Cardinality): فصل أعمدة التاريخ والوقت (DateTime) إلى عمود تاريخ وعمود وقت منفصلين، والتخلص من أكواد GUID والمعرفات النصية الفريدة. 4. تفعيل التحديث التدريجي (Incremental Refresh) لجلب الأيام الجديدة فقط. 5. استخدام الجداول المجمعة (Aggregations) و Composite Models. 6. إيقاف خيار Auto Date/Time من إعدادات الملف لتوفير مئات الجداول الزمنية المخفية.",
+    "example": "-- Cardinality Optimization Impact:\nSingle DateTime column: 1,000,000 distinct values (Heavy!)\nSplit into Date (365 values) + Hour (24 values): 99% RAM savings in VertiPaq!",
+    "note": "The VertiPaq engine compresses data by column; reducing unique values per column is the #1 secret to huge file size reductions."
+  },
+  {
+    "id": 75,
+    "tech": "Power BI",
+    "slide": "Power BI Q25/30",
+    "category": "17. Performance & Optimization",
+    "category_ar": "الأداء والتحسين",
+    "question": "What are Performance Analyzer and Query Diagnostics?",
+    "question_ar": "ما هما أداتا Performance Analyzer و Query Diagnostics؟",
+    "answer": "1. Performance Analyzer: A built-in profiling tool in Power BI Desktop (View Ribbon) that logs execution duration for every visual on a page when interacted with. It breaks down rendering time into: DAX Query (time spent by VertiPaq engine executing calculations), Visual Display (time spent by browser rendering DOM/graphics), and Other (waiting for background tasks/connections). You can copy the exact DAX query to analyze it in DAX Studio. 2. Query Diagnostics: A diagnostic tool in Power Query that logs detailed traces of M-engine queries, showing evaluation times, network requests, and verifying whether Query Folding occurred.",
+    "answer_ar": "1. أداة Performance Analyzer (محلل الأداء): أداة مدمجة في شريط View بـ Power BI Desktop تسجل بالمللي ثانية زمن استجابة كل عنصر مرئي على الصفحة عند الفلترة، وتقسم الوقت إلى: DAX Query (زمن حساب المعادلة في المحرك)، Visual Display (زمن رسم الجرافيك في الشاشة)، و Other (زمن الانتظار). وتتيح نسخ كود DAX لتشريحه في برنامج DAX Studio. 2. أداة Query Diagnostics: أداة داخل Power Query تسجل مسار تنفيذ استعلامات لغة M وتوضح أوقات التحويلات وتكشف ما إذا كان الاستعلام قد تم ترحيله للسيرفر (Query Folding) أم تم تنفيذه محلياً.",
+    "example": "-- Performance Analyzer Output Breakdown:\nTotal Visual Time: 1,450 ms\n  ├── DAX Query:     1,200 ms  <-- Optimization needed here! (Tune DAX)\n  ├── Visual Display:  150 ms\n  └── Other:           100 ms",
+    "note": "Demonstrating how to copy queries from Performance Analyzer into DAX Studio to check Server Timings is an impressive interview answer."
+  },
+  {
+    "id": 76,
+    "tech": "Power BI",
+    "slide": "Power BI Q26/30",
+    "category": "17. Performance & Optimization",
+    "category_ar": "الأداء والتحسين",
+    "question": "How do you optimize a slow Power BI report?",
+    "question_ar": "كيف تحل مشكلة تقرير بطيء وتجعله فائق السرعة (Report Optimization)؟",
+    "answer": "A systematic 4-pillar approach: 1. Visual Layer: Limit visuals to 10-12 per page; avoid excessive overlapping cards; replace complex matrix visuals with summaries; limit slicers. 2. DAX Layer: Use variables (VAR) to cache repeated calculations; avoid nested CALCULATE or iterating entire fact tables; replace IFERROR with DIVIDE(); eliminate bi-directional cross filtering. 3. Data Model Layer: Implement Star Schema; remove high-cardinality columns; turn off Auto Date/Time. 4. Data Source / ETL Layer: Ensure Query Folding in Power Query so transformations execute inside the SQL engine instead of client memory; use native database views.",
+    "answer_ar": "عبر خطة منهجية من 4 محاور: 1. تحسين واجهة العرض: تقليل عدد الشارتات في الصفحة الواحدة (يفضل أقل من 10-12 عنصر)، تجنب وضع العشرات من الكروت المنفصلة، وتقليل السلايسرات الثقيلة. 2. تحسين معادلات DAX: استخدام المتغيرات (VAR) لحساب القيم مرة واحدة بدلاً من تكرارها، استبدال IFERROR بدالة DIVIDE الآمنة، تجنب تكرار جداول الحقائق في دوال FILTER، وإلغاء العلاقات ثنائية الاتجاه (Both). 3. تحسين النموذج: اعتماد Star Schema، إزالة الأعمدة غير المستخدمة، وإيقاف Auto Date/Time. 4. تحسين الاستعلامات: التأكد من تفعيل Query Folding في Power Query لترحيل المعالجة لسيرفر قاعدة البيانات بدلاً من إجهاد جهاز العميل.",
+    "example": "// Suboptimal DAX:\nSales Growth = IF([Sales LY] = 0, 0, ([Sales TY] - [Sales LY]) / [Sales LY])\n\n// Optimized DAX with VAR & DIVIDE:\nSales Growth Optimized = \nVAR CurrentSales = [Sales TY]\nVAR PriorSales   = [Sales LY]\nRETURN\n    DIVIDE(CurrentSales - PriorSales, PriorSales, 0)",
+    "note": "Using VAR in DAX not only cleans up the code, but also boosts query speed by calculating intermediate expressions exactly once."
+  },
+  {
+    "id": 77,
+    "tech": "Power BI",
+    "slide": "Power BI Q27/30",
+    "category": "18. Security & Sharing",
+    "category_ar": "الأمان والمشاركة",
+    "question": "What is RLS (Row-Level Security) in Power BI?",
+    "question_ar": "ما هو أمان مستوى الصف (Row-Level Security - RLS) وكيف يعمل؟",
+    "answer": "Row-Level Security (RLS) is a security governance feature in Power BI that restricts data access for given users, ensuring they only see rows they are authorized to view within the same report. Types: 1. Static RLS: Roles are created in Desktop with fixed DAX filters (e.g., Role 'Europe' has filter [Region]='Europe'). In Power BI Service, users/groups are assigned to this role manually. 2. Dynamic RLS: A single role uses DAX functions like USERNAME() or USERPRINCIPALNAME() to compare the logged-in user's corporate email against an internal security mapping table (e.g., Users[Email] = USERPRINCIPALNAME()), dynamically filtering data for thousands of users without creating separate roles.",
+    "answer_ar": "أمان مستوى الصف (RLS) هو نظام حماية يضمن أن كل مستخدم يرى فقط السجلات المصرح له بالاطلاع عليها داخل نفس التقرير الموحد (مثلاً: مدير فرع مصر يرى مبيعات مصر فقط، ومدير السعودية يرى مبيعات السعودية فقط). أنواعه: 1. أمان ثابت (Static RLS): إنشاء أدوار محددة مسبقاً (مثل دور فرع أوروبا مع فلتر ثابت Region='Europe') وتسكين المستخدمين فيه يدوياً. 2. أمان ديناميكي (Dynamic RLS): وهو الأكثر احترافية، حيث يُنشأ دور واحد يستخدم دالة USERPRINCIPALNAME() للتعرف على إيميل المستخدم المسجل دخوله تلقائياً، ومطابقته مع جدول صلاحيات الموظفين، ليتم فلترة التقرير آلياً لآلاف المستخدمين بأمان تام.",
+    "example": "// Dynamic RLS DAX Rule on Security Mapping Table:\nUserSecurity[Email] = USERPRINCIPALNAME()",
+    "note": "RLS only restricts viewers, not workspace Admins, Members, or Contributors (who have edit access). Always test with 'View as'."
+  },
+  {
+    "id": 78,
+    "tech": "Power BI",
+    "slide": "Power BI Q28/30",
+    "category": "10. Power BI Fundamentals",
+    "category_ar": "أساسيات Power BI",
+    "question": "What is the difference between a Dashboard and a Report in Power BI?",
+    "question_ar": "ما هو الفرق بين الـ Dashboard والـ Report في Power BI؟",
+    "answer": "1. Report: Multi-page document with rich interactive capabilities (slicers, drill down, cross filtering). Created in Desktop or Service. Built strictly on a SINGLE semantic dataset. Has full visual canvas customization. 2. Dashboard: A single-page high-level executive canvas. Created EXCLUSIVELY in Power BI Service by pinning individual tiles/visuals from one or MULTIPLE different reports and datasets. Features include: Q&A natural language query box ('Show sales by region in 2024'), automated data alerts on KPI tiles, and media widgets (images, videos, web links).",
+    "answer_ar": "1. Report (التقرير): مستند تحليلي تفاعلي يتكون من صفحة واحدة أو عدة صفحات، يحتوي على فلاتر وسلايسرات وتفاصيل دقيقة، ويُبنى استناداً إلى مجموعة بيانات (Dataset) واحدة فقط. يمكن تصميمه في Desktop أو Service. 2. Dashboard (لوحة المؤشرات): شاشة قيادية من صفحة واحدة فقط، تُنشأ حصرياً على Power BI Service عن طريق 'تثبيت' (Pin) بطاقات وشارتات مجمعة من عدة تقارير ومجموعات بيانات مختلفة. تدعم ميزات حصرية مثل: طرح أسئلة باللغة الإنجليزية في صندوق Q&A لتوليد شارت فوري، وضبط تنبيهات تلقائية (Data Alerts) تُرسل إيميلات عند تجاوز الأرقام لحدود معينة.",
+    "example": "-- Quick Comparison Table:\nFeature        | Report                  | Dashboard\nPages          | Single or Multiple      | Exactly Single Page\nData Sources   | Single Dataset          | Multiple Datasets\nCreation Tool  | Desktop & Service       | Service ONLY\nInteractivity  | Slicers & Full Drill    | Limited (Pins & Links)",
+    "note": "One of the most frequently asked junior and mid-level interview questions. Knowing the single-dataset vs multi-dataset rule is key."
+  },
+  {
+    "id": 79,
+    "tech": "Power BI",
+    "slide": "Power BI Q29/30",
+    "category": "15. Administration & Gateways",
+    "category_ar": "الإدارة وبوابات البيانات",
+    "question": "How do you schedule data refreshes in Power BI Service?",
+    "question_ar": "كيف تجدول تحديث البيانات تلقائياً (Scheduled Refresh) في Power BI Service؟",
+    "answer": "Steps to configure Scheduled Refresh in Power BI Service: 1. Publish the report and semantic model from Desktop to a Workspace in Power BI Service. 2. Navigate to Workspace -> Datasets -> Select the dataset's 'Settings' (gear icon). 3. Configure Data Source Credentials (OAuth2, Windows, Database key). 4. If data is On-Premises, bind the dataset to an active On-Premises Data Gateway. 5. Expand 'Scheduled Refresh' and toggle it ON. 6. Set Refresh Frequency (Daily or Weekly), select Time Zone, and add scheduled time slots (Pro: up to 8 times/day; Premium: up to 48 times/day). 7. Add email recipients under 'Send refresh failure notifications'.",
+    "answer_ar": "خطوات ضبط التحديث التلقائي المجدول: 1. نشر التقرير والنموذج من Desktop إلى مساحة عمل (Workspace) على السحابة. 2. الانتقال إلى إعدادات مجموعة البيانات (Dataset Settings). 3. إدخال بيانات اعتماد المصدر (Data Source Credentials) وتحديد نوع الأمان. 4. إذا كانت البيانات محلية، يتم اختيار بوابة البيانات (Gateway) النشطة وتعيين المسارات. 5. تفعيل مفتاح (Scheduled Refresh). 6. اختيار تكرار التحديث (يومياً Daily أو أسبوعياً)، وضبط التوقيت الزمني (Timezone)، وإضافة الأوقات المطلوبة (حساب Pro يتيح حتى 8 مرات يومياً، بينما Premium يتيح حتى 48 مرة). 7. تفعيل إرسال إشعارات الفشل عبر البريد الإلكتروني.",
+    "example": "-- Refresh Limits by License:\nPower BI Pro     -> 8 refreshes per day per dataset\nPower BI Premium -> 48 refreshes per day per dataset (supports sub-hourly refreshes)",
+    "note": "Mentioning failure notification emails and gateway binding proves you have managed real production BI environments."
+  },
+  {
+    "id": 80,
+    "tech": "Power BI",
+    "slide": "Power BI Q30/30",
+    "category": "13. Visuals & Reporting",
+    "category_ar": "الرسوم والتقارير",
+    "question": "What are the best practices for designing professional Power BI dashboards?",
+    "question_ar": "ما هي أفضل الممارسات لتصميم لوحات تحكم احترافية وعالمية؟",
+    "answer": "Industry best practices: 1. 5-Second Rule: The primary KPI and status of the business must be clear within 5 seconds of viewing the page (place critical cards at the top-left in LTR or top-right in RTL). 2. Consistent Design System: Limit color palette to 2-3 brand colors; use neutral greys for backgrounds; use saturated alert colors (Red/Green) strictly for status/exceptions. 3. Avoid Clutter: Limit page to 6-10 purposeful visuals; utilize tooltips, drill-through, and bookmarks rather than crowding the main canvas. 4. Clear Typography & Formatting: Standardize fonts, format numbers meaningfully ($1.2M instead of $1,234,567.89), and label all axes. 5. Mobile Layout: Always design an optimized portrait layout for mobile consumption.",
+    "answer_ar": "أهم الممارسات المهنية العالمية: 1. قاعدة الخمس ثوانٍ (5-Second Rule): يجب أن يفهم المدير حالة العمل والمؤشر الأهم خلال 5 ثوانٍ من النظر للشاشة (ضع المؤشرات الحيوية أعلى اليمين في التقارير العربية، أو أعلى اليسار في الإنجليزية). 2. نظام ألوان موحد واحترافي: تجنب ألوان قوس قزح؛ استخدم لونين أو ثلاثة متناسقة من هوية الشركة، واستخدم الرمادي الهادئ للخلفيات، واقصر الأحمر والأخضر على التنبيهات الاستثنائية فقط. 3. تجنب التكدس البصري: لا تتجاوز 6 إلى 10 عناصر مرئية في الصفحة، واعتمد على Tooltips و Drill-Through و Bookmarks لعرض التفاصيل عند الطلب. 4. التنسيق الرقمي الذكي: اختصر الأرقام الكبيرة (مثل $1.4M بدلاً من $1,421,894) لسهولة القراءة السريعة. 5. دعم الموبايل: صمم دائماً نسخة مخصصة للشاشات الرأسية عبر Mobile Layout.",
+    "example": "-- Visual Hierarchy Flow:\n[Top Layer]:    Key KPI Cards (Total Revenue, Margin %, Active Customers)\n[Middle Layer]: Trend Line Charts & Categorical Performance (Sales by Month, Top 5 Products)\n[Bottom Layer]: Detailed Composition & Tables (Drill-through details, Geography)",
+    "note": "Design is not just decoration; in BI, good design reduces cognitive load and accelerates business decisions."
   }
 ];

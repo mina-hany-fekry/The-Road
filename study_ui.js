@@ -8,6 +8,7 @@ const studyUIState = {
   activeModule: null, // 'python', 'sql_notes', 'sql_interview', 'statistics', 'data_world', 'charts', 'tracker'
   interviewSearch: '',
   interviewFilter: 'all',
+  interviewTech: 'all', // 'all', 'SQL', 'Power BI'
   pythonActiveLevel: 'beginner',
   sqlActiveSection: 'basics',
   statsActiveSection: 'all',
@@ -435,21 +436,32 @@ function formatTableHeader(k) {
 }
 
 // =========================================================================
-// 4. 50 SQL INTERVIEW QUESTIONS RENDERER (أسئلة المقابلات)
+// 4. 80 INTERVIEW QUESTIONS RENDERER (SQL & POWER BI أسئلة المقابلات)
 // =========================================================================
 function renderSqlInterview() {
   const container = document.getElementById('sql-interview-content');
   if (!container || !window.STUDY_INTERVIEW_DATA) return;
 
   const allQuestions = window.STUDY_INTERVIEW_DATA;
+  const currentTech = studyUIState.interviewTech || 'all';
   const currentFilter = studyUIState.interviewFilter;
   const query = (studyUIState.interviewSearch || '').trim().toLowerCase();
 
-  // Extract unique categories
-  const categories = ['all', ...new Set(allQuestions.map(q => q.category))];
+  // Tech counts
+  const sqlCount = allQuestions.filter(q => (q.tech || 'SQL') === 'SQL').length;
+  const pbiCount = allQuestions.filter(q => q.tech === 'Power BI').length;
 
-  // Filter questions
-  const filtered = allQuestions.filter(q => {
+  // Filter by technology first
+  const techFiltered = allQuestions.filter(q => {
+    if (currentTech === 'all') return true;
+    return (q.tech || 'SQL') === currentTech;
+  });
+
+  // Extract unique categories for this tech selection
+  const categories = ['all', ...new Set(techFiltered.map(q => q.category))];
+
+  // Filter questions by Category and Search Query
+  const filtered = techFiltered.filter(q => {
     const matchesCat = (currentFilter === 'all') || (q.category === currentFilter);
     if (!matchesCat) return false;
     if (!query) return true;
@@ -458,7 +470,8 @@ function renderSqlInterview() {
       q.question_ar.toLowerCase().includes(query) ||
       q.answer.toLowerCase().includes(query) ||
       q.answer_ar.toLowerCase().includes(query) ||
-      q.example.toLowerCase().includes(query)
+      (q.example && q.example.toLowerCase().includes(query)) ||
+      (q.note && q.note.toLowerCase().includes(query))
     );
   });
 
@@ -468,15 +481,40 @@ function renderSqlInterview() {
       <div class="flex items-center justify-between flex-wrap gap-2">
         <h3 class="text-lg sm:text-xl font-black text-slate-900 flex items-center gap-2">
           <span>🎯</span>
-          <span>50 سؤال وجواب لمقابلات SQL (50 SQL Interview Q&A)</span>
+          <span>80 سؤال وجواب لمقابلات العمل (80 SQL & Power BI Q&A)</span>
         </h3>
         <span class="text-xs px-3 py-1 rounded-full bg-indigo-100 text-indigo-900 font-bold border border-indigo-300">
-          معروض: ${filtered.length} من أصل 50 سؤالاً
+          معروض: ${filtered.length} من أصل ${allQuestions.length} سؤالاً
         </span>
       </div>
       <p class="text-xs sm:text-sm text-slate-600 font-medium leading-relaxed">
-        الأسئلة الرسمية الخمسين بالكامل مأخوذة من سلايدات المقابلات (Slides 1 to 10) مع الكود وشرح الفروق الدقيقة.
+        بنك أسئلة المقابلات الشامل: 50 سؤال SQL من السلايدات الرسمية + 30 سؤال Power BI & DAX ونمذجة البيانات، بإجابات نموذجية ثنائية اللغة وأكواد وأسرار المقابلات.
       </p>
+
+      <!-- Technology Tabs (All / SQL / Power BI) -->
+      <div class="flex items-center gap-2 pt-1 border-b border-slate-200/80 pb-3">
+        <button 
+          onclick="setInterviewTech('all')"
+          class="py-2 px-4 rounded-2xl text-xs font-black transition-all flex items-center gap-1.5 btn-3d cursor-pointer ${currentTech === 'all' ? 'bg-indigo-600 text-white shadow-md scale-105' : 'bg-white hover:bg-indigo-50 text-slate-700 border border-slate-200'}"
+        >
+          <span>⭐</span>
+          <span>الكل (${allQuestions.length})</span>
+        </button>
+        <button 
+          onclick="setInterviewTech('SQL')"
+          class="py-2 px-4 rounded-2xl text-xs font-black transition-all flex items-center gap-1.5 btn-3d cursor-pointer ${currentTech === 'SQL' ? 'bg-cyan-600 text-white shadow-md scale-105' : 'bg-white hover:bg-cyan-50 text-slate-700 border border-slate-200'}"
+        >
+          <span>🗄️</span>
+          <span>أسئلة SQL (${sqlCount})</span>
+        </button>
+        <button 
+          onclick="setInterviewTech('Power BI')"
+          class="py-2 px-4 rounded-2xl text-xs font-black transition-all flex items-center gap-1.5 btn-3d cursor-pointer ${currentTech === 'Power BI' ? 'bg-amber-600 text-white shadow-md scale-105' : 'bg-white hover:bg-amber-50 text-slate-700 border border-slate-200'}"
+        >
+          <span>📊</span>
+          <span>أسئلة Power BI (${pbiCount})</span>
+        </button>
+      </div>
 
       <!-- Instant Search Input -->
       <div class="relative">
@@ -485,7 +523,7 @@ function renderSqlInterview() {
           id="interview-search-input"
           oninput="handleInterviewSearch(this.value)"
           value="${escapeHtml(studyUIState.interviewSearch)}"
-          placeholder="ابحث في أي سؤال، أمر (مثل JOIN أو TRUNCATE) أو إجابة..."
+          placeholder="ابحث في أي سؤال، دالة (مثل CALCULATE أو JOIN أو RLS) أو إجابة..."
           class="w-full py-3 px-4 pr-10 rounded-2xl bg-white border border-slate-200 text-slate-800 text-xs sm:text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-400 font-medium"
         >
         <span class="absolute right-3.5 top-3.5 text-slate-400 text-base pointer-events-none">🔍</span>
@@ -495,7 +533,7 @@ function renderSqlInterview() {
       <div class="flex items-center gap-1.5 overflow-x-auto pt-1 pb-1 no-scrollbar">
         ${categories.map(cat => {
           const isActive = cat === currentFilter;
-          const label = (cat === 'all') ? '⭐ جميع الأسئلة (50)' : cat;
+          const label = (cat === 'all') ? `⭐ جميع أقسام ${currentTech === 'all' ? 'المقابلات' : currentTech} (${techFiltered.length})` : cat;
           const cls = isActive
             ? 'bg-indigo-600 text-white shadow-md scale-105'
             : 'bg-white/80 hover:bg-indigo-50 text-slate-700 border border-slate-200';
@@ -525,50 +563,56 @@ function renderSqlInterview() {
   } else {
     html += `<div class="space-y-4 pt-2">`;
     filtered.forEach(q => {
+      const isPBI = q.tech === 'Power BI';
+      const badgeCls = isPBI ? 'bg-amber-100 text-amber-900 border-amber-300' : 'bg-indigo-50 text-indigo-800 border-indigo-200';
+      const numberCls = isPBI ? 'bg-amber-100 text-amber-900 border-amber-300' : 'bg-indigo-100 text-indigo-900 border-indigo-200';
+      const exampleTitle = isPBI ? 'Power BI / DAX / Architecture Pattern' : 'SQL Query Example';
+
       html += `
         <div class="glass-panel rounded-3xl p-5 sm:p-6 border border-white/80 shadow-sm space-y-4 hover:shadow-md transition-all">
           <!-- Question Header -->
           <div class="flex items-start justify-between gap-3 flex-wrap sm:flex-nowrap">
             <div class="flex items-start gap-3">
-              <span class="w-8 h-8 rounded-2xl bg-indigo-100 text-indigo-900 font-black text-sm flex items-center justify-center flex-shrink-0 shadow-sm border border-indigo-200">
+              <span class="w-8 h-8 rounded-2xl ${numberCls} font-black text-sm flex items-center justify-center flex-shrink-0 shadow-sm border">
                 ${q.id}
               </span>
               <div>
                 <h4 class="text-base font-black text-slate-900 leading-snug">${q.question_ar}</h4>
-                <p class="text-xs text-indigo-800 font-bold dir-ltr text-left mt-0.5">${q.question}</p>
+                <p class="text-xs ${isPBI ? 'text-amber-800' : 'text-indigo-800'} font-bold dir-ltr text-left mt-0.5">${q.question}</p>
               </div>
             </div>
-            <div class="flex items-center gap-1.5 flex-shrink-0">
+            <div class="flex items-center gap-1.5 flex-shrink-0 flex-wrap justify-end">
+              <span class="text-[10px] font-black px-2 py-0.5 rounded-lg ${isPBI ? 'bg-amber-500 text-white' : 'bg-cyan-600 text-white'}">${q.tech || 'SQL'}</span>
               <span class="text-[10px] font-bold px-2.5 py-1 rounded-xl bg-slate-100 text-slate-600">${q.slide}</span>
-              <span class="text-[10px] font-bold px-2.5 py-1 rounded-xl bg-indigo-50 text-indigo-800 border border-indigo-200">${q.category_ar || q.category}</span>
+              <span class="text-[10px] font-bold px-2.5 py-1 rounded-xl ${badgeCls} border">${q.category_ar || q.category}</span>
             </div>
           </div>
 
           <!-- Answer Sections (Arabic + English) -->
           <div class="space-y-2 pt-1">
             <div class="p-3.5 rounded-2xl bg-white/90 border border-slate-200/90 text-slate-800 text-xs sm:text-sm font-medium leading-relaxed whitespace-pre-line shadow-sm">
-              <span class="font-bold text-indigo-900 block mb-1">الإجابة النموذجية:</span>
+              <span class="font-bold ${isPBI ? 'text-amber-900' : 'text-indigo-900'} block mb-1">الإجابة النموذجية:</span>
               ${q.answer_ar}
             </div>
-            <div class="p-3 rounded-2xl bg-slate-50 border border-slate-200 text-slate-600 text-xs font-medium leading-relaxed dir-ltr text-left">
+            <div class="p-3 rounded-2xl bg-slate-50 border border-slate-200 text-slate-600 text-xs font-medium leading-relaxed dir-ltr text-left whitespace-pre-line">
               <span class="font-bold text-slate-800 block mb-0.5">English Answer:</span>
               ${q.answer}
             </div>
           </div>
 
-          <!-- Code Example with Copy -->
+          <!-- Code / Example with Copy -->
           ${q.example ? `
             <div class="relative rounded-2xl bg-slate-900 border border-slate-800 p-4 shadow-inner text-left dir-ltr">
               <div class="flex items-center justify-between pb-2 border-b border-slate-800 mb-2">
-                <span class="text-[10px] text-indigo-400 font-mono font-bold">SQL Query Example</span>
+                <span class="text-[10px] ${isPBI ? 'text-amber-400' : 'text-indigo-400'} font-mono font-bold">${exampleTitle}</span>
                 <button 
                   onclick="copyCodeToClipboard(this, ${escapeForJs(q.example)})" 
                   class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-[10px] font-bold transition-all flex items-center gap-1 cursor-pointer"
                 >
-                  <span>📋</span> <span>نسخ الاستعلام</span>
+                  <span>📋</span> <span>نسخ الكود / الشرح</span>
                 </button>
               </div>
-              <pre class="font-mono text-xs text-indigo-200 overflow-x-auto"><code>${escapeHtml(q.example)}</code></pre>
+              <pre class="font-mono text-xs ${isPBI ? 'text-amber-200' : 'text-indigo-200'} overflow-x-auto whitespace-pre"><code>${escapeHtml(q.example)}</code></pre>
             </div>
           ` : ''}
 
@@ -593,6 +637,12 @@ window.handleInterviewSearch = function(val) {
   renderSqlInterview();
 };
 
+window.setInterviewTech = function(tech) {
+  studyUIState.interviewTech = tech;
+  studyUIState.interviewFilter = 'all';
+  renderSqlInterview();
+};
+
 window.setInterviewFilter = function(cat) {
   studyUIState.interviewFilter = cat;
   renderSqlInterview();
@@ -601,6 +651,7 @@ window.setInterviewFilter = function(cat) {
 window.clearInterviewSearch = function() {
   studyUIState.interviewSearch = '';
   studyUIState.interviewFilter = 'all';
+  studyUIState.interviewTech = 'all';
   renderSqlInterview();
 };
 
