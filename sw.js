@@ -1,6 +1,6 @@
 // Service Worker for The Road PWA
 // 100% Offline-First Engine with Smart Network-First Navigation & Instant Auto-Invalidation
-const BUILD_TIME = '20261112210000';
+const BUILD_TIME = '20261118210000';
 const CACHE_NAME = `the-road-v${BUILD_TIME}`;
 
 const ASSETS_TO_CACHE = [
@@ -17,6 +17,13 @@ const ASSETS_TO_CACHE = [
   './bible_nt.js',
   './bible_ot.js',
   './curriculum.js',
+  './study_python_data.js',
+  './study_sql_data.js',
+  './study_interview_data.js',
+  './study_stats_data.js',
+  './study_world_data.js',
+  './study_charts_data.js',
+  './study_ui.js',
   './app.js',
   './favicon.png',
   './icons/emblem.png',

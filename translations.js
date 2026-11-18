@@ -21,6 +21,13 @@ const TRANSLATIONS = {
     tab_reschedule: "🔄 إعادة الجدولة الذكية",
     tab_timer: "⏱️ مؤقت التركيز (60 د)",
     tab_settings: "⚙️ الإعدادات والنسخ",
+    study_mod_python: "🐍 منهج بايثون الشامل",
+    study_mod_sql: "🗄️ مذكرات وقواعد SQL",
+    study_mod_interview: "🎯 50 سؤال لمقابلات SQL",
+    study_mod_stats: "📊 الإحصاء لتحليل البيانات",
+    study_mod_world: "🌐 عالم وهندسة البيانات",
+    study_mod_charts: "📈 دليل الشارتات والرسوم",
+    study_mod_tracker: "⏱️ الجدول والمؤقت",
     
     // Agpeya terms
     agpeya_title: "صلوات الأجبية الكنسية الكاملة",
@@ -133,6 +140,13 @@ const TRANSLATIONS = {
     tab_reschedule: "🔄 Smart Reschedule",
     tab_timer: "⏱️ Focus Timer (60m)",
     tab_settings: "⚙️ Settings & Backup",
+    study_mod_python: "🐍 Python Roadmap",
+    study_mod_sql: "🗄️ SQL Topper Notes",
+    study_mod_interview: "🎯 50 SQL Interview Q&A",
+    study_mod_stats: "📊 Statistics for Data",
+    study_mod_world: "🌐 The World of Data",
+    study_mod_charts: "📈 Charts & Viz Guide",
+    study_mod_tracker: "⏱️ Schedule & Timer",
     
     // Agpeya terms
     agpeya_title: "The Agpeya: Book of Canonical Hours",

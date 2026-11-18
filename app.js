@@ -210,6 +210,7 @@ function navigateToScreen(screen, pushHistory = true) {
     appState.currentSection = 'study';
     if (screenStudy) screenStudy.classList.remove('hidden');
     closeAllStudyViews();
+    if (typeof closeStudyModules === 'function') closeStudyModules();
     if (pushHistory) {
       pushNavigationState({ screen: 'study', section: 'study' });
     }
@@ -241,8 +242,11 @@ function goHome(pushHistory = true) {
 }
 
 function switchSpiritualTab(subTab, pushHistory = true) {
-  // Toggle: If clicking already active subTab, close/collapse it
-  if (appState.spiritual.activeSubTab === subTab) {
+  const targetView = document.getElementById(`spiritual-view-${subTab}`);
+  const isAlreadyOpen = targetView && !targetView.classList.contains('hidden');
+
+  // Toggle: If clicking already visible subTab, collapse it
+  if (isAlreadyOpen) {
     closeAllSpiritualViews();
     return;
   }
@@ -263,7 +267,6 @@ function switchSpiritualTab(subTab, pushHistory = true) {
 
   // Toggle subviews
   document.querySelectorAll('.spiritual-view').forEach(view => view.classList.add('hidden'));
-  const targetView = document.getElementById(`spiritual-view-${subTab}`);
   if (targetView) targetView.classList.remove('hidden');
 
   renderSpiritualSection();
@@ -2587,8 +2590,11 @@ function renderStudySection() {
 }
 
 function switchStudyTab(tab, pushHistory = true) {
-  // Toggle: If clicking already active tab, close/collapse it
-  if (appState.study.activeTab === tab) {
+  const targetView = document.getElementById(`study-view-${tab}`);
+  const isAlreadyOpen = targetView && !targetView.classList.contains('hidden');
+
+  // Toggle: If clicking already visible tab, collapse it
+  if (isAlreadyOpen) {
     closeAllStudyViews();
     return;
   }
@@ -2609,7 +2615,6 @@ function switchStudyTab(tab, pushHistory = true) {
 
   // Toggle study subviews
   document.querySelectorAll('.study-view, .study-subview').forEach(v => v.classList.add('hidden'));
-  const targetView = document.getElementById(`study-view-${tab}`);
   if (targetView) targetView.classList.remove('hidden');
 
   renderStudySection();
